@@ -7,8 +7,13 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(__dirname, 'dist');
 
-// ---- API 处理器 ----
-import authHandler from './api/auth.mjs';
+// ---- API 路由表 ----
+const API_ROUTES = {
+  '/api/auth': './api/auth.mjs',
+  '/api/analyze': './api/analyze.mjs',
+  '/api/classify': './api/classify.mjs',
+  '/api/lookup': './api/lookup.mjs',
+};
 
 // ---- MIME 类型 ----
 const MIME = {
@@ -46,38 +51,15 @@ function serveStatic(url, res) {
 }
 
 // 解析请求体
-function parseBody(req) {
-  return new Promise((resolve) => {
-    if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') return resolve({});
-    let body = '';
-    req.on('data', chunk => (body += chunk));
-    req.on('end', () => {
-      try { resolve(JSON.parse(body)); } catch { resolve({}); }
-    });
-  });
-}
-
-// Wrap Vercel 风格的 handler 为 http.createServer 风格
-function wrapVercelHandler(handler) {
-  return async (req, res) => {
-    req.body = await parseBody(req);
-    // 自定义 json 辅助方法
-    res.status = (code) => { res.statusCode = code; return res; };
-    const origJson = res.json;
-    res.json = (data) => {
-      if (!origJson) {
-        res.setHeader('Content-Type', 'application/json; charset=utf-8');
-        res.end(JSON.stringify(data));
-      } else {
-        origJson.call(res, data);
-      }
-    };
-    await handler(req, res);
-  };
+async function parseBody(req) {
+  if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') return {};
+  let body = '';
+  for await (const chunk of req) body += chunk;
+  try { return JSON.parse(body); } catch { return {}; }
 }
 
 // ---- 服务器 ----
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   const url = req.url;
 
   // CORS
@@ -92,9 +74,25 @@ const server = http.createServer((req, res) => {
   }
 
   // ---- API 路由 ----
-  if (url.startsWith('/api/')) {
-    const wrapped = wrapVercelHandler(authHandler);
-    wrapped(req, res);
+  const routeMatch = Object.keys(API_ROUTES).find(r => url.startsWith(r));
+  if (routeMatch) {
+    try {
+      const mod = await import(API_ROUTES[routeMatch]);
+      req.body = await parseBody(req);
+      // Vercel 风格的 handler → 包装成普通 http handler
+      await mod.default(req, {
+        ...res,
+        status(code) { this.statusCode = code; return this; },
+        json(data) {
+          res.setHeader('Content-Type', 'application/json; charset=utf-8');
+          res.end(JSON.stringify(data));
+        },
+      });
+    } catch (e) {
+      res.statusCode = 500;
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.end(JSON.stringify({ error: e.message }));
+    }
     return;
   }
 
