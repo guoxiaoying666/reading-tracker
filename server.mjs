@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DIST = path.join(__dirname, '.build');
+const DIST = path.join(__dirname, 'dist');
 
 // ---- API 路由表 ----
 const API_ROUTES = {

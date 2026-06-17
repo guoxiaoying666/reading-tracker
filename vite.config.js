@@ -98,9 +98,6 @@ function apiPlugin() {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), apiPlugin()],
-  build: {
-    outDir: '.build',
-  },
   server: {
     allowedHosts: 'all',
     host: '0.0.0.0',
