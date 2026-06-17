@@ -2,11 +2,6 @@
   "build": {
     "command": "npm run build"
   },
-  "start": {
-    "command": "node server.mjs"
-  },
-  "static": {
-    "dir": "dist",
-    "disable": true
-  }
+  "start": "node server.mjs",
+  "port": 3000
 }
