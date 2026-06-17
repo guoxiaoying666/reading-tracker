@@ -1,7 +1,0 @@
-{
-  "build": {
-    "command": "npm run build"
-  },
-  "start": "node server.mjs",
-  "port": 3000
-}
