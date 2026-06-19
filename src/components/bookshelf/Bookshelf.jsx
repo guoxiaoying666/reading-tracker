@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useReading } from '../../context/ReadingContext';
+import { useAuth } from '../../context/AuthContext';
 import { getTotalBooks, getDimensionActualPct, getMonthlyTrend, getMonths, getAvgChildStar, getLevel2Distribution } from '../../utils/stats';
 import { DIMENSIONS, LANGUAGES, CLASSIC_OPTIONS, FICTION_OPTIONS, getDimension, getAllLevel2Options, getLevel3Options } from '../../data/framework';
 import { diagnoseCoverage, generateMonthlyReport, generateRecommendations } from '../../utils/diagnosis';
@@ -70,6 +71,18 @@ export default function Bookshelf() {
   // 计算被折叠的书籍数量
   const hiddenCount = books.length - recentBooks.length;
 
+  // 访客演示数据
+  const [demoData, setDemoData] = useState(null);
+  const [showDemo, setShowDemo] = useState(false);
+  const loadDemo = async () => {
+    if (!demoData) {
+      const resp = await fetch('/demo_data.json');
+      const data = await resp.json();
+      setDemoData(data);
+    }
+    setShowDemo(true);
+  };
+
   if (books.length === 0) {
     return <EmptyState icon="📚" title="书架空空" description="去「新书录入」页添加孩子读过的第一本书吧！" />;
   }
@@ -91,6 +104,21 @@ export default function Bookshelf() {
           <div style={{fontSize:10,color:'var(--ink3)'}}>⭐ 平均喜爱度</div>
         </div>
       </div>
+
+      {/* 访客示例数据按钮 */}
+      {!showDemo && (
+        <div className="card" style={{ padding: '12px 16px', marginBottom: 12, cursor: 'pointer', border: '1px dashed var(--border)', background: 'var(--bg)' }}
+          onClick={loadDemo}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 18 }}>📋</span>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)' }}>查看示例阅读报告</div>
+              <div style={{ fontSize: 10, color: 'var(--ink3)' }}>不保存、不修改，仅预览功能效果</div>
+            </div>
+            <span style={{ color: 'var(--ink3)', fontSize: 14 }}>›</span>
+          </div>
+        </div>
+      )}
 
       {/* 阅读结构：横向对比条 */}
       <h2 className="section-title"><span className="icon">📊</span> 阅读结构</h2>
@@ -323,6 +351,42 @@ export default function Bookshelf() {
           ✍️ 新书录入
         </button>
       </div>
+
+      {/* 访客示例数据弹窗 */}
+      {showDemo && demoData && (
+        <div className="modal-overlay" onClick={() => setShowDemo(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: 420, maxHeight: '80vh', overflow: 'auto', borderRadius: 16, padding: 0 }}>
+            <div style={{ padding: 20, background: 'white' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+                <div style={{ fontSize: 24 }}>📋</div>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--ink)' }}>示例阅读报告</div>
+                  <div style={{ fontSize: 11, color: 'var(--ink3)' }}>脱敏预览 · 不保存到本地</div>
+                </div>
+                <button onClick={() => setShowDemo(false)} style={{ marginLeft: 'auto', background: 'none', border: 'none', fontSize: 18, color: 'var(--ink3)', cursor: 'pointer' }}>✕</button>
+              </div>
+              <div style={{ fontSize: 12, color: 'var(--ink2)', marginBottom: 12 }}>
+                累计阅读 <strong>{demoData.diagnosis.totalBooks}</strong> 本 ·
+                虚构 {demoData.diagnosis.fictionCount} 本 / 非虚构 {demoData.diagnosis.nonFictionCount} 本
+              </div>
+              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)', marginBottom: 6 }}>维度覆盖</div>
+              {demoData.diagnosis.dimensionStats.map(d => (
+                <div key={d.dim} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0', fontSize: 12 }}>
+                  <span>{d.status}</span>
+                  <span style={{ color: 'var(--ink2)' }}>{d.dim}</span>
+                  <span style={{ marginLeft: 'auto', color: 'var(--ink3)' }}>{d.count}本 · 目标{d.target}</span>
+                </div>
+              ))}
+              <div style={{ marginTop: 12, padding: 8, background: '#F9F7F4', borderRadius: 8, fontSize: 11, color: 'var(--ink2)', lineHeight: 1.6 }}>
+                💡 {demoData.diagnosis.suggestion}
+              </div>
+              <div style={{ marginTop: 16, fontSize: 11, color: 'var(--ink3)', borderTop: '1px solid var(--border)', paddingTop: 12 }}>
+                示例包含 {demoData.books.length} 本代表性书目，涵盖 7 个维度。完整数据库含 400+ 本。
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

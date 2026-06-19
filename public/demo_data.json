@@ -1,0 +1,106 @@
+{
+  "_comment": "伊伊的书房 — 访客演示数据（脱敏示例，不涉及真实数据）",
+  "books": [
+    {
+      "id": "demo-001", "title": "带着诗歌过童年", "author": "蒋一谈",
+      "month": "2026-06", "source": "广图", "language": "中文",
+      "classic": false, "fiction": "虚构",
+      "dimension": "literature", "level2": "poetry", "level3": "",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-002", "title": "爱的教育", "author": "(意)亚米契斯",
+      "month": "2026-06", "source": "广图", "language": "外文",
+      "classic": true, "fiction": "虚构",
+      "dimension": "literature", "level2": "novel", "level3": "成长校园",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-003", "title": "动物眼中的人类史", "author": "(荷)约克·阿克维德",
+      "month": "2026-06", "source": "广图", "language": "外文",
+      "classic": false, "fiction": "非虚构",
+      "dimension": "nature", "level2": "biology", "level3": "进化生态",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-004", "title": "半小时漫画《史记》", "author": "陈磊·半小时漫画团队",
+      "month": "2026-06", "source": "广图", "language": "中文",
+      "classic": false, "fiction": "非虚构",
+      "dimension": "history", "level2": "chinese_history", "level3": "朝代制度",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-005", "title": "走！跟着山鹰去观鸟", "author": "山鹰",
+      "month": "2026-06", "source": "广图", "language": "中文",
+      "classic": false, "fiction": "非虚构",
+      "dimension": "nature", "level2": "biology", "level3": "动植物",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-006", "title": "凯的解剖学", "author": "(英)亚当·凯",
+      "month": "2026-06", "source": "广图", "language": "外文",
+      "classic": false, "fiction": "非虚构",
+      "dimension": "self", "level2": "body", "level3": "青春期发育",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-007", "title": "柳林风声", "author": "(英)肯尼斯·格雷厄姆",
+      "month": "2026-05", "source": "广图", "language": "外文",
+      "classic": true, "fiction": "虚构",
+      "dimension": "literature", "level2": "novel", "level3": "幻想冒险",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-008", "title": "和孩子聊聊人工智能", "author": "(西)西班牙谜题协会",
+      "month": "2026-05", "source": "广图", "language": "外文",
+      "classic": false, "fiction": "非虚构",
+      "dimension": "future", "level2": "ai", "level3": "AI是什么",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-009", "title": "什么是真正的朋友？", "author": "(日)斋藤孝",
+      "month": "2026-05", "source": "广图", "language": "外文",
+      "classic": false, "fiction": "非虚构",
+      "dimension": "self", "level2": "psychology", "level3": "心理健康",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-010", "title": "DK璀璨的矿物与岩石", "author": "英国DK公司",
+      "month": "2026-05", "source": "广图", "language": "中文",
+      "classic": false, "fiction": "非虚构",
+      "dimension": "nature", "level2": "geography", "level3": "资源环境",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-011", "title": "火星女孩．星星的预言", "author": "彭柳蓉",
+      "month": "2026-04", "source": "广图", "language": "中文",
+      "classic": false, "fiction": "虚构",
+      "dimension": "literature", "level2": "novel", "level3": "幻想冒险",
+      "childStar": 0, "note": ""
+    },
+    {
+      "id": "demo-012", "title": "无处不在的经济学．藏在日常消费里的秘密", "author": "多多罗",
+      "month": "2026-04", "source": "广图", "language": "中文",
+      "classic": false, "fiction": "非虚构",
+      "dimension": "society", "level2": "economy", "level3": "市场交换",
+      "childStar": 0, "note": ""
+    }
+  ],
+  "diagnosis": {
+    "totalBooks": 405,
+    "fictionCount": 280,
+    "nonFictionCount": 125,
+    "cnCount": 195,
+    "foreignCount": 210,
+    "dimensionStats": [
+      { "dim": "① 自我", "count": 18, "target": "5%", "status": "🟢" },
+      { "dim": "② 社会人文", "count": 25, "target": "10%", "status": "🟢" },
+      { "dim": "③ 自然", "count": 68, "target": "27%", "status": "🟢" },
+      { "dim": "④ 历史文明", "count": 35, "target": "10%", "status": "🟢" },
+      { "dim": "⑤ 文学", "count": 228, "target": "40%", "status": "🟡" },
+      { "dim": "⑥ 艺术", "count": 12, "target": "3%", "status": "🟢" },
+      { "dim": "⑦ 科技创新", "count": 19, "target": "5%", "status": "🟢" }
+    ],
+    "suggestion": "阅读量充沛，文学类偏多（超目标中值），可适当增加自然科普和社会人文类书籍；虚构/非虚构比例约7:3，较合理。"
+  }
+}
