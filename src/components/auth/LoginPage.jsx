@@ -30,7 +30,7 @@ function PinInput({ value, onChange, onKeyDown, refs, autoFocus }) {
   );
 }
 
-export default function LoginPage() {
+export default function LoginPage({ onClose }) {
   const { login, register } = useAuth();
   const [phone, setPhone] = useState('');
   const [pin, setPin] = useState('');
@@ -49,7 +49,7 @@ export default function LoginPage() {
     const p = phone.trim();
     if (p.length < 11) { setError('请输入11位手机号'); return; }
     setError('');
-    setMode('choose'); // 显示登录/注册选择
+    setMode('choose');
   };
 
   const handleLogin = async () => {
@@ -57,6 +57,7 @@ export default function LoginPage() {
     setError(''); setLoading(true);
     const result = await login(phone.trim(), pin);
     if (result.error) setError(result.error);
+    else onClose?.(); // 登录成功后关闭弹窗
     setLoading(false);
   };
 
@@ -72,20 +73,24 @@ export default function LoginPage() {
     setLoading(true);
     const result = await register(phone.trim(), pin, name.trim() || '小读者');
     if (result.error) setError(result.error);
+    else onClose?.();
     setLoading(false);
   };
 
   const startOver = () => { setMode(null); setError(''); setPin(''); setPinConfirm(''); setName(''); };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+    <div style={{ minHeight: 400, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
       background: 'linear-gradient(160deg, #F3EDE5, #EDE4D8)', padding: 24 }}>
       <div style={{ width: '100%', maxWidth: 360, background: 'white', borderRadius: 20,
-        padding: '32px 24px', boxShadow: '0 8px 40px rgba(44,36,22,0.08)' }}>
+        padding: '32px 24px', boxShadow: '0 8px 40px rgba(44,36,22,0.08)', position: 'relative' }}>
+        {onClose && (
+          <button onClick={onClose} style={{ position: 'absolute', top: 12, right: 16, background: 'none', border: 'none', fontSize: 20, color: '#9B9082', cursor: 'pointer', fontFamily: 'var(--font)' }}>✕</button>
+        )}
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <div style={{ fontSize: 48, marginBottom: 8 }}>📚</div>
           <div style={{ fontSize: 20, fontWeight: 800, color: '#A56545', letterSpacing: 2 }}>伊伊的书房</div>
-          <div style={{ fontSize: 12, color: '#9B9082', marginTop: 4 }}>登录后可同步阅读记录</div>
+          <div style={{ fontSize: 12, color: '#9B9082', marginTop: 4 }}>登录后可同步阅读记录到云端</div>
         </div>
 
         {/* 第1步：手机号 */}
@@ -126,8 +131,7 @@ export default function LoginPage() {
           <div>
             <div style={{ fontSize: 13, color: '#5C5244', marginBottom: 4 }}>输入6位数字密码</div>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#C8815C', marginBottom: 16 }}>{phone}</div>
-            <PinInput value={pin} onChange={setPin} onKeyDown={handleLogin}
-              refs={pinRefs} autoFocus />
+            <PinInput value={pin} onChange={setPin} onKeyDown={handleLogin} refs={pinRefs} autoFocus />
             {error && <div style={{ color: '#C47A6E', fontSize: 12, textAlign: 'center', marginBottom: 8 }}>{error}</div>}
             <button className="btn-primary" style={{ width: '100%', padding: '14px', fontSize: 15, marginTop: 4 }}
               onClick={handleLogin} disabled={loading}>{loading ? '登录中…' : '登录'}</button>

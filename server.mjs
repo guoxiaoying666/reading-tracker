@@ -1,4 +1,4 @@
-// Zeabur 生产服务器 — 托管静态文件 + API 路由
+// 生产服务器 — 托管静态文件 + API 路由
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
