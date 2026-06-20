@@ -6,27 +6,18 @@ export default function Header({ onOpenLogin, onOpenBindPhone }) {
 
   return (
     <header className="header" style={{ padding: '20px 20px 12px', position: 'relative' }}>
-      {/* 访客标识：右上角 */}
-      {isAnonymous && (
-        <span style={{
-          position: 'absolute', top: 12, right: 16,
-          fontSize: 10, color: '#9B9082',
-          fontFamily: 'var(--font)',
-        }}>访客模式 · 数据存于本地</span>
-      )}
-
-      {/* 标题：居中 */}
+      {/* 标题 + slogan 同行 */}
       <div style={{ textAlign: 'center' }}>
         <h1 className="header-title" style={{ fontSize: 20, margin: 0, letterSpacing: 4 }}>
-          📖 好读
+          📖 好读 · <span className="header-subtitle">陪孩子读出复利</span>
         </h1>
-        <p className="header-subtitle" style={{ fontSize: 11, margin: '4px 0 0', opacity: 0.7 }}>
-          陪孩子读出复利
-        </p>
       </div>
 
-      {/* 操作按钮：居中 */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 8 }}>
+      {/* 访客标识 + 操作按钮：第二行居中 */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, marginTop: 8 }}>
+        {isAnonymous && (
+          <span style={{ fontSize: 10, color: '#A69B8E', fontFamily: 'var(--font)' }}>访客模式 · 数据存于本地</span>
+        )}
         {isAnonymous ? (
           <>
             <button onClick={onOpenBindPhone} style={{
