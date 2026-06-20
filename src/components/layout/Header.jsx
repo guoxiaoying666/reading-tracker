@@ -16,9 +16,9 @@ export default function Header({ onOpenLogin, onOpenBindPhone }) {
         <img src={avatarUrl} alt="头像" style={{ width: '140%', height: '140%', objectFit: 'cover', display: 'block', margin: '-20% 0 0 -20%' }} />
       </div>
       <div style={{ flex: 1 }}>
-        <h1 className="header-title" style={{ fontSize: 18, margin: 0 }}>{displayName}的书房</h1>
+        <h1 className="header-title" style={{ fontSize: 18, margin: 0 }}>好读</h1>
         <p className="header-subtitle" style={{ fontSize: 11, margin: '2px 0 0' }}>
-          {isAnonymous ? '访客模式 · 数据存于本地' : '阅读成长档案'}
+          {isAnonymous ? '访客模式 · ' : ''}陪孩子读出复利
         </p>
       </div>
       <div style={{ display: 'flex', gap: 6 }}>
