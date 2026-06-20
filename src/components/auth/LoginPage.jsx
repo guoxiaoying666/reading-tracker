@@ -89,7 +89,7 @@ export default function LoginPage({ onClose }) {
         )}
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <div style={{ fontSize: 48, marginBottom: 8 }}>📚</div>
-          <div style={{ fontSize: 20, fontWeight: 800, color: '#A56545', letterSpacing: 2 }}>伊伊的书房</div>
+          <div style={{ fontSize: 20, fontWeight: 800, color: '#A56545', letterSpacing: 2 }}>好读</div>
           <div style={{ fontSize: 12, color: '#9B9082', marginTop: 4 }}>登录后可同步阅读记录到云端</div>
         </div>
 
