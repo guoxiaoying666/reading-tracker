@@ -86,6 +86,18 @@ export default function VoiceRecord() {
 
   const selectedBookData = books.find(b => b.title === selectedBook);
   const recordedCount = books.filter(b => b.feedbackEmoji || b.reading_records?.length).length;
+
+  // 从书架点击🎙️跳转过来时，自动选中 pending book
+  useEffect(() => {
+    const pending = localStorage.getItem('wonderead-pending-book');
+    if (pending) {
+      localStorage.removeItem('wonderead-pending-book');
+      if (books.some(b => b.title === pending)) {
+        setSelectedBook(pending);
+      }
+    }
+  }, [activeTab]); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (selectedBookData?.imageId) getImage(selectedBookData.imageId).then(url => setBookCover(url));
     else setBookCover(null);
