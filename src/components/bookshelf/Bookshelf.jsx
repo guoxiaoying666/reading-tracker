@@ -148,7 +148,10 @@ export default function Bookshelf() {
             onEdit={() => setEditingId(editingId === book.id ? null : book.id)}
             onSave={(data) => { updateBook(book.id, data); setEditingId(null); }}
             onDelete={() => { if (window.confirm(`确定删除《${book.title}》？`)) deleteBook(book.id); }}
-            onVoice={() => setActiveTab('voice_record')}
+            onVoice={() => {
+              localStorage.setItem('wonderead-pending-book', book.title);
+              setActiveTab('voice_record');
+            }}
           />
         ))}
       </div>
