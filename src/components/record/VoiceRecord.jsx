@@ -219,13 +219,18 @@ export default function VoiceRecord() {
     }
 
     if (recognition) {
-      recognition.onend = () => {
-        const finalTranscript = transcriptRef.current.trim();
-        generateCard(finalTranscript || '（语音录音）');
-      };
+      // stop() 触发浏览器处理剩余语音
       try { recognition.stop(); } catch (_) {}
+      // 用 setTimeout 替代 onend，因为 onend 在部分浏览器上不可靠
+      setTimeout(() => {
+        const finalTranscript = transcriptRef.current.trim();
+        if (!finalTranscript) { setToast('没听到语音内容，试试文字输入吧'); setTimeout(() => setToast(null), 3000); return; }
+        generateCard(finalTranscript);
+      }, 400);
     } else {
-      await generateCard(transcriptRef.current.trim() || '（语音录音）');
+      const finalTranscript = transcriptRef.current.trim();
+      if (!finalTranscript) { setToast('没听到语音内容，试试文字输入吧'); setTimeout(() => setToast(null), 3000); return; }
+      await generateCard(finalTranscript);
     }
   }, [generateCard]);
 
