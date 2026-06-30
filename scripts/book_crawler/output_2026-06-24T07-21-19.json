@@ -1,0 +1,4861 @@
+{
+  "10": [
+    {
+      "title": "好饿的毛毛虫",
+      "author": "艾瑞·卡尔",
+      "language": "外文",
+      "translator": "郑明进",
+      "note": "当当0-2岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "猜猜我有多爱你",
+      "author": "山姆·麦克布雷尼",
+      "language": "外文",
+      "translator": "梅子涵",
+      "note": "当当0-2岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小熊宝宝绘本系列",
+      "author": "佐佐木洋子",
+      "language": "外文",
+      "translator": "蒲蒲兰",
+      "note": "当当0-2岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小鸡球球触感玩具书",
+      "author": "入山智",
+      "language": "外文",
+      "translator": "崔维燕",
+      "note": "当当0-2岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我爸爸",
+      "author": "安东尼·布朗",
+      "language": "外文",
+      "translator": "余治莹",
+      "note": "当当0-2岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我妈妈",
+      "author": "安东尼·布朗",
+      "language": "外文",
+      "translator": "余治莹",
+      "note": "当当0-2岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大卫不可以",
+      "author": "大卫·香农",
+      "language": "外文",
+      "translator": "余治莹",
+      "note": "当当3-6岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "宫西达也恐龙系列",
+      "author": "宫西达也",
+      "language": "外文",
+      "translator": "杨文",
+      "note": "当当3-6岁畅销榜",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "神奇校车·桥梁书版",
+      "author": "乔安娜·柯尔",
+      "language": "外文",
+      "translator": "蒲公英",
+      "note": "当当3-6岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "不一样的卡梅拉",
+      "author": "克利斯提昂·约里波瓦",
+      "language": "外文",
+      "translator": "郑迪蔚",
+      "note": "当当3-6岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "花婆婆",
+      "author": "芭芭拉·库尼",
+      "language": "外文",
+      "translator": "方素珍",
+      "note": "当当3-6岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "爷爷一定有办法",
+      "author": "菲比·吉尔曼",
+      "language": "外文",
+      "translator": "宋珮",
+      "note": "当当3-6岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "夏洛的网",
+      "author": "E·B·怀特",
+      "language": "外文",
+      "translator": "任溶溶",
+      "note": "当当7-10岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "哈利·波特与魔法石",
+      "author": "J.K.罗琳",
+      "language": "外文",
+      "translator": "马爱农",
+      "note": "当当7-10岁畅销榜",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "窗边的小豆豆",
+      "author": "黑柳彻子",
+      "language": "外文",
+      "translator": "赵玉皎",
+      "note": "当当7-10岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小王子",
+      "author": "圣埃克苏佩里",
+      "language": "外文",
+      "translator": "马振骋",
+      "note": "当当7-10岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "米小圈上学记",
+      "author": "北猫",
+      "language": "中文",
+      "note": "当当7-10岁畅销榜",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": "成长校园"
+    },
+    {
+      "title": "三毛流浪记",
+      "author": "张乐平",
+      "language": "中文",
+      "note": "当当7-10岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "三体",
+      "author": "刘慈欣",
+      "language": "中文",
+      "note": "当当11-14岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "朝花夕拾",
+      "author": "鲁迅",
+      "language": "中文",
+      "note": "当当11-14岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "骆驼祥子",
+      "author": "老舍",
+      "language": "中文",
+      "note": "当当11-14岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "西游记（原著）",
+      "author": "吴承恩",
+      "language": "中文",
+      "note": "当当11-14岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "平凡的世界",
+      "author": "路遥",
+      "language": "中文",
+      "note": "当当11-14岁畅销榜",
+      "dimension": "humanity",
+      "level2": "world_history",
+      "level3": ""
+    },
+    {
+      "title": "摆渡人",
+      "author": "克莱儿·麦克福尔",
+      "language": "外文",
+      "translator": "付强",
+      "note": "当当11-14岁畅销榜",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    }
+  ],
+  "01": [
+    {
+      "title": "儿童文学",
+      "author": "童书馆：大拇指原创",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "倒立的兔子 作者：[韩] 宝滥 著",
+      "author": "绘",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大橘胖胖",
+      "author": "全5册",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "九神鹿绘本馆·看得见的敦煌",
+      "author": "全3册",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "黄河滩上四季歌",
+      "author": "全4册",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "秋千 作者：[德] 布丽塔·泰肯特鲁普 著",
+      "author": "绘",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "做自己真好",
+      "author": "全2册",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "X先生奇遇记",
+      "author": "4册",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "你说什么?沟通与理解之书 作者：",
+      "author": "捷克",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "interpersonal",
+      "level3": ""
+    },
+    {
+      "title": "如果你打破瓷罐",
+      "author": "魔法象·图画书王国",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "经典文学名家画本——大闹天宫 作者：吴承恩",
+      "author": "明",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "昆虫的奋斗",
+      "author": "全3册",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "biology",
+      "level3": ""
+    },
+    {
+      "title": "狐獴的太阳 作者：崖牙 图",
+      "author": "文",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "飞吧！鸟中王者：听中国猛禽讲它们的故事",
+      "author": "精",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "考古学家带你看中国",
+      "author": "套装全五册",
+      "source": "国图四季童读",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "picturebook",
+      "level3": ""
+    }
+  ],
+  "02": [
+    {
+      "title": "小巴掌童话",
+      "author": "张秋生",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "笨狼的故事",
+      "author": "汤素兰",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "小猪唏哩呼噜",
+      "author": "孙幼军",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "大卫上学去",
+      "author": "大卫·香农",
+      "language": "外文",
+      "translator": "余治莹",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": "成长校园"
+    },
+    {
+      "title": "猜猜我有多爱你",
+      "author": "山姆·麦克布雷尼",
+      "language": "外文",
+      "translator": "梅子涵",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "青蛙和蟾蜍",
+      "author": "艾诺·洛贝尔",
+      "language": "外文",
+      "translator": "潘人木",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "我妈妈",
+      "author": "安东尼·布朗",
+      "language": "外文",
+      "translator": "余治莹",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "没头脑和不高兴",
+      "author": "任溶溶",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "大头儿子和小头爸爸",
+      "author": "郑春华",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "花婆婆",
+      "author": "芭芭拉·库尼",
+      "language": "外文",
+      "translator": "方素珍",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "爷爷一定有办法",
+      "author": "菲比·吉尔曼",
+      "language": "外文",
+      "translator": "宋珮",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "安徒生童话",
+      "author": "安徒生",
+      "language": "外文",
+      "translator": "叶君健",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "格林童话",
+      "author": "格林兄弟",
+      "language": "外文",
+      "translator": "魏以新",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "夏洛的网",
+      "author": "E·B·怀特",
+      "language": "外文",
+      "translator": "任溶溶",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "长袜子皮皮",
+      "author": "林格伦",
+      "language": "外文",
+      "translator": "李之义",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "稻草人",
+      "author": "叶圣陶",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "宝葫芦的秘密",
+      "author": "张天翼",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "时代广场的蟋蟀",
+      "author": "乔治·塞尔登",
+      "language": "外文",
+      "translator": "傅湘雯",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "西游记",
+      "author": "吴承恩",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "草原上的小木屋",
+      "author": "劳拉·英格尔斯·怀尔德",
+      "language": "外文",
+      "translator": "杨永汉",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "秘密花园",
+      "author": "F·H·伯内特",
+      "language": "外文",
+      "translator": "李文俊",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "绿野仙踪",
+      "author": "莱曼·弗兰克·鲍姆",
+      "language": "外文",
+      "translator": "马爱农",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "爱的教育",
+      "author": "亚米契斯",
+      "language": "外文",
+      "translator": "夏丏尊",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "城南旧事",
+      "author": "林海音",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "小王子",
+      "author": "圣埃克苏佩里",
+      "language": "外文",
+      "translator": "周克希",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "窗边的小豆豆",
+      "author": "黑柳彻子",
+      "language": "外文",
+      "translator": "赵玉皎",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "西游记（原著）",
+      "author": "吴承恩",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "朝花夕拾",
+      "author": "鲁迅",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "鲁滨逊漂流记",
+      "author": "丹尼尔·笛福",
+      "language": "外文",
+      "translator": "鹿金",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "汤姆·索亚历险记",
+      "author": "马克·吐温",
+      "language": "外文",
+      "translator": "张友松",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "尼尔斯骑鹅旅行记",
+      "author": "塞尔玛·拉格洛夫",
+      "language": "外文",
+      "translator": "石琴娥",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    }
+  ],
+  "03": [
+    {
+      "title": "在心里点灯的人",
+      "author": "",
+      "source": "百班千人",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    }
+  ],
+  "04": [
+    {
+      "title": "1938回答2026",
+      "author": "徐海蛟/著",
+      "source": "中教报推荐",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "给孩子的考古",
+      "author": "许宏/著",
+      "source": "中教报推荐",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "讲给孩子听的中轴线上的老故事",
+      "author": "上下册",
+      "source": "中教报推荐",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "上盐湖",
+      "author": "鲍尔吉·原野/著",
+      "source": "中教报推荐",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "谁是人工智能小孩",
+      "author": "徐鲁/著",
+      "source": "中教报推荐",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "coding",
+      "level3": ""
+    },
+    {
+      "title": "五千年中华地名",
+      "author": "胡阿祥",
+      "source": "中教报推荐",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "指尖上的中国",
+      "author": "浅草/主编",
+      "source": "中教报推荐",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "大哲学家的幸福课：一起走向幸福！",
+      "author": "[比]让-菲利普·蒂韦",
+      "source": "中教报推荐",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "ethics",
+      "level3": ""
+    },
+    {
+      "title": "天一阁四重奏",
+      "author": "：纸间雅韵叙清音",
+      "source": "中教报推荐",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "习近平党建文选",
+      "author": "第一卷、第二卷出版发行",
+      "source": "中教报推荐",
+      "month": "2025",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "丹柯",
+      "author": "吗？英雄",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "1分钟数学",
+      "author": "超模君",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "math",
+      "level3": ""
+    },
+    {
+      "title": "大象的旅程",
+      "author": "格日勒其木格·黑鹤/著",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "丰子恺家塾课：外公教我学诗词",
+      "author": "丰子恺/绘",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "poetry",
+      "level3": ""
+    },
+    {
+      "title": "狗阵",
+      "author": "徐贵祥/著",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "科学家给孩子的12封信",
+      "author": "郭耕",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "science_philosophy",
+      "level3": ""
+    },
+    {
+      "title": "拉鲁斯艺术启蒙课",
+      "author": "[法]文森特·布罗克维尔/编著",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "art_create",
+      "level2": "visual_art",
+      "level3": ""
+    },
+    {
+      "title": "猫冬记",
+      "author": "薛涛/著",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "有书真好啊",
+      "author": "［日］宫崎骏/著",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "远山灯火",
+      "author": "徐鲁/著",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "中国教育报",
+      "author": "2021年12月29日第11版",
+      "source": "中教报推荐",
+      "month": "2021",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "novel",
+      "level3": ""
+    }
+  ],
+  "05": [
+    {
+      "title": "不一样的1",
+      "author": "吴亚男",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "鸡同鸭讲",
+      "author": "曹文轩",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "一只猫的哲学",
+      "author": "李浩",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "ethics",
+      "level3": ""
+    },
+    {
+      "title": "蜗牛不放弃",
+      "author": "小河",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "我的第一本哲学启蒙书",
+      "author": "董毓",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "ethics",
+      "level3": ""
+    },
+    {
+      "title": "大象班都拉",
+      "author": "格日勒其木格·黑鹤",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "中国恐龙地图",
+      "author": "金海月",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "昆虫界的奥德赛",
+      "author": "张辰亮",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "biology",
+      "level3": ""
+    },
+    {
+      "title": "我听见万物的歌唱",
+      "author": "常立",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "从前有个金箍棒",
+      "author": "陈诗哥",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "一只鹰鹞",
+      "author": "炜然",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "太阳想吃冰激凌",
+      "author": "张玮",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "三彩马的旅行",
+      "author": "李政",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "春福",
+      "author": "张越",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "最好的面包店",
+      "author": "张越",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "鲸鱼的世界",
+      "author": "乔纳森·伦敦",
+      "language": "外文",
+      "translator": "任战",
+      "dimension": "humanity",
+      "level2": "world_history",
+      "level3": ""
+    },
+    {
+      "title": "你不能欺负我",
+      "author": "菲利普·韦希特",
+      "language": "外文",
+      "translator": "王萍",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "河流是什么",
+      "author": "莫妮卡·瓦西里",
+      "language": "外文",
+      "translator": "李虹",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "世界国家公园",
+      "author": "米歇尔·米罗",
+      "language": "外文",
+      "translator": "李双",
+      "dimension": "humanity",
+      "level2": "world_history",
+      "level3": ""
+    },
+    {
+      "title": "人类的样子",
+      "author": "迪特·博格",
+      "language": "外文",
+      "translator": "李莉",
+      "dimension": "humanity",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "深海传奇",
+      "author": "露西·莱维斯",
+      "language": "外文",
+      "translator": "王林",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "探索星空",
+      "author": "丹尼尔·索尔",
+      "language": "外文",
+      "translator": "张磊",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "小孩哲学",
+      "author": "李静",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "ethics",
+      "level3": ""
+    },
+    {
+      "title": "情绪小怪兽去上学",
+      "author": "安娜·耶纳斯",
+      "language": "外文",
+      "translator": "张亦琦",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": "成长校园"
+    },
+    {
+      "title": "身体大发现",
+      "author": "菅原惠子",
+      "language": "外文",
+      "translator": "李力",
+      "dimension": "self_growth",
+      "level2": "body",
+      "level3": ""
+    }
+  ],
+  "06": [
+    {
+      "title": "父母必读",
+      "author": "杂志与红泥巴读书俱乐部联手举办",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "倒立的兔子",
+      "author": "TOP2《亮世界》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "那个那个",
+      "author": "TOP4《09:47》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "麻烦的裂缝",
+      "author": "TOP6《神奇的胖胖—蓬蓬—小",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一角天空",
+      "author": "TOP8《回家的路",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小黑与樱花",
+      "author": "TOP10《小罐子",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "去过一百万座城市的恐龙",
+      "author": "TOP2《下潜",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "长信宫灯中华第一灯的故事",
+      "author": "TOP4《等明天》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "雨",
+      "author": "TOP6《电梯里的狗》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "怪物街市",
+      "author": "TOP8《小威的眼睛》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "中国民间神话故事绘",
+      "author": "第二辑",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "神奇中国故事",
+      "author": "评委会特别推荐",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "五分钟到了吗？",
+      "author": "◦奇趣励志《我有一个梦想》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "尿和便便都去哪儿了？",
+      "author": "◦童心常驻《不能没有》（蔡皋作",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "哥哥的秘密基地",
+      "author": "◦亲近动物《企鹅白宝》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "幸福的可怜虫",
+      "author": "◦致敬大师《从小男孩到京剧大师",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "白熊的短裤",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "10只狗狗分香肠",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "外婆的菜园",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "萝卜大厦",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我们何以成为人类",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "莉齐和她的云朵",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小狗什么都不少",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "章鱼没有骨头",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我们 它们",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "马鹿卓玛",
+      "author": "【评委会特别推荐】",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "秋天的劳伦斯",
+      "author": "★亲近自然作品奖",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "苹果树的四季",
+      "author": "★超萌环保作品奖",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大猛兽饥饿熊",
+      "author": "★关怀特殊群体作品奖",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "看不见的窗",
+      "author": "2024年度原创绘本推荐榜单",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "虫虫艺术家",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "art_create",
+      "level2": "visual_art",
+      "level3": ""
+    },
+    {
+      "title": "生肖家族一起玩",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "龙生九子",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "举世无双的地毯",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "丝路",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "电线杆去哪儿了？",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "physics",
+      "level3": ""
+    },
+    {
+      "title": "白马",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大嘴鹈鹕",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "不要让大象走进房间",
+      "author": "Top",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "画家马一边",
+      "author": "【评委会特别推荐】",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "六只老鼠卖西瓜",
+      "author": "★哲思与勇气题材作品奖",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "外面的外面的外面",
+      "author": "★文化寻根题材作品奖",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "驯河童子",
+      "author": "★色彩启蒙题材作品奖",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "彩云来到无色谷",
+      "author": "2023年度优秀童书排行榜TO",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "窗里有什么？",
+      "author": "四川少年儿童出版社（信谊",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "夏天",
+      "author": "接力出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "恐龙先生流鼻涕以后",
+      "author": "四川少年儿童出版社（信谊",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "你好，小雨林",
+      "author": "北京联合出版公司（启发",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "青蛙开书店",
+      "author": "湖南美术出版社（小天角",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "达克沃思，让人头疼的孩子",
+      "author": "北京联合出版公司（天略",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "从天而降的奇迹",
+      "author": "晨光出版社（禹田",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "兔子先生的汤",
+      "author": "新疆青少年出版社有限公司（贝贝",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一只狐狸",
+      "author": "广西师范大学出版社（魔法象",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "噔噔噔",
+      "author": "二十一世纪出版社（红帆船",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "不完美的小南瓜",
+      "author": "北京少年儿童出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "这样折起来",
+      "author": "接力出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "雪豹梅朵",
+      "author": "贵州人民出版社（蒲公英",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "狐狸与树",
+      "author": "河北教育出版社（启发",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "牛王节",
+      "author": "长江少年儿童出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "天空，不一定是蓝的爸爸的歌",
+      "author": "二十一世纪出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "这里是新疆·龟兹奇妙之旅",
+      "author": "新疆青少年出版社有限公司（贝贝",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "马蒂斯的旅行",
+      "author": "南京大学出版社（奇想国",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "隐形叶子",
+      "author": "湖南少年儿童出版社（小博集",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "鼹鼠茉莉",
+      "author": "世界图书出版公司（平行小宇宙",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一双大鞋",
+      "author": "明天出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "从前有座山",
+      "author": "晨光出版社（禹田",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "胡萝卜幼儿园郊游日",
+      "author": "二十一世纪出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一粒尘",
+      "author": "中国中福会出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "捉",
+      "author": "四川少年儿童出版社（信谊",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小花厨",
+      "author": "天津人民美术出版社（蒲蒲兰",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "光精灵的眼睛之旅",
+      "author": "中国少年儿童出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "physics",
+      "level3": ""
+    },
+    {
+      "title": "探秘火星",
+      "author": "陕西未来人民出版社（乐乐趣",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "“地下长城” 坎儿井",
+      "author": "新疆青少年出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "不完美总动员",
+      "author": "晨光出版社（禹田",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "坏",
+      "author": "二十一世纪出版社（蒲蒲兰",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "天上掉下一块大石头",
+      "author": "明天出版社（信谊",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小猫美美",
+      "author": "北京联合出版公司（启发",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "老虎，危险！",
+      "author": "新疆青少年出版社（贝贝熊",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "想念巴尼",
+      "author": "北京联合出版公司（天略",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小江",
+      "author": "广西师范大学出版社（魔法象",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小猴子大侦探",
+      "author": "二十一世纪出版社（小读客",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": "推理悬疑"
+    },
+    {
+      "title": "奥利弗是个娘娘腔",
+      "author": "二十一世纪出版社（奇想国",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "中国恐龙地图",
+      "author": "北京联合出版公司（禹田",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "小鼹鼠与星星",
+      "author": "上海教育出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "astronomy",
+      "level3": ""
+    },
+    {
+      "title": "季节的密码：二十四番花信风",
+      "author": "江苏凤凰美术出版社（苏美童书",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "花园",
+      "author": "北京联合出版公司（启发",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "鸭子小姐找租客",
+      "author": "四川少年儿童出版社（信谊",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "你看见喜鹊了吗？",
+      "author": "二十一世纪出版社（蒲蒲兰",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "哐当，哐当，过中秋",
+      "author": "长江少年儿童出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "叮咕隆咚锵",
+      "author": "世界图书出版公司（平行小宇宙",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "最好的面包店",
+      "author": "北京联合出版公司（浪花朵朵",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "糟了！我忘了关水龙头！",
+      "author": "长江少年儿童出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "太阳虫",
+      "author": "世界图书出版公司（平行小宇宙",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "这样想一想心情好多了",
+      "author": "新星出版社（爱心树",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "self_growth",
+      "level2": "psychology",
+      "level3": ""
+    },
+    {
+      "title": "魔法森林图书馆",
+      "author": "新疆青少年出版社（贝贝熊",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "圈圈去散步",
+      "author": "江苏凤凰少年儿童出版社（爱心树",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "宇航员莱卡：第一只进入太空的小狗",
+      "author": "贵州人民出版社（蒲公英",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "astronomy",
+      "level3": ""
+    },
+    {
+      "title": "如果你到地球来",
+      "author": "Top02《书里书外的三只小猪",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "geography",
+      "level3": ""
+    },
+    {
+      "title": "种嗯嗯",
+      "author": "Top04《稀里哗啦下大雨》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "水獭先生的婚礼",
+      "author": "Top06《凹下去凸起来》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大大的城市，小小的你",
+      "author": "Top08《好乖的波波》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小黑999和小红666",
+      "author": "Top10《幼儿园之王》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我的爷爷奶奶超级酷",
+      "author": "2021年度原创绘本推荐榜单",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一动不动大赛",
+      "author": "《一颗莲子的生命旅程》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "柿子熟了",
+      "author": "《拔萝卜》（周旭",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "不要和糯米团捉迷藏",
+      "author": "《从前",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "三个朋友",
+      "author": "《迷路的小孩》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "interpersonal",
+      "level3": ""
+    },
+    {
+      "title": "一寸光",
+      "author": "《骑着恐龙去图书馆》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "physics",
+      "level3": ""
+    },
+    {
+      "title": "月光下的孩子",
+      "author": "《五只青蛙一百条腿》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "physics",
+      "level3": ""
+    },
+    {
+      "title": "在爸爸的背上",
+      "author": "《小可可爱打嗝》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "天下第一神箭手",
+      "author": "《大风》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "荷花荷花几时开",
+      "author": "《其有瓷理：从颜色看瓷器》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "八音的秘密",
+      "author": "评委会特别推荐——",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小鸡的房子",
+      "author": "2020年度优秀童书Top10",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "你好 灯塔",
+      "author": "TOP02",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "谁的袜子",
+      "author": "TOP03",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "糖球",
+      "author": "TOP04",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "给0岁宝宝的第一本书",
+      "author": "TOP05",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "好无聊啊好无聊",
+      "author": "TOP06",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "怎样画一头奶牛？",
+      "author": "TOP07",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "创意游戏绘本系列",
+      "author": "TOP08",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "art_create",
+      "level2": "design_thinking",
+      "level3": ""
+    },
+    {
+      "title": "冬冬的第一次飞行",
+      "author": "TOP09",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "臭脚怪兽",
+      "author": "TOP10",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "请问一下，踩得到底吗？",
+      "author": "特别推荐：",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小鸟的葬礼",
+      "author": "生命教育图画书",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "河流是什么",
+      "author": "充满诗意的科普图画书",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "妈妈要生小宝宝了",
+      "author": "给二胎家庭的图画书",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "布莱克先生和他的狗",
+      "author": "《喂喂",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我很想念你",
+      "author": "《从前有个筋斗云》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "哪吒闹海",
+      "author": "百年百部",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "就像妈妈一样",
+      "author": "《大船》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "李娜:做更好的自己",
+      "author": "《一个男孩走在路上》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "嗨",
+      "author": "​",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "三角形",
+      "author": "TOP2《看",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "苏丹的犀角",
+      "author": "TOP3《我用32个屁打败了睡",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "哆悉哒？",
+      "author": "TOP6《溜达鸡》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "丹尼尔找到一首诗",
+      "author": "TOP8《叶限》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "poetry",
+      "level3": ""
+    },
+    {
+      "title": "亨利徒步去菲奇堡",
+      "author": "TOP10《小岛》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "摩尔小姐",
+      "author": "致敬经典",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我的世界",
+      "author": "最炫科普图画书《嫦娥探月》《未",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "world_history",
+      "level3": ""
+    },
+    {
+      "title": "两个天才",
+      "author": "徐萃、姬炤华",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "外婆家的马",
+      "author": "谢华",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一条大河",
+      "author": "于大武",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "金太阳 银太阳",
+      "author": "赖马",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "毛毛回家喽！",
+      "author": "余丽琼",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "中国童谣",
+      "author": "熊亮",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "poetry",
+      "level3": ""
+    },
+    {
+      "title": "如何让大象是秋千上下来",
+      "author": "常立",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "屎壳郎的生日礼物",
+      "author": "龚卫国",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "两个小妖精抓住一个老和尚",
+      "author": "黄小衡",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "春夜如银",
+      "author": "[英]",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "午夜园丁",
+      "author": "禹田文化・暖房子绘本馆",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我",
+      "author": "蒲蒲兰绘本馆",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "饥饿山的猫",
+      "author": "红披风童书",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "树懒活力秀",
+      "author": "知了绘本馆",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "physics",
+      "level3": ""
+    },
+    {
+      "title": "书之子",
+      "author": "信谊",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "等待",
+      "author": "启发文化",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "美杜莎妈妈",
+      "author": "奇想国童书",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "愤怒的生气包",
+      "author": "接力出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "self_growth",
+      "level2": "psychology",
+      "level3": ""
+    },
+    {
+      "title": "烟囱之城",
+      "author": "飓风社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "响屁蔫屁",
+      "author": "启发文化",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "别让太阳掉下来",
+      "author": "和平出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "嗷呜！嗷呜！",
+      "author": "信谊",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "狼来了，人来了",
+      "author": "二十一世纪出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "搞定老爸的十个绝招",
+      "author": "耕林",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "水獭先生的新邻居",
+      "author": "蒲蒲兰",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "玩具诊所",
+      "author": "蒲蒲兰",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小黑和小白",
+      "author": "明天出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "穿花衣",
+      "author": "朝华出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "慌张先生",
+      "author": "启发",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "鄂温克的驼鹿",
+      "author": "接力出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "澡堂里的仙女",
+      "author": "[韩]",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "打架的艺术",
+      "author": "[意大利]",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "art_create",
+      "level2": "visual_art",
+      "level3": ""
+    },
+    {
+      "title": "小黑点小白点",
+      "author": "[瑞士]",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "妈妈从没告诉我",
+      "author": "[英]",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "山溪唱歌",
+      "author": "彭懿",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "art_create",
+      "level2": "music",
+      "level3": ""
+    },
+    {
+      "title": "鹅妈妈布鲁斯",
+      "author": "[美]",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一个酷爱数学的男孩",
+      "author": "[美]",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "math",
+      "level3": ""
+    },
+    {
+      "title": "一寸法师",
+      "author": "[法]",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "荷塘物语",
+      "author": "[日]",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "爸爸做的饭",
+      "author": "[日]",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "外婆住在香水村",
+      "author": "中国少年儿童新闻出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "骑着恐龙去上学",
+      "author": "北京联合出版公司（启发文化",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "阿兔的小瓷碗",
+      "author": "连环画出版社（蒲蒲兰绘本馆",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大雪盖不住回家的路",
+      "author": "连环画出版社（蒲蒲兰绘本馆",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我是花木兰",
+      "author": "中国少年儿童新闻出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "花公鸡",
+      "author": "新疆青少年出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "红菇娘",
+      "author": "明天出版社（信谊原创图画书",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "地面地下",
+      "author": "希望出版社（耕林童书馆",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "星期三下午捉·蝌·蚪",
+      "author": "明天出版社（信谊幼儿文学奖",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "这是谁的脚印？",
+      "author": "人民文学出版社·天天出版社",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "火车快跑",
+      "author": "TOP2",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "鸽子的罗马",
+      "author": "TOP3",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "有麻烦了",
+      "author": "TOP4",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小老鼠的恐怖的大书",
+      "author": "TOP5",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "呀！屁股",
+      "author": "TOP7",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "嗨，身体的各位",
+      "author": "TOP8",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "self_growth",
+      "level2": "body",
+      "level3": ""
+    },
+    {
+      "title": "我要把我的帽子找回来",
+      "author": "TOP9",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "爱思考的青蛙-蚯蚓有没有脸？",
+      "author": "TOP10《公主怎么挖鼻屎》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "ethics",
+      "level3": ""
+    },
+    {
+      "title": "盘中餐",
+      "author": "著|于虹呈",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "妈妈，有怪兽！",
+      "author": "著|刘玉峰",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "跑跑镇",
+      "author": "文|亚东",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "老虎外婆",
+      "author": "文|鲁兵",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "孟姜女哭长城",
+      "author": "文|唐亚明",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "澡堂子",
+      "author": "文|陆亚军",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "三十六个字",
+      "author": "著|阿达",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "独生小孩",
+      "author": "著|郭婧",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "麻雀",
+      "author": "文|梅子涵",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "老糖夫妇去旅行",
+      "author": "文|朱自强",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "不可思议的旅程",
+      "author": "TOP2《晚安",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "奇怪的蛋",
+      "author": "TOP4《长个不停的腿》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小老鼠的恐惧的大书",
+      "author": "TOP6《接着",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "100层的巴士",
+      "author": "TOP8《山姆和大卫去挖洞》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一条聪明的鱼",
+      "author": "TOP10《翻开这本小小的书》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "烟",
+      "author": "文｜曹文轩",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "北京的春节",
+      "author": "文｜老舍",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "爷爷的打火匣",
+      "author": "文｜徐鲁",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "花木兰",
+      "author": "北朝民歌",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "二十四节气",
+      "author": "著绘｜熊亮",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "中国民间童话系列",
+      "author": "8册",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "小鱼的春天",
+      "author": "文｜保冬妮",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "妖怪山",
+      "author": "文｜彭懿",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "耗子大爷在家吗？",
+      "author": "著｜周翔",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "水与墨的故事",
+      "author": "著｜梁培龙",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "大熊有个故事要说",
+      "author": "TOP2《气球小熊》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "如果第一眼你没看出来",
+      "author": "TOP4《格林爷爷的花园》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "谢谢你，好吃的面包！",
+      "author": "TOP6《影子》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "这不是我的帽子",
+      "author": "TOP8《白骨小哥》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "眼",
+      "author": "TOP10《遇到你",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "中国民间童话",
+      "author": "系列(西南卷",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "美丽的螺旋",
+      "author": "、《如何做一本书》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "第一次上街买东西",
+      "author": "TOP2《兔子的12个大麻烦》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "魔术师威利",
+      "author": "TOP4《蜗牛屋》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "艺术大魔法",
+      "author": "TOP6《小鸡布莱兹和蛋糕城堡",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "我和我的脚踏车",
+      "author": "TOP8《我……有梦》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "请让我留在火车上吧！",
+      "author": "TOP10《喂——哎——》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "铃木守的鸟世界",
+      "author": "系列、《鼹鼠儿歌认知书》系列、",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "world_history",
+      "level3": ""
+    },
+    {
+      "title": "夜色下的小屋",
+      "author": "2012年度TOP10排行榜（",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "爸爸，我要月亮",
+      "author": "TOP2《变焦》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "好脏的哈利",
+      "author": "TOP4《阿迪和朱莉》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "藏猫猫藏猫猫",
+      "author": "TOP6《我变成一只喷火龙了！",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "先有蛋",
+      "author": "TOP8《中国传统节日故事》系",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "吃六顿晚餐的猫",
+      "author": "TOP10《小猫咪追月亮》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小球听民乐",
+      "author": "系列、《黎明开始的地方》、《第",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "图书馆狮子",
+      "author": "TOP2（并列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "田鼠阿佛",
+      "author": "、《先左脚",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "米米系列",
+      "author": "绘本、《好朋友》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "由近到远，由远到近",
+      "author": "、《推土机年年作响",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "圣诞老人的王国",
+      "author": "TOP9《一粒种子的旅行》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "天啊！错啦！",
+      "author": "、《如果地球被我们吃掉了》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "春神跳舞的森林",
+      "author": "、《漏》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "你睡不着吗？",
+      "author": "、《14只老鼠》系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "棕色的熊、棕色的熊，你在看什么？",
+      "author": "TOP4《野孩子图画书》系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "世界为谁存在？",
+      "author": "TOP6（并列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "world_history",
+      "level3": ""
+    },
+    {
+      "title": "让路给小鸭子",
+      "author": "、《青蛙和蟾蜍》系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "野马之歌",
+      "author": "TOP9《加古里子儿童科学绘本",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小真的长头发",
+      "author": "特别关爱奖《一本关于颜色的黑书",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "蝴蝶·豌豆花",
+      "author": "2009年度TOP10排行榜（",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "和甘伯伯去游河",
+      "author": "TOP2《三只小猪》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "海底的秘密",
+      "author": "TOP4（并列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一园青菜成了精",
+      "author": "、《疯狂星期二》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "米菲绘本系列",
+      "author": "第一辑、《逛了一圈》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "在森林里",
+      "author": "TOP9《最美的科普·四季时钟",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大卫上学去",
+      "author": "特别荣誉奖之中华文化特色奖《桃",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": "成长校园"
+    },
+    {
+      "title": "森林的诞生",
+      "author": "五色土原创图画书第一辑系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "“爱心树绘本”系列·儿童之友1-12册",
+      "author": "2008年度TOP10排行榜（",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小房子",
+      "author": "TOP2《是谁嗯嗯在我的头上》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小黑鱼",
+      "author": "TOP4《好饿的毛毛虫》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "石头汤",
+      "author": "TOP6《小恩的秘密花园》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我的爸爸叫焦尼",
+      "author": "TOP8《我不知道我是谁》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "拔萝卜",
+      "author": "TOP10《奥莉薇》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "勇气",
+      "author": "TOP2《花婆婆》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "self_growth",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "月亮的味道",
+      "author": "TOP4《小蓝和小黄》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我爸爸",
+      "author": "TOP6《大脚丫跳芭蕾》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "鳄鱼爱上长颈鹿",
+      "author": "系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "克里克塔",
+      "author": "TOP9《一片叶子落下来关于生",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "不一样的卡梅拉",
+      "author": "系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "母鸡萝丝去散步",
+      "author": "TOP2《我绝对绝对不吃番茄》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "蚯蚓的日记",
+      "author": "TOP4《驴小弟变石头》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我有友情要出租",
+      "author": "TOP6《小公主幼儿成长图画书",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "要是你给老鼠吃饼干",
+      "author": "TOP8《青蛙弗洛格的成长故事",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "风到哪里去了",
+      "author": "TOP10（并列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "艾特熊&赛娜鼠系列",
+      "author": "第一辑、《洞里洞外的小老鼠》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "可爱的鼠小弟",
+      "author": "系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "插图大师莫妮克的无字书",
+      "author": "系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "猜猜我有多爱你",
+      "author": "TOP4《爱心树》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "活了100万次的猫",
+      "author": "TOP6《爷爷一定有办法》",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小猪唏哩呼噜",
+      "author": "TOP8《神奇校车》系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "恐龙的温馨故事",
+      "author": "绘本系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "比得兔的世界",
+      "author": "系列",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "world_history",
+      "level3": ""
+    },
+    {
+      "title": "亮世界",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "world_history",
+      "level3": ""
+    },
+    {
+      "title": "09:47",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "神奇的胖胖—蓬蓬—小小",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "回家的路，嗒嗒嗒",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小罐子，大世界",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "world_history",
+      "level3": ""
+    },
+    {
+      "title": "下潜，潜入夜海",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "等明天",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "电梯里的狗",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "physics",
+      "level3": ""
+    },
+    {
+      "title": "小威的眼睛",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我有一个梦想",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "不能没有",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "企鹅白宝",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "从小男孩到京剧大师梅兰芳的故事",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "书里书外的三只小猪",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "稀里哗啦下大雨",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "凹下去凸起来",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "好乖的波波",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "幼儿园之王",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一颗莲子的生命旅程",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "self_growth",
+      "level2": "life_death",
+      "level3": ""
+    },
+    {
+      "title": "从前，有一只象",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "迷路的小孩",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "骑着恐龙去图书馆",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "五只青蛙一百条腿",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小可可爱打嗝",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大风",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "其有瓷理：从颜色看瓷器",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "art_create",
+      "level2": "visual_art",
+      "level3": ""
+    },
+    {
+      "title": "喂喂，我告诉你哦……",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "从前有个筋斗云",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大船",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一个男孩走在路上",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "看，书中间有堵墙！",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我用32个屁打败了睡魔怪",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "溜达鸡",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "叶限",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小岛",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "嫦娥探月",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "未来已来",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "公主怎么挖鼻屎",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "晚安，月亮",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "长个不停的腿",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "接着，春天来了",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "山姆和大卫去挖洞",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "翻开这本小小的书",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "气球小熊",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "格林爷爷的花园",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "影子",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "白骨小哥",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "遇到你，真好",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "如何做一本书",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "兔子的12个大麻烦",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "蜗牛屋",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小鸡布莱兹和蛋糕城堡",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我……有梦",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "喂——哎——",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "鼹鼠儿歌认知书",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "poetry",
+      "level3": ""
+    },
+    {
+      "title": "变焦",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "阿迪和朱莉",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我变成一只喷火龙了！",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "中国传统节日故事",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "小猫咪追月亮",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "黎明开始的地方",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "第一次发现丛书",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "先左脚，再右脚",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "好朋友",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "interpersonal",
+      "level3": ""
+    },
+    {
+      "title": "推土机年年作响，乡村变了",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "humanity",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一粒种子的旅行",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "如果地球被我们吃掉了",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "geography",
+      "level3": ""
+    },
+    {
+      "title": "漏",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "14只老鼠",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "野孩子图画书",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "青蛙和蟾蜍",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "加古里子儿童科学绘本",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "science_philosophy",
+      "level3": ""
+    },
+    {
+      "title": "一本关于颜色的黑书",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "art_create",
+      "level2": "visual_art",
+      "level3": ""
+    },
+    {
+      "title": "三只小猪",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "疯狂星期二",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "逛了一圈",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "最美的科普·四季时钟系列",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "science_philosophy",
+      "level3": ""
+    },
+    {
+      "title": "桃花源的故事",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "是谁嗯嗯在我的头上",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "好饿的毛毛虫",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小恩的秘密花园",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我不知道我是谁",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "self_growth",
+      "level2": "self_philosophy",
+      "level3": ""
+    },
+    {
+      "title": "奥莉薇",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "花婆婆",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小蓝和小黄",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大脚丫跳芭蕾",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "一片叶子落下来关于生命的故事",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "我绝对绝对不吃番茄",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "驴小弟变石头",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小公主幼儿成长图画书",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "self_growth",
+      "level2": "life_death",
+      "level3": ""
+    },
+    {
+      "title": "青蛙弗洛格的成长故事",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "洞里洞外的小老鼠",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "爱心树",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "爷爷一定有办法",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "神奇校车",
+      "author": "",
+      "source": "红泥巴推荐",
+      "language": "中文",
+      "dimension": "science",
+      "level2": "picturebook",
+      "level3": ""
+    }
+  ],
+  "07": [
+    {
+      "title": "好饿的毛毛虫",
+      "author": "艾瑞·卡尔",
+      "language": "外文",
+      "translator": "郑明进",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "棕色的熊、棕色的熊，你在看什么？",
+      "author": "比尔·马汀",
+      "language": "外文",
+      "translator": "李坤珊",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "猜猜我有多爱你",
+      "author": "山姆·麦克布雷尼",
+      "language": "外文",
+      "translator": "梅子涵",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小蓝和小黄",
+      "author": "李欧·李奥尼",
+      "language": "外文",
+      "translator": "彭懿",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "月亮，晚安",
+      "author": "玛格丽特·怀兹·布朗",
+      "language": "外文",
+      "translator": "阿甲",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "蹦！",
+      "author": "松冈达英",
+      "language": "外文",
+      "translator": "蒲蒲兰",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "鳄鱼怕怕牙医怕怕",
+      "author": "五味太郎",
+      "language": "外文",
+      "translator": "上谊",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小金鱼逃走了",
+      "author": "五味太郎",
+      "language": "外文",
+      "translator": "上谊",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "谁藏起来了",
+      "author": "大西悟",
+      "language": "外文",
+      "translator": "蒲蒲兰",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "鸭子骑车记",
+      "author": "大卫·香农",
+      "language": "外文",
+      "translator": "彭懿",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "母鸡萝丝去散步",
+      "author": "佩特·哈群斯",
+      "language": "外文",
+      "translator": "上谊",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "我爸爸",
+      "author": "安东尼·布朗",
+      "language": "外文",
+      "translator": "余治莹",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "大卫不可以",
+      "author": "大卫·香农",
+      "language": "外文",
+      "translator": "余治莹",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "小黑鱼",
+      "author": "李欧·李奥尼",
+      "language": "外文",
+      "translator": "彭懿",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "花婆婆",
+      "author": "芭芭拉·库尼",
+      "language": "外文",
+      "translator": "方素珍",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "爱心树",
+      "author": "谢尔·希尔弗斯坦",
+      "language": "外文",
+      "translator": "傅惟慈",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "活了100万次的猫",
+      "author": "佐野洋子",
+      "language": "外文",
+      "translator": "唐亚明",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "爷爷一定有办法",
+      "author": "菲比·吉尔曼",
+      "language": "外文",
+      "translator": "宋珮",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "失落的一角",
+      "author": "谢尔·希尔弗斯坦",
+      "language": "外文",
+      "translator": "陈明俊",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "苏和的白马",
+      "author": "大冢勇三",
+      "language": "外文",
+      "translator": "猿渡静子",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "神奇校车·图画书版",
+      "author": "乔安娜·柯尔",
+      "language": "外文",
+      "translator": "蒲公英",
+      "dimension": "science",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "不一样的卡梅拉",
+      "author": "克利斯提昂·约里波瓦",
+      "language": "外文",
+      "translator": "郑迪蔚",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "宫西达也恐龙系列",
+      "author": "宫西达也",
+      "language": "外文",
+      "translator": "杨文",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "小猪小象系列",
+      "author": "莫·威廉斯",
+      "language": "外文",
+      "translator": "漪然",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "青蛙和蟾蜍",
+      "author": "艾诺·洛贝尔",
+      "language": "外文",
+      "translator": "潘人木",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "夏洛的网",
+      "author": "E·B·怀特",
+      "language": "外文",
+      "translator": "任溶溶",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "窗边的小豆豆",
+      "author": "黑柳彻子",
+      "language": "外文",
+      "translator": "赵玉皎",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    },
+    {
+      "title": "哈利·波特与魔法石",
+      "author": "J.K.罗琳",
+      "language": "外文",
+      "translator": "马爱农",
+      "dimension": "narrative",
+      "level2": "fable_myth",
+      "level3": ""
+    },
+    {
+      "title": "纳尼亚传奇",
+      "author": "C.S.刘易斯",
+      "language": "外文",
+      "translator": "陈良廷",
+      "dimension": "narrative",
+      "level2": "biography",
+      "level3": ""
+    },
+    {
+      "title": "地海巫师",
+      "author": "厄休拉·勒古恩",
+      "language": "外文",
+      "translator": "蔡美玲",
+      "dimension": "narrative",
+      "level2": "picturebook",
+      "level3": ""
+    }
+  ],
+  "08": [
+    {
+      "title": "华尔街日报",
+      "author": "儿童教育专栏作家、中国教育协会",
+      "source": "童书妈妈推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "天生一对",
+      "author": "这是一部家庭温情喜剧片",
+      "source": "童书妈妈推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "泰晤士报",
+      "author": "近期推出的《百本新经典分级阅读",
+      "source": "童书妈妈推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    },
+    {
+      "title": "百本新经典分级阅读童书推荐",
+      "author": "",
+      "source": "童书妈妈推荐",
+      "language": "中文",
+      "dimension": "narrative",
+      "level2": "novel",
+      "level3": ""
+    }
+  ]
+}

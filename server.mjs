@@ -7,12 +7,32 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(__dirname, 'dist');
 
+// 加载 .env.local 环境变量（Vite 自动加载，但 server.mjs 是独立进程需要手动加载）
+try {
+  const envPath = path.join(__dirname, '.env.local');
+  if (fs.existsSync(envPath)) {
+    const content = fs.readFileSync(envPath, 'utf8');
+    for (const line of content.split('\n')) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#') || !trimmed.includes('=')) continue;
+      const eqIdx = trimmed.indexOf('=');
+      const key = trimmed.slice(0, eqIdx).trim();
+      const val = trimmed.slice(eqIdx + 1).trim();
+      if (key && !process.env[key]) process.env[key] = val;
+    }
+    console.log('[env] Loaded ' + path.basename(envPath));
+  }
+} catch (_) { /* ignore */ }
+
 // ---- API 路由表 ----
 const API_ROUTES = {
+  '/api/admin': './api/admin.mjs',
   '/api/auth': './api/auth.mjs',
   '/api/analyze': './api/analyze.mjs',
   '/api/classify': './api/classify.mjs',
   '/api/lookup': './api/lookup.mjs',
+  '/api/deepseek': './api/deepseek.mjs',
+  '/api/recommend': './api/recommend.mjs',
 };
 
 // ---- MIME 类型 ----
@@ -78,6 +98,9 @@ const server = http.createServer(async (req, res) => {
   if (routeMatch) {
     try {
       const mod = await import(API_ROUTES[routeMatch]);
+      // 解析 URL 查询参数（GET 接口如 /api/lookup 需要）
+      const parsedUrl = new URL(url, 'http://localhost');
+      req.query = Object.fromEntries(parsedUrl.searchParams);
       req.body = await parseBody(req);
       // Vercel 风格的 handler → 包装成普通 http handler
       await mod.default(req, {

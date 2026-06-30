@@ -1,0 +1,1546 @@
+{
+  "丹妈推荐": {
+    "total": 84,
+    "match": 39,
+    "diff": 45,
+    "details": [
+      {
+        "title": "彩乌鸦系列10周年版·霓虹之辑",
+        "original": "3-6岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "海洋中的城市：珊瑚礁",
+        "original": "4-8岁",
+        "ds": "4-8岁",
+        "match": true
+      },
+      {
+        "title": "太多袋鼠和事要做",
+        "original": "3-6岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "老神仙系列",
+        "original": "4-8岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "怪物雅克",
+        "original": "8-12岁",
+        "ds": "7-11岁",
+        "match": true
+      },
+      {
+        "title": "手斧男孩",
+        "original": "10-15岁",
+        "ds": "10-14岁",
+        "match": true
+      },
+      {
+        "title": "一猫二狗的奇妙旅程",
+        "original": "7-10岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "淘气包埃米尔",
+        "original": "6-10岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "冰上求生：北极熊",
+        "original": "6-10岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "无所不在的形状：生活中的几何",
+        "original": "6-12岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "北方大地",
+        "original": "6-12岁",
+        "ds": "8-12岁",
+        "match": true
+      },
+      {
+        "title": "生存小说手斧男孩系列",
+        "original": "10-15岁",
+        "ds": "10-14岁",
+        "match": true
+      },
+      {
+        "title": "妈妈手册",
+        "original": "0-3岁",
+        "ds": "3-6岁",
+        "match": false
+      },
+      {
+        "title": "精灵鼠小弟",
+        "original": "6-9岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "保修",
+        "original": "6-10岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "质量与密度",
+        "original": "10-15岁",
+        "ds": "10-14岁",
+        "match": true
+      },
+      {
+        "title": "火山",
+        "original": "6-10岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "卿云歌",
+        "original": "3-6岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "白雪猪头",
+        "original": "3-6岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "小小牛顿幼儿馆",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "对不起啦！",
+        "original": "4-8岁",
+        "ds": "4-8岁",
+        "match": true
+      },
+      {
+        "title": "小小牛顿幼儿馆-STEAM系列",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "太空猫系系列",
+        "original": "5-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "不一样的卡梅拉",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "冬牧场",
+        "original": "3-6岁",
+        "ds": "10-14岁",
+        "match": false
+      },
+      {
+        "title": "随风而来的玛丽阿姨",
+        "original": "6-10岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "默写能手",
+        "original": "6-12岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "纳尼亚传奇",
+        "original": "8-15岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "我在私立学校的第一年",
+        "original": "6-12岁",
+        "ds": "10-14岁",
+        "match": false
+      },
+      {
+        "title": "圣代冰激凌",
+        "original": "3-6岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "零不只是没有",
+        "original": "3-6岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "这不是我的帽子",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "爱旅行的小兔菲利克斯",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "遗憾的进化",
+        "original": "4-12岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "四部备要",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "机械运转的秘密",
+        "original": "8-15岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "说不个不停的欧文",
+        "original": "4-8岁",
+        "ds": "4-8岁",
+        "match": true
+      },
+      {
+        "title": "别再炫耀了",
+        "original": "4-8岁",
+        "ds": "4-8岁",
+        "match": true
+      },
+      {
+        "title": "人类简史·会本版",
+        "original": "8-14岁",
+        "ds": "8-12岁",
+        "match": true
+      },
+      {
+        "title": "父与子",
+        "original": "3-8岁",
+        "ds": "6-12岁",
+        "match": false
+      },
+      {
+        "title": "最强动物争霸赛系列",
+        "original": "5-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "读小库少儿哲学",
+        "original": "10-16岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "安徒生童话典藏版",
+        "original": "3-8岁",
+        "ds": "6-12岁",
+        "match": false
+      },
+      {
+        "title": "真相只有一个",
+        "original": "3-6岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "自然图鉴",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "马上作",
+        "original": "3-6岁",
+        "ds": "8-12岁",
+        "match": false
+      },
+      {
+        "title": "爷爷变成了幽灵",
+        "original": "3-6岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "太喜欢历史了！给孩子的简明中国史",
+        "original": "7-15岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "动物知识大百 科",
+        "original": "7-15岁",
+        "ds": "6-12岁",
+        "match": false
+      },
+      {
+        "title": "菲利克斯穿越历史",
+        "original": "7-10岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "月亮，晚安",
+        "original": "0-3岁",
+        "ds": "0-3岁",
+        "match": true
+      },
+      {
+        "title": "如何造一座山",
+        "original": "3-6岁",
+        "ds": "5-9岁",
+        "match": false
+      },
+      {
+        "title": "穿内裤的狼",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "蓝发女孩希尔达",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "小王子",
+        "original": "7-15岁",
+        "ds": "6-12岁",
+        "match": false
+      },
+      {
+        "title": "格林童话",
+        "original": "6-12岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "草原上的小木屋",
+        "original": "8-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "安徒生童话",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "长袜子皮皮",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "爷爷一定有办法",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "时代广场的蟋蟀",
+        "original": "7-12岁",
+        "ds": "7-10岁",
+        "match": true
+      },
+      {
+        "title": "猜猜我有多爱你",
+        "original": "2-6岁",
+        "ds": "2-5岁",
+        "match": true
+      },
+      {
+        "title": "城南旧事",
+        "original": "7-12岁",
+        "ds": "8-12岁",
+        "match": true
+      },
+      {
+        "title": "绿野仙踪",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "青蛙和蟾蜍",
+        "original": "6-9岁",
+        "ds": "4-7岁",
+        "match": false
+      },
+      {
+        "title": "窗边的小豆豆",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "深海传奇",
+        "original": "6-12岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "棕色的熊、棕色的熊，你在看什么？",
+        "original": "0-3岁",
+        "ds": "1-4岁",
+        "match": true
+      },
+      {
+        "title": "宫西达也恐龙系列",
+        "original": "3-6岁",
+        "ds": "3-7岁",
+        "match": true
+      },
+      {
+        "title": "小王子",
+        "original": "7-15岁",
+        "ds": "7-14岁",
+        "match": true
+      },
+      {
+        "title": "好饿的毛毛虫",
+        "original": "0-3岁",
+        "ds": "1-4岁",
+        "match": true
+      },
+      {
+        "title": "神探狗狗",
+        "original": "7-12岁",
+        "ds": "5-9岁",
+        "match": false
+      },
+      {
+        "title": "蹦！",
+        "original": "0-3岁",
+        "ds": "0-3岁",
+        "match": true
+      },
+      {
+        "title": "母鸡萝丝去散步",
+        "original": "0-3岁",
+        "ds": "2-5岁",
+        "match": false
+      },
+      {
+        "title": "屁屁侦探",
+        "original": "7-12岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "纳尼亚传奇",
+        "original": "8-15岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "鳄鱼怕怕牙医怕怕",
+        "original": "2-5岁",
+        "ds": "2-5岁",
+        "match": true
+      },
+      {
+        "title": "团圆",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "毛毛",
+        "original": "8-14岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "波普先生的企鹅",
+        "original": "6-9岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "长袜子皮皮",
+        "original": "7-12岁",
+        "ds": "6-12岁",
+        "match": true
+      },
+      {
+        "title": "城南旧事",
+        "original": "7-12岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "大象的旅程",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "中国教育报",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      }
+    ]
+  },
+  "百班千人": {
+    "total": 23,
+    "match": 13,
+    "diff": 10,
+    "details": [
+      {
+        "title": "精灵鼠小弟",
+        "original": "6-9岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "长袜子皮皮",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "城南旧事",
+        "original": "7-12岁",
+        "ds": "8-12岁",
+        "match": true
+      },
+      {
+        "title": "团圆",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "傻狗温迪克",
+        "original": "7-12岁",
+        "ds": "8-12岁",
+        "match": true
+      },
+      {
+        "title": "一园青菜成了精",
+        "original": "7-15岁",
+        "ds": "3-6岁",
+        "match": false
+      },
+      {
+        "title": "云朵面包",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "小兵张嘎",
+        "original": "7-15岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "木头娃娃的旅行",
+        "original": "7-12岁",
+        "ds": "8-12岁",
+        "match": true
+      },
+      {
+        "title": "兔子坡",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "老鼠娶新娘",
+        "original": "7-15岁",
+        "ds": "3-6岁",
+        "match": false
+      },
+      {
+        "title": "水浒传（少儿版）",
+        "original": "7-12岁",
+        "ds": "10-16岁",
+        "match": false
+      },
+      {
+        "title": "毛毛",
+        "original": "8-14岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "波普先生的企鹅",
+        "original": "6-9岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "小真的长头发",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "数星星",
+        "original": "10-15岁",
+        "ds": "10-14岁",
+        "match": true
+      },
+      {
+        "title": "中国神话故事",
+        "original": "7-12岁",
+        "ds": "6-12岁",
+        "match": true
+      },
+      {
+        "title": "我有友情要出租",
+        "original": "7-12岁",
+        "ds": "3-6岁",
+        "match": false
+      },
+      {
+        "title": "苹果树上的外婆",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "吃六顿晚餐的猫",
+        "original": "7-12岁",
+        "ds": "3-6岁",
+        "match": false
+      },
+      {
+        "title": "长袜子皮皮",
+        "original": "7-12岁",
+        "ds": "6-12岁",
+        "match": true
+      },
+      {
+        "title": "城南旧事",
+        "original": "7-12岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "在心里点灯的人",
+        "original": "7-12岁",
+        "ds": "8-14岁",
+        "match": false
+      }
+    ]
+  },
+  "当当畅销榜": {
+    "total": 27,
+    "match": 18,
+    "diff": 9,
+    "details": [
+      {
+        "title": "不一样的卡梅拉",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "纳尼亚传奇",
+        "original": "8-15岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "小王子",
+        "original": "7-15岁",
+        "ds": "6-12岁",
+        "match": false
+      },
+      {
+        "title": "西游记（原著）",
+        "original": "12-18岁",
+        "ds": "10-16岁",
+        "match": false
+      },
+      {
+        "title": "爷爷一定有办法",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "鲁滨逊漂流记",
+        "original": "10-15岁",
+        "ds": "9-14岁",
+        "match": true
+      },
+      {
+        "title": "猜猜我有多爱你",
+        "original": "2-6岁",
+        "ds": "2-5岁",
+        "match": true
+      },
+      {
+        "title": "朝花夕拾",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "窗边的小豆豆",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "棕色的熊、棕色的熊，你在看什么？",
+        "original": "0-3岁",
+        "ds": "1-4岁",
+        "match": true
+      },
+      {
+        "title": "宫西达也恐龙系列",
+        "original": "3-6岁",
+        "ds": "3-7岁",
+        "match": true
+      },
+      {
+        "title": "汤姆·索亚历险记",
+        "original": "7-15岁",
+        "ds": "9-14岁",
+        "match": false
+      },
+      {
+        "title": "三毛流浪记",
+        "original": "6-12岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "小熊宝宝绘本系列",
+        "original": "0-3岁",
+        "ds": "1-3岁",
+        "match": true
+      },
+      {
+        "title": "三体（少儿版）",
+        "original": "10-15岁",
+        "ds": "10-16岁",
+        "match": true
+      },
+      {
+        "title": "小王子",
+        "original": "7-15岁",
+        "ds": "7-14岁",
+        "match": true
+      },
+      {
+        "title": "好饿的毛毛虫",
+        "original": "0-3岁",
+        "ds": "1-4岁",
+        "match": true
+      },
+      {
+        "title": "神探狗狗",
+        "original": "7-12岁",
+        "ds": "5-9岁",
+        "match": false
+      },
+      {
+        "title": "蹦！",
+        "original": "0-3岁",
+        "ds": "0-3岁",
+        "match": true
+      },
+      {
+        "title": "母鸡萝丝去散步",
+        "original": "0-3岁",
+        "ds": "2-5岁",
+        "match": false
+      },
+      {
+        "title": "骆驼祥子",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "米小圈上学记",
+        "original": "6-9岁",
+        "ds": "6-9岁",
+        "match": true
+      },
+      {
+        "title": "屁屁侦探",
+        "original": "7-12岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "纳尼亚传奇",
+        "original": "8-15岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "神奇校车·桥梁书版",
+        "original": "6-9岁",
+        "ds": "5-9岁",
+        "match": true
+      },
+      {
+        "title": "活了一百万次的猫",
+        "original": "3-6岁",
+        "ds": "5-10岁",
+        "match": false
+      },
+      {
+        "title": "鳄鱼怕怕牙医怕怕",
+        "original": "2-5岁",
+        "ds": "2-5岁",
+        "match": true
+      }
+    ]
+  },
+  "红泥巴推荐": {
+    "total": 21,
+    "match": 8,
+    "diff": 13,
+    "details": [
+      {
+        "title": "虫子间",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "阿莫的生病日",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "一只特立独行的猪",
+        "original": "3-6岁",
+        "ds": "5-10岁",
+        "match": false
+      },
+      {
+        "title": "小樟树",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "一角天空",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "章鱼没有骨头",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "09：47",
+        "original": "0-6岁",
+        "ds": "5-9岁",
+        "match": false
+      },
+      {
+        "title": "龙的传说",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "马鹿卓玛",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "月亮，晚安",
+        "original": "0-3岁",
+        "ds": "0-3岁",
+        "match": true
+      },
+      {
+        "title": "寻梦奇遇记",
+        "original": "3-6岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "石头汤",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "10只狗狗分香肠",
+        "original": "3-6岁",
+        "ds": "2-5岁",
+        "match": true
+      },
+      {
+        "title": "亮世界",
+        "original": "6-12岁",
+        "ds": "6-12岁",
+        "match": true
+      },
+      {
+        "title": "我们不要放屁虫开巴士",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "宇宙在你眼中",
+        "original": "10-15岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "神奇的胖胖—蓬蓬—小小",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "一本关于颜色的黑书",
+        "original": "3-6岁",
+        "ds": "5-10岁",
+        "match": false
+      },
+      {
+        "title": "如何造一座山",
+        "original": "3-6岁",
+        "ds": "5-9岁",
+        "match": false
+      },
+      {
+        "title": "我们 它们",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "野兽国",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      }
+    ]
+  },
+  "童书妈妈推荐": {
+    "total": 29,
+    "match": 19,
+    "diff": 10,
+    "details": [
+      {
+        "title": "穿内裤的狼",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "诗人十四个",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "棋王、树王、孩子王",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "基督山伯爵",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "伊利亚特",
+        "original": "12-18岁",
+        "ds": "14-18岁",
+        "match": true
+      },
+      {
+        "title": "怦然心动的人生整理魔法",
+        "original": "10-16岁",
+        "ds": "10-16岁",
+        "match": true
+      },
+      {
+        "title": "月亮和六便士",
+        "original": "12-18岁",
+        "ds": "14-18岁",
+        "match": true
+      },
+      {
+        "title": "美丽新世界",
+        "original": "14-18岁",
+        "ds": "16-18岁",
+        "match": true
+      },
+      {
+        "title": "万古江河",
+        "original": "14-18岁",
+        "ds": "14-18岁",
+        "match": true
+      },
+      {
+        "title": "给孩子讲三国演义",
+        "original": "6-12岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "唐宋词十七讲",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "禅与摩托车维修艺术",
+        "original": "15-18岁",
+        "ds": "16-18岁",
+        "match": true
+      },
+      {
+        "title": "贫穷的本质",
+        "original": "15-18岁",
+        "ds": "14-18岁",
+        "match": true
+      },
+      {
+        "title": "心流：最优体验心理学",
+        "original": "14-18岁",
+        "ds": "14-18岁",
+        "match": true
+      },
+      {
+        "title": "故事新编",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "野兽国",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "走进魔法店",
+        "original": "8-14岁",
+        "ds": "8-12岁",
+        "match": true
+      },
+      {
+        "title": "战国策",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "我的名字叫\"害怕\"",
+        "original": "6-12岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "蓝发女孩希尔达",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "小王子",
+        "original": "7-15岁",
+        "ds": "6-12岁",
+        "match": false
+      },
+      {
+        "title": "西游记",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "长袜子皮皮",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "窗边的小豆豆",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "汤姆·索亚历险记",
+        "original": "7-15岁",
+        "ds": "9-14岁",
+        "match": false
+      },
+      {
+        "title": "小王子",
+        "original": "7-15岁",
+        "ds": "7-14岁",
+        "match": true
+      },
+      {
+        "title": "神探狗狗",
+        "original": "7-12岁",
+        "ds": "5-9岁",
+        "match": false
+      },
+      {
+        "title": "屁屁侦探",
+        "original": "7-12岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "长袜子皮皮",
+        "original": "7-12岁",
+        "ds": "6-12岁",
+        "match": true
+      }
+    ]
+  },
+  "亲近母语分级": {
+    "total": 24,
+    "match": 9,
+    "diff": 15,
+    "details": [
+      {
+        "title": "小王子",
+        "original": "7-15岁",
+        "ds": "6-12岁",
+        "match": false
+      },
+      {
+        "title": "大头儿子和小头爸爸",
+        "original": "6-9岁",
+        "ds": "3-6岁",
+        "match": false
+      },
+      {
+        "title": "格林童话",
+        "original": "6-12岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "西游记",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "小巴掌童话",
+        "original": "6-9岁",
+        "ds": "3-6岁",
+        "match": false
+      },
+      {
+        "title": "草原上的小木屋",
+        "original": "8-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "没头脑和不高兴",
+        "original": "7-10岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "西游记（原著）",
+        "original": "12-18岁",
+        "ds": "10-16岁",
+        "match": false
+      },
+      {
+        "title": "安徒生童话",
+        "original": "3-6岁",
+        "ds": "4-8岁",
+        "match": false
+      },
+      {
+        "title": "长袜子皮皮",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "爷爷一定有办法",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "鲁滨逊漂流记",
+        "original": "10-15岁",
+        "ds": "9-14岁",
+        "match": true
+      },
+      {
+        "title": "时代广场的蟋蟀",
+        "original": "7-12岁",
+        "ds": "7-10岁",
+        "match": true
+      },
+      {
+        "title": "猜猜我有多爱你",
+        "original": "2-6岁",
+        "ds": "2-5岁",
+        "match": true
+      },
+      {
+        "title": "城南旧事",
+        "original": "7-12岁",
+        "ds": "8-12岁",
+        "match": true
+      },
+      {
+        "title": "宝葫芦的秘密",
+        "original": "7-12岁",
+        "ds": "7-10岁",
+        "match": true
+      },
+      {
+        "title": "绿野仙踪",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "朝花夕拾",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "青蛙和蟾蜍",
+        "original": "6-9岁",
+        "ds": "4-7岁",
+        "match": false
+      },
+      {
+        "title": "窗边的小豆豆",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "汤姆·索亚历险记",
+        "original": "7-15岁",
+        "ds": "9-14岁",
+        "match": false
+      },
+      {
+        "title": "小王子",
+        "original": "7-15岁",
+        "ds": "7-14岁",
+        "match": true
+      },
+      {
+        "title": "长袜子皮皮",
+        "original": "7-12岁",
+        "ds": "6-12岁",
+        "match": true
+      },
+      {
+        "title": "城南旧事",
+        "original": "7-12岁",
+        "ds": "8-14岁",
+        "match": false
+      }
+    ]
+  },
+  "童阅中国": {
+    "total": 20,
+    "match": 6,
+    "diff": 14,
+    "details": [
+      {
+        "title": "人类的样子",
+        "original": "7-12岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "鸡同鸭讲",
+        "original": "7-12岁",
+        "ds": "5-8岁",
+        "match": false
+      },
+      {
+        "title": "一只猫的哲学",
+        "original": "10-16岁",
+        "ds": "10-16岁",
+        "match": true
+      },
+      {
+        "title": "一只鹰鹞",
+        "original": "7-15岁",
+        "ds": "4-7岁",
+        "match": false
+      },
+      {
+        "title": "中国恐龙地图",
+        "original": "6-12岁",
+        "ds": "5-10岁",
+        "match": false
+      },
+      {
+        "title": "鲸鱼的世界",
+        "original": "6-12岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "昆虫界的奥德赛",
+        "original": "4-12岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "从前有个金箍棒",
+        "original": "7-15岁",
+        "ds": "5-8岁",
+        "match": false
+      },
+      {
+        "title": "情绪小怪兽去上学",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "探索星空",
+        "original": "7-12岁",
+        "ds": "6-10岁",
+        "match": false
+      },
+      {
+        "title": "河流是什么",
+        "original": "7-12岁",
+        "ds": "5-9岁",
+        "match": false
+      },
+      {
+        "title": "我的第一本哲学启蒙书",
+        "original": "10-15岁",
+        "ds": "10-16岁",
+        "match": true
+      },
+      {
+        "title": "我听见万物的歌唱",
+        "original": "7-15岁",
+        "ds": "4-7岁",
+        "match": false
+      },
+      {
+        "title": "身体大发现",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "世界国家公园",
+        "original": "6-12岁",
+        "ds": "7-12岁",
+        "match": true
+      },
+      {
+        "title": "三彩马的旅行",
+        "original": "7-15岁",
+        "ds": "5-8岁",
+        "match": false
+      },
+      {
+        "title": "深海传奇",
+        "original": "6-12岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "小孩哲学",
+        "original": "10-16岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "春福",
+        "original": "7-15岁",
+        "ds": "3-6岁",
+        "match": false
+      },
+      {
+        "title": "太阳想吃冰激凌",
+        "original": "7-15岁",
+        "ds": "2-5岁",
+        "match": false
+      }
+    ]
+  },
+  "中教报推荐": {
+    "total": 20,
+    "match": 13,
+    "diff": 7,
+    "details": [
+      {
+        "title": "讲给孩子听的中轴线上的老故事",
+        "original": "7-12岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "大象的旅程",
+        "original": "3-6岁",
+        "ds": "3-6岁",
+        "match": true
+      },
+      {
+        "title": "丹柯",
+        "original": "12-18岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "带着群山飞翔",
+        "original": "12-18岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "指尖上的中国",
+        "original": "10-15岁",
+        "ds": "10-16岁",
+        "match": true
+      },
+      {
+        "title": "远山灯火",
+        "original": "7-15岁",
+        "ds": "10-16岁",
+        "match": false
+      },
+      {
+        "title": "科学家给孩子的12封信",
+        "original": "10-15岁",
+        "ds": "10-16岁",
+        "match": true
+      },
+      {
+        "title": "谁是人工智能小孩",
+        "original": "8-15岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "中国教育报",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "五千年中华地名",
+        "original": "10-15岁",
+        "ds": "10-16岁",
+        "match": true
+      },
+      {
+        "title": "上盐湖",
+        "original": "6-10岁",
+        "ds": "6-10岁",
+        "match": true
+      },
+      {
+        "title": "狗阵",
+        "original": "12-18岁",
+        "ds": "10-16岁",
+        "match": false
+      },
+      {
+        "title": "猫冬记",
+        "original": "7-15岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "有书真好啊",
+        "original": "10-16岁",
+        "ds": "10-16岁",
+        "match": true
+      },
+      {
+        "title": "1938回答2026",
+        "original": "12-18岁",
+        "ds": "12-18岁",
+        "match": true
+      },
+      {
+        "title": "大哲学家的幸福课：一起走向幸福！",
+        "original": "10-16岁",
+        "ds": "10-16岁",
+        "match": true
+      },
+      {
+        "title": "丰子恺家塾课：外公教我学诗词",
+        "original": "7-15岁",
+        "ds": "8-14岁",
+        "match": true
+      },
+      {
+        "title": "1分钟数学",
+        "original": "6-12岁",
+        "ds": "6-12岁",
+        "match": true
+      },
+      {
+        "title": "给孩子的考古",
+        "original": "10-15岁",
+        "ds": "8-14岁",
+        "match": false
+      },
+      {
+        "title": "拉鲁斯艺术启蒙课",
+        "original": "10-15岁",
+        "ds": "8-14岁",
+        "match": false
+      }
+    ]
+  }
+}

@@ -18,23 +18,22 @@ export default async function handler(req, res) {
 
     const prompt = `你是一个儿童图书分类助手。根据书名、作者和主题信息，判断这本书最适合放在哪个分类中。
 
-可选分类（一级 → 二级）：
-① 自我探索 → 心理情绪、身体健康、性格优势、生死生命、自我哲学
-② 社会人文 → 人际沟通、社会群体、经济商业、政治制度、法律规则、伦理哲学
-③ 自然探秘 → 数学逻辑、物理、化学、生物生命、地球地理、天文宇宙、科学哲学
-④ 文明之旅 → 中国史、世界史、文化人类、宗教神话、历史哲学
-⑤ 文学花园 → 绘本、诗歌、小说、寓言神话、散文、传记、戏剧、文学赏析
-⑥ 艺术视界 → 视觉艺术、音乐、语言文字、美学哲学
-⑦ 创想未来 → 科技工程、编程计算、AI未来、创新设计、技术哲学
+可选分类（新五维体系）：
+① 文学叙事(narrative) → 绘本、诗歌、小说(幻想冒险/成长校园/推理悬疑/动物故事/历史小说/现实生活)、寓言神话、散文、传记、戏剧、文学赏析
+② 自然科学(science) → 数学逻辑、物理、化学、生物生命、地球地理、天文宇宙、科学哲学、科技工程、编程计算、AI未来
+③ 人文社会(humanity) → 中国史、世界史、文化人类、宗教神话、历史哲学、人际沟通、社会群体、经济商业、政治制度、法律规则、伦理哲学
+④ 艺术创想(art_create) → 视觉艺术、音乐、语言文字、美学哲学、创新设计、技术哲学
+⑤ 自我成长(self_growth) → 心理情绪、身体健康、性格优势、生死生命、自我哲学
 
 只输出 JSON 格式，不要其他文字：
 {"dimension":"维度key","level2":"二级key","confidence":"high|medium|low"}
 
 注意：
+- dimension key 用括号内的英文key
 - confidence: high=明确匹配 / medium=有一定依据 / low=信息不足的猜测
-- 完全无法判断时用 literature/novel 和 low`;
+- 完全无法判断时用 narrative/novel 和 low`;
 
-    const resp = await fetch('https://api.deepseek.com/v1/chat/completions', {
+    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,23 +42,22 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: 'deepseek-chat',
         messages: [
-          { role: 'system', content: '你是一个儿童图书分类助手，只输出 JSON。' },
-          { role: 'user', content: prompt + '\n\n书名：《' + title + '》\n作者：' + (author || '未知') + '\n主题：' + subjectStr },
+          { role: 'system', content: '你是一个儿童图书分类专家，熟悉儿童读物的五维分类体系。输出严格 JSON。' },
+          { role: 'user', content: prompt + '\n\n书名：' + (title || '') + '\n作者：' + (author || '未知') + (subjectStr ? '\n主题：' + subjectStr : '') },
         ],
-        max_tokens: 200,
+        max_tokens: 600,
         temperature: 0.3,
       }),
     });
 
-    const data = await resp.json();
+    const data = await response.json();
     const content = data.choices?.[0]?.message?.content || '';
 
-    // 解析 JSON
     let result;
     try {
-      result = JSON.parse(content.replace(/```json|```/g, '').trim());
-    } catch (_) {
-      return res.status(200).json({ error: 'parse_failed', content });
+      result = JSON.parse(content);
+    } catch {
+      result = { dimension: 'narrative', level2: 'novel', confidence: 'low' };
     }
 
     return res.status(200).json({ ...result, error: null });

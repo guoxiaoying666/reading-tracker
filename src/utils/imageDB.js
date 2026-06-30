@@ -62,6 +62,66 @@ export async function getImages(ids) {
   return results;
 }
 
+/** 保存头像（自动压缩为 1:1 正方形，限制 200x200） */
+export async function saveAvatar(file) {
+  const compressed = await compressAvatar(file);
+  const db = await openDB();
+  const id = 'user-avatar';
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    const store = tx.objectStore(STORE_NAME);
+    store.put({ id, data: compressed, createdAt: Date.now() });
+    tx.oncomplete = () => resolve(compressed);
+    tx.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/** 读取头像 base64 */
+export async function getAvatar() {
+  const db = await openDB();
+  return new Promise((resolve) => {
+    const tx = db.transaction(STORE_NAME, 'readonly');
+    const store = tx.objectStore(STORE_NAME);
+    const req = store.get('user-avatar');
+    req.onsuccess = () => resolve(req.result?.data || null);
+    req.onerror = () => resolve(null);
+  });
+}
+
+/** 压缩为 1:1 正方形头像，200x200，JPEG */
+function compressAvatar(file) {
+  return new Promise((resolve, reject) => {
+    if (!file.type.startsWith('image/')) { reject(new Error('仅支持图片格式')); return; }
+    const allowed = ['image/jpeg', 'image/png'];
+    if (!allowed.includes(file.type)) { reject(new Error('仅支持 JPG/PNG 格式')); return; }
+    const maxSize = 2 * 1024 * 1024; // 2MB
+    if (file.size > maxSize) { reject(new Error('图片大小不能超过 2MB')); return; }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const size = 200;
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#F5F1EB';
+        ctx.fillRect(0, 0, size, size);
+        const crop = Math.min(img.width, img.height);
+        const sx = (img.width - crop) / 2;
+        const sy = (img.height - crop) / 2;
+        ctx.drawImage(img, sx, sy, crop, crop, 0, 0, size, size);
+        resolve(canvas.toDataURL('image/jpeg', 0.8));
+      };
+      img.onerror = reject;
+      img.src = reader.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 /** 删除图片 */
 export async function deleteImage(id) {
   if (!id) return;

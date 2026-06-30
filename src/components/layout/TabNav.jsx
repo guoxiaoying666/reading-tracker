@@ -1,10 +1,10 @@
 import { useReading } from '../../context/ReadingContext';
 
 const TABS = [
+  { key: 'home', label: '🏠 首页' },
   { key: 'bookshelf', label: '📚 书架' },
-  { key: 'record', label: '✍️ 记录' },
-  { key: 'discovery', label: '💭 说说' },
-  { key: 'plan', label: '📐 体系' },
+  { key: 'voice_record', label: '🎙️ 说说' },
+  { key: 'diagnosis', label: '🧠 阅读洞察' },
 ];
 
 export default function TabNav() {

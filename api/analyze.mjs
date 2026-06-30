@@ -1,5 +1,6 @@
 // Vercel Serverless Function — DeepSeek API 代理
 // Key 在 Vercel 环境变量中设置，不暴露到前端
+// 注意：前端已统一使用 /api/deepseek 端点，此文件保留仅用于 Vercel 直接部署场景
 
 const DEEPSEEK_KEY = process.env.VITE_DEEPSEEK_KEY || '';
 
@@ -9,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   if (!DEEPSEEK_KEY) {
-    return res.status(200).json({ error: 'no_key', message: '服务端未配置 API Key' });
+    return res.status(503).json({ error: 'no_key', message: '服务端未配置 API Key' });
   }
 
   try {
@@ -59,6 +60,6 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ content, error: null });
   } catch (e) {
-    return res.status(200).json({ error: 'request_failed', message: e.message });
+    return res.status(500).json({ error: 'request_failed', message: e.message });
   }
 }

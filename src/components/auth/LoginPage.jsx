@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import usePinAutoFocus from '../../hooks/usePinAutoFocus';
 import { useAuth } from '../../context/AuthContext';
 
 function PinInput({ value, onChange, onKeyDown, refs, autoFocus }) {
@@ -13,7 +14,7 @@ function PinInput({ value, onChange, onKeyDown, refs, autoFocus }) {
   };
 
   return (
-    <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginBottom: 12 }}>
+    <div style={{ display: 'flex', gap: 5, justifyContent: 'center', padding: '0 12px', boxSizing: 'border-box', width: '100%', marginBottom: 12 }}>
       {[0, 1, 2, 3, 4, 5].map(i => (
         <input key={i} ref={el => refs.current[i] = el} type="tel" maxLength={1}
           value={value[i] || ''}
@@ -21,9 +22,9 @@ function PinInput({ value, onChange, onKeyDown, refs, autoFocus }) {
           onKeyDown={e => handleKey(i, e)}
           autoFocus={autoFocus && i === 0}
           style={{
-            width: 42, height: 48, textAlign: 'center', fontSize: 22, fontWeight: 700,
+            width: 40, height: 42, flexShrink: 0, textAlign: 'center', fontSize: 15, fontWeight: 700,
             border: value[i] ? '2px solid #C8815C' : '1px solid #E8E2D8',
-            borderRadius: 8, outline: 'none',
+            borderRadius: 10, outline: 'none', background: '#FAFAFA',
           }} />
       ))}
     </div>
@@ -38,141 +39,141 @@ export default function LoginPage({ onClose }) {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [mode, setMode] = useState(null); // null=phone, 'login', 'register', 'name'
+  const [tab, setTab] = useState('login');
+  const [regStep, setRegStep] = useState('pin');
   const pinRefs = useRef([]);
   const pinConfirmRefs = useRef([]);
   const phoneRef = useRef(null);
 
+  // 键盘弹出时将弹窗上推，防止输入框被键盘遮挡
   useEffect(() => { phoneRef.current?.focus(); }, []);
 
-  const handleNext = () => {
-    const p = phone.trim();
-    if (p.length < 11) { setError('请输入11位手机号'); return; }
-    setError('');
-    setMode('choose');
-  };
+  useEffect(() => {
+    if (pin.length === 6 && regStep === 'pin') setRegStep('confirm');
+  }, [pin, regStep]);
+  usePinAutoFocus(pin, regStep, pinConfirmRefs, 100);
+
+  const switchTab = useCallback((t) => {
+    setTab(t); setError(''); setPin(''); setPinConfirm(''); setName(''); setRegStep('pin');
+    setTimeout(() => phoneRef.current?.focus(), 100);
+  }, []);
+
+  const inputStyle = { width: '100%', padding: '12px 14px', border: '1px solid #E8E2D8', borderRadius: 10, fontSize: 16, outline: 'none', boxSizing: 'border-box', background: '#FAFAFA' };
 
   const handleLogin = async () => {
+    const p = phone.trim();
+    if (p.length < 11) { setError('请输入11位手机号'); return; }
     if (pin.length < 6) { setError('请输入6位数字密码'); return; }
     setError(''); setLoading(true);
-    const result = await login(phone.trim(), pin);
-    if (result.error) setError(result.error);
-    else onClose?.(); // 登录成功后关闭弹窗
-    setLoading(false);
-  };
-
-  const handleRegisterPin = () => {
-    if (pin.length < 6) { setError('请设置6位数字密码'); return; }
-    if (pin !== pinConfirm) { setError('两次密码不一致'); return; }
-    setError('');
-    setMode('name');
-    setTimeout(() => document.getElementById('reg-name-input')?.focus(), 100);
-  };
-
-  const handleRegister = async () => {
-    setLoading(true);
-    const result = await register(phone.trim(), pin, name.trim() || '小读者');
-    if (result.error) setError(result.error);
+    const result = await login(p, pin);
+    if (result?.error) setError(result.error);
     else onClose?.();
     setLoading(false);
   };
 
-  const startOver = () => { setMode(null); setError(''); setPin(''); setPinConfirm(''); setName(''); };
+  const handleRegister = async () => {
+    const p = phone.trim();
+    if (p.length < 11) { setError('请输入11位手机号'); return; }
+    if (pin.length < 6) { setError('请设置6位数字密码'); return; }
+    if (pin !== pinConfirm) { setError('两次密码不一致'); return; }
+    setError(''); setLoading(true);
+    const result = await register(p, pin, name.trim() || '小读者');
+    if (result?.error) setError(result.error);
+    else onClose?.();
+    setLoading(false);
+  };
 
   return (
-    <div style={{ minHeight: 400, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      background: 'linear-gradient(160deg, #F3EDE5, #EDE4D8)', padding: 24 }}>
-      <div style={{ width: '100%', maxWidth: 360, background: 'white', borderRadius: 20,
-        padding: '32px 24px', boxShadow: '0 8px 40px rgba(44,36,22,0.08)', position: 'relative' }}>
-        {onClose && (
-          <button onClick={onClose} style={{ position: 'absolute', top: 12, right: 16, background: 'none', border: 'none', fontSize: 20, color: '#9B9082', cursor: 'pointer', fontFamily: 'var(--font)' }}>✕</button>
-        )}
-        <div style={{ textAlign: 'center', marginBottom: 28 }}>
-          <div style={{ fontSize: 48, marginBottom: 8 }}>📚</div>
-          <div style={{ fontSize: 20, fontWeight: 800, color: '#A56545', letterSpacing: 2 }}>好读</div>
-          <div style={{ fontSize: 12, color: '#9B9082', marginTop: 4 }}>登录后可同步阅读记录到云端</div>
+    <div style={{ background: '#FAFAFA', borderRadius: 24, padding: '24px 20px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', maxWidth: 360, margin: '0 auto', position: 'relative' }}>
+      {onClose && (
+        <button onClick={onClose} style={{ position: 'absolute', top: 12, right: 16, background: 'none', border: 'none', fontSize: 20, color: '#9B9082', cursor: 'pointer', fontFamily: 'var(--font)', padding: 0, lineHeight: 1 }}>✕</button>
+      )}
+      <div style={{ textAlign: 'center', marginBottom: 20 }}>
+        <div style={{ fontSize: 18, fontWeight: 800, color: '#A56545', letterSpacing: 2 }}>📚 好读 · WondeRead</div>
+      </div>
+
+      {/* Tab 切换 */}
+      <div style={{ display: 'flex', background: '#F3EDE5', borderRadius: 10, padding: 3, marginBottom: 20, position: 'relative' }}>
+        {['login', 'register'].map(t => (
+          <button key={t} onClick={() => switchTab(t)} style={{
+            flex: 1, padding: '8px 0', borderRadius: 8, border: 'none', cursor: 'pointer',
+            background: tab === t ? 'white' : 'transparent',
+            color: tab === t ? '#C8815C' : '#9B9082', fontWeight: 700, fontSize: 14,
+            fontFamily: 'var(--font)',
+            boxShadow: tab === t ? '0 1px 4px rgba(0,0,0,0.06)' : 'none',
+            transition: 'all 0.15s',
+          }}>
+            {t === 'login' ? '登录' : '注册'}
+          </button>
+        ))}
+      </div>
+
+      {tab === 'login' && (
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 600, color: '#5C5244', marginBottom: 4, display: 'block' }}>手机号</label>
+          <input ref={phoneRef} type="tel" value={phone}
+            onChange={e => setPhone(e.target.value.replace(/\D/g, '').slice(0, 11))}
+            placeholder="输入手机号"
+            onKeyDown={e => { if (e.key === 'Enter' && phone.length === 11) pinRefs.current[0]?.focus(); }}
+            style={{ ...inputStyle, marginBottom: 14 }} />
+
+          <label style={{ fontSize: 12, fontWeight: 600, color: '#5C5244', marginBottom: 6, display: 'block' }}>6位数字密码</label>
+          <PinInput value={pin} onChange={setPin} onKeyDown={handleLogin} refs={pinRefs} autoFocus={false} />
+
+          {error && <div style={{ color: '#C47A6E', fontSize: 12, textAlign: 'center', marginBottom: 8 }}>{error}</div>}
+
+          <button style={{ width: '100%', padding: 13, borderRadius: 10, border: 'none', background: '#C8815C', color: 'white', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--font)' }}
+            onClick={handleLogin} disabled={loading}>
+            {loading ? '登录中…' : '登录'}
+          </button>
         </div>
+      )}
 
-        {/* 第1步：手机号 */}
-        {!mode && (
-          <div>
-            <label style={{ fontSize: 13, fontWeight: 600, color: '#5C5244', marginBottom: 6, display: 'block' }}>手机号</label>
-            <input ref={phoneRef} type="tel" value={phone}
-              onChange={e => setPhone(e.target.value.replace(/\D/g, '').slice(0, 11))}
-              placeholder="输入手机号" autoFocus onKeyDown={e => e.key === 'Enter' && handleNext()}
-              style={{ width: '100%', padding: '14px', border: '1px solid #E8E2D8', borderRadius: 10, fontSize: 18, outline: 'none', boxSizing: 'border-box' }} />
-            {error && <div style={{ color: '#C47A6E', fontSize: 12, marginTop: 6 }}>{error}</div>}
-            <button className="btn-primary" style={{ width: '100%', padding: '14px', fontSize: 15, marginTop: 16 }}
-              onClick={handleNext}>下一步</button>
-          </div>
-        )}
+      {tab === 'register' && (
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 600, color: '#5C5244', marginBottom: 4, display: 'block' }}>手机号</label>
+          <input ref={phoneRef} type="tel" value={phone}
+            onChange={e => setPhone(e.target.value.replace(/\D/g, '').slice(0, 11))}
+            placeholder="输入手机号"
+            onKeyDown={e => { if (e.key === 'Enter' && phone.length === 11) pinRefs.current[0]?.focus(); }}
+            style={{ ...inputStyle, marginBottom: 14 }} />
 
-        {/* 第2步：选择登录或注册 */}
-        {mode === 'choose' && (
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: '#C8815C', marginBottom: 20 }}>{phone}</div>
-            <button className="btn-primary" style={{ width: '100%', padding: '14px', fontSize: 15, marginBottom: 12 }}
-              onClick={() => { setMode('login'); setTimeout(() => pinRefs.current[0]?.focus(), 100); }}>
-              🔑 已有账号，登录
-            </button>
-            <button style={{ width: '100%', padding: '14px', fontSize: 15, background: 'white', border: '1.5px solid #E8E2D8',
-              borderRadius: 10, color: '#5C5244', fontWeight: 600, cursor: 'pointer' }}
-              onClick={() => { setMode('register'); setTimeout(() => pinRefs.current[0]?.focus(), 100); }}>
-              ✨ 新账号，注册
-            </button>
-            <div style={{ marginTop: 16 }}>
-              <span style={{ fontSize: 12, color: '#9B9082', cursor: 'pointer' }} onClick={startOver}>← 换一个号码</span>
-            </div>
-          </div>
-        )}
+          {regStep === 'pin' && (
+            <>
+              <label style={{ fontSize: 12, fontWeight: 600, color: '#5C5244', marginBottom: 6, display: 'block' }}>设置6位数字密码</label>
+              <PinInput value={pin} onChange={setPin} refs={pinRefs} autoFocus={false} />
+            </>
+          )}
 
-        {/* 第3步-登录：输入密码 */}
-        {mode === 'login' && (
-          <div>
-            <div style={{ fontSize: 13, color: '#5C5244', marginBottom: 4 }}>输入6位数字密码</div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: '#C8815C', marginBottom: 16 }}>{phone}</div>
-            <PinInput value={pin} onChange={setPin} onKeyDown={handleLogin} refs={pinRefs} autoFocus />
-            {error && <div style={{ color: '#C47A6E', fontSize: 12, textAlign: 'center', marginBottom: 8 }}>{error}</div>}
-            <button className="btn-primary" style={{ width: '100%', padding: '14px', fontSize: 15, marginTop: 4 }}
-              onClick={handleLogin} disabled={loading}>{loading ? '登录中…' : '登录'}</button>
-            <div style={{ textAlign: 'center', marginTop: 12 }}>
-              <span style={{ fontSize: 12, color: '#9B9082', cursor: 'pointer' }} onClick={startOver}>← 换一个号码</span>
-            </div>
-          </div>
-        )}
+          {regStep === 'confirm' && (
+            <>
+              <label style={{ fontSize: 12, fontWeight: 600, color: '#5C5244', marginBottom: 6, display: 'block' }}>再次输入确认</label>
+              <PinInput value={pinConfirm} onChange={setPinConfirm} refs={pinConfirmRefs} autoFocus />
+              <div style={{ marginBottom: 12 }}>
+                <label style={{ fontSize: 12, fontWeight: 600, color: '#5C5244', marginBottom: 4, display: 'block' }}>孩子昵称（选填）</label>
+                <input type="text" value={name} onChange={e => setName(e.target.value)}
+                  placeholder="例如：伊伊"
+                  onKeyDown={e => e.key === 'Enter' && handleRegister()}
+                  style={inputStyle} />
+              </div>
+              {error && <div style={{ color: '#C47A6E', fontSize: 12, textAlign: 'center', marginBottom: 8 }}>{error}</div>}
+              <button style={{ width: '100%', padding: 13, borderRadius: 10, border: 'none', background: '#C8815C', color: 'white', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--font)' }}
+                onClick={handleRegister} disabled={loading}>
+                {loading ? '注册中…' : '✨ 注册 · 进入书房'}
+              </button>
+              <div style={{ textAlign: 'center', marginTop: 8 }}>
+                <span style={{ fontSize: 12, color: '#9B9082', cursor: 'pointer' }}
+                  onClick={() => { setPin(''); setPinConfirm(''); setRegStep('pin'); pinRefs.current[0]?.focus(); }}>
+                  ← 重新设置密码
+                </span>
+              </div>
+            </>
+          )}
+        </div>
+      )}
 
-        {/* 第3步-注册：设置密码 */}
-        {mode === 'register' && (
-          <div>
-            <div style={{ fontSize: 13, color: '#5C5244', marginBottom: 4 }}>设置6位数字密码</div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: '#C8815C', marginBottom: 16 }}>{phone}</div>
-            <PinInput value={pin} onChange={setPin} refs={pinRefs} autoFocus />
-            <div style={{ fontSize: 12, color: '#5C5244', marginBottom: 4, textAlign: 'center' }}>再次输入确认</div>
-            <PinInput value={pinConfirm} onChange={setPinConfirm} refs={pinConfirmRefs} />
-            {error && <div style={{ color: '#C47A6E', fontSize: 12, textAlign: 'center', marginBottom: 8 }}>{error}</div>}
-            <button className="btn-primary" style={{ width: '100%', padding: '14px', fontSize: 15, marginTop: 4 }}
-              onClick={handleRegisterPin}>下一步</button>
-            <div style={{ textAlign: 'center', marginTop: 12 }}>
-              <span style={{ fontSize: 12, color: '#9B9082', cursor: 'pointer' }} onClick={startOver}>← 换一个号码</span>
-            </div>
-          </div>
-        )}
-
-        {/* 第4步-注册：填写名字 */}
-        {mode === 'name' && (
-          <div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: '#5C5244', textAlign: 'center', marginBottom: 4 }}>给小书房取个名字</div>
-            <div style={{ fontSize: 12, color: '#9B9082', textAlign: 'center', marginBottom: 16 }}>给孩子取个名字吧（选填）</div>
-            <input id="reg-name-input" type="text" value={name} onChange={e => setName(e.target.value)}
-              placeholder="例如：伊伊" onKeyDown={e => e.key === 'Enter' && handleRegister()}
-              style={{ width: '100%', padding: '14px', border: '1px solid #E8E2D8', borderRadius: 10, fontSize: 16, outline: 'none', boxSizing: 'border-box' }} />
-            {error && <div style={{ color: '#C47A6E', fontSize: 12, marginTop: 6 }}>{error}</div>}
-            <button className="btn-primary" style={{ width: '100%', padding: '14px', fontSize: 15, marginTop: 16 }}
-              onClick={handleRegister} disabled={loading}>{loading ? '注册中…' : '✨ 进入书房'}</button>
-          </div>
-        )}
-
-        <div style={{ textAlign: 'center', marginTop: 20, fontSize: 11, color: '#C4BBAE' }}>数据加密传输，仅用于登录验证</div>
+      <div style={{ textAlign: 'center', marginTop: 16, fontSize: 10, color: '#C4BBAE', lineHeight: 1.5 }}>
+        数据加密传输 · 仅用于登录验证
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import usePinAutoFocus from '../../hooks/usePinAutoFocus';
 import { useAuth } from '../../context/AuthContext';
 
 function PinInput({ value, onChange, onKeyDown, refs, autoFocus }) {
@@ -13,7 +14,7 @@ function PinInput({ value, onChange, onKeyDown, refs, autoFocus }) {
   };
 
   return (
-    <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginBottom: 12 }}>
+    <div style={{ display: 'flex', gap: 5, justifyContent: 'center', padding: '0 12px', boxSizing: 'border-box', width: '100%', marginBottom: 12 }}>
       {[0, 1, 2, 3, 4, 5].map(i => (
         <input key={i} ref={el => refs.current[i] = el} type="tel" maxLength={1}
           value={value[i] || ''}
@@ -21,9 +22,9 @@ function PinInput({ value, onChange, onKeyDown, refs, autoFocus }) {
           onKeyDown={e => handleKey(i, e)}
           autoFocus={autoFocus && i === 0}
           style={{
-            width: 42, height: 48, textAlign: 'center', fontSize: 22, fontWeight: 700,
+            width: 40, height: 42, flexShrink: 0, textAlign: 'center', fontSize: 15, fontWeight: 700,
             border: value[i] ? '2px solid #C8815C' : '1px solid #E8E2D8',
-            borderRadius: 8, outline: 'none',
+            borderRadius: 8, outline: 'none', background: '#FAFAFA',
           }} />
       ))}
     </div>
@@ -43,6 +44,9 @@ export default function BindPhoneModal({ onClose }) {
   const pinConfirmRefs = useRef([]);
 
   useEffect(() => { phoneRef.current?.focus(); }, []);
+
+  // 第一组密码输满6位自动跳转到确认框
+  usePinAutoFocus(pin, 'pin', pinConfirmRefs);
 
   const handleSubmit = async () => {
     const p = phone.trim();
@@ -67,7 +71,7 @@ export default function BindPhoneModal({ onClose }) {
         <div style={{ width: '100%', maxWidth: 360, background: 'white', borderRadius: 20, padding: '32px 24px', textAlign: 'center', boxShadow: '0 8px 40px rgba(44,36,22,0.08)' }}>
           <div style={{ fontSize: 48, marginBottom: 8 }}>🎉</div>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#A56545', marginBottom: 8 }}>绑定成功！</div>
-          <div style={{ fontSize: 13, color: '#9B9082', marginBottom: 20 }}>你的阅读记录已关联到该手机号</div>
+          <div style={{ fontSize: 13, color: '#9B9082', marginBottom: 20 }}>✅ 数据已同步至云端，换设备也能找回阅读记录</div>
           <button className="btn-primary" style={{ width: '100%', padding: '14px', fontSize: 15 }} onClick={onClose}>
             开始使用
           </button>
@@ -78,7 +82,7 @@ export default function BindPhoneModal({ onClose }) {
 
   return (
     <div style={{ background: 'linear-gradient(160deg, #F3EDE5, #EDE4D8)', padding: 24 }}>
-      <div style={{ width: '100%', maxWidth: 360, background: 'white', borderRadius: 20, padding: '32px 24px', boxShadow: '0 8px 40px rgba(44,36,22,0.08)' }}>
+      <div style={{ width: '100%', maxWidth: 360, background: 'white', borderRadius: 20, padding: '32px 24px 28px', boxShadow: '0 8px 40px rgba(44,36,22,0.08)' }}>
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <div style={{ fontSize: 36, marginBottom: 8 }}>🔗</div>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#A56545' }}>绑定手机号</div>

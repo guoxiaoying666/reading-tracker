@@ -1,0 +1,386 @@
+/* ============================================================
+   探索领域页样式 — WondeRead · 看见成长
+   v2.0: "诊断页" → "探索页"
+   ============================================================ */
+
+/* ---- Page wrapper ---- */
+.diag-page {
+  padding-bottom: 20px;
+}
+
+/* ---- Stats Summary Row ---- */
+.diag-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.diag-stat-card {
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  padding: 16px 10px;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.diag-stat-value {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: var(--font-title);
+}
+
+.diag-stat-label {
+  font-size: 11px;
+  color: var(--ink3);
+  margin-top: 2px;
+}
+
+/* ---- Section Header (title + theory capsule inline) ---- */
+.diag-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.diag-theory-capsule {
+  font-size: 9px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--ink3);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  user-select: none;
+}
+.diag-theory-capsule:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(186,122,90,0.06);
+}
+.diag-theory-capsule:active {
+  transform: scale(0.96);
+}
+
+/* ---- Section Title ---- */
+.diag-section-title {
+  font-family: var(--font-title);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+}
+
+/* ---- Core Insight Card ---- */
+.diag-insight-card {
+  background: linear-gradient(135deg, #F5F1EB, #EDE4D8);
+  border-radius: 12px;
+  padding: 12px 16px;
+  border: 1px solid rgba(200,129,92,0.12);
+  margin-bottom: 4px;
+}
+
+/* ---- Coverage Cards ---- */
+.diag-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.diag-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-family: var(--font-title);
+}
+
+.diag-alert-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.diag-alert-item:last-child {
+  border-bottom: none;
+}
+
+.diag-alert-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.diag-alert-badge.danger {
+  background: var(--red-light);
+  color: var(--red);
+}
+
+.diag-alert-badge.warning {
+  background: var(--yellow-light);
+  color: var(--yellow);
+}
+
+.diag-alert-badge.success {
+  background: var(--green-light);
+  color: var(--green);
+}
+
+/* ---- Monthly Report Banner ---- */
+.diag-banner {
+  background: var(--card2);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+}
+
+.diag-banner h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-family: var(--font-title);
+}
+
+.diag-banner p {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+
+/* ---- Empty State ---- */
+.diag-empty {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--ink3);
+}
+
+.diag-empty-icon {
+  font-size: 44px;
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.diag-empty-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-family: var(--font-title);
+}
+
+.diag-empty-desc {
+  font-size: 13px;
+  margin-bottom: 16px;
+  color: var(--ink3);
+}
+
+/* ---- HOW 能力画像卡片 ---- */
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.how-card {
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  padding: 12px 10px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: visible;
+}
+
+.how-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.how-card-info {
+  flex: 1;
+  min-width: 0;
+  overflow: visible;
+}
+
+.how-card-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: normal;
+  overflow: visible;
+  writing-mode: horizontal-tb;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.how-card-desc {
+  font-size: 9px;
+  color: var(--ink3);
+  line-height: 1.3;
+}
+
+.how-level-badge {
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.how-bar-track {
+  width: 100%;
+  height: 5px;
+  background: var(--bg);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.how-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.how-advice {
+  font-size: 10px;
+  color: var(--ink3);
+  line-height: 1.5;
+}
+
+/* ---- 缺口/推荐区域 ---- */
+.diag-gap-section {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.diag-gap-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.diag-gap-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.diag-gap-title {
+  font-family: var(--font-title);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.diag-gap-meta {
+  font-size: 10px;
+  color: var(--ink3);
+  margin-top: 1px;
+}
+
+.diag-gap-badge {
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.diag-dim-recs {
+  padding-left: 28px;
+}
+
+.diag-rec-item {
+  margin-bottom: 6px;
+}
+
+.diag-rec-header {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.diag-rec-header:hover {
+  border-color: var(--border2);
+}
+
+.diag-rec-label {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+/* ---- 滚动条隐藏（Carousel） ---- */
+.diag-gap-section div[style*="overflowX"]::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Modal ---- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44,36,22,0.35);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-content {
+  background: var(--card);
+  border-radius: 18px 18px 0 0;
+  padding: 24px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  box-shadow: 0 -4px 24px rgba(44,36,22,0.08);
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
