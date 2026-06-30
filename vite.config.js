@@ -2,94 +2,145 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import fs from 'fs'
 
-// 读取 .env.local 中的 API Key（服务端专用，不暴露到前端）
-function loadEnv() {
+// 导入 API 模块（与生产服务器 server.mjs 共享，消除重复）
+import authHandler from './api/auth.mjs'
+import { callDeepSeek } from './api/deepseek.mjs'
+import lookupHandler from './api/lookup.mjs'
+import classifyHandler from './api/classify.mjs'
+import adminHandler from './api/admin.mjs'
+
+// 读取 .env.local 中的环境变量，注入 process.env 供 API 模块使用
+function loadEnvVars() {
+  const vars = {};
   try {
     const text = fs.readFileSync('.env.local', 'utf8');
-    const match = text.match(/VITE_DEEPSEEK_KEY=(.+)/);
-    if (match) return match[1].trim();
+    for (const line of text.split('\n')) {
+      const t = line.trim();
+      if (!t || t.startsWith('#') || !t.includes('=')) continue;
+      const eq = t.indexOf('=');
+      vars[t.slice(0, eq).trim()] = t.slice(eq + 1).trim();
+    }
   } catch (_) {}
-  return '';
+  return vars;
 }
 
-const DEEPSEEK_KEY = loadEnv();
+const ENV = loadEnvVars();
+const SUPABASE_URL = ENV.VITE_SUPABASE_URL || '';
+const SUPABASE_KEY = ENV.VITE_SUPABASE_ANON_KEY || '';
 
-// API 代理插件
+// 将 API Keys 注入 process.env，供共享模块读取
+process.env.VITE_DEEPSEEK_KEY = ENV.VITE_DEEPSEEK_KEY || '';
+if (ENV.JUHE_ISBN_KEY) process.env.JUHE_ISBN_KEY = ENV.JUHE_ISBN_KEY;
+if (SUPABASE_URL) process.env.VITE_SUPABASE_URL = SUPABASE_URL;
+if (SUPABASE_KEY) process.env.VITE_SUPABASE_ANON_KEY = SUPABASE_KEY;
+
+// 启动时检查 Supabase 配置
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+  console.warn('[api-proxy] ⚠️ Supabase 未配置，auth 功能不可用');
+  console.warn('[api-proxy]   请检查 .env.local 文件中的 VITE_SUPABASE_URL 和 VITE_SUPABASE_ANON_KEY');
+} else {
+  console.log('[api-proxy] ✅ Supabase 已配置: ' + SUPABASE_URL);
+}
+
+/** 解析请求体 JSON */
+function parseBody(req) {
+  return new Promise((resolve, reject) => {
+    if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') {
+      resolve({});
+      return;
+    }
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try { resolve(JSON.parse(body)); }
+      catch { resolve({}); }
+    });
+    req.on('error', reject);
+  });
+}
+
+/** 包装 res 对象，提供 status() 和 json() 方法供 Vercel 风格 handler 使用 */
+function wrapRes(res) {
+  res.status = function (code) { this.statusCode = code; return this; };
+  res.json = function (data) { this.setHeader('Content-Type', 'application/json; charset=utf-8'); this.end(JSON.stringify(data)); };
+  return res;
+}
+
+// API 代理插件 (内联处理所有 /api/*，不依赖外部 server.mjs)
 function apiPlugin() {
   return {
     name: 'api-proxy',
     configureServer(server) {
-      // POST /api/analyze — 安全调用 DeepSeek，Key 不暴露给前端
-      server.middlewares.use('/api/analyze', async (req, res) => {
+      // ---- POST /api/auth — 用户认证（委托 api/auth.mjs）----
+      server.middlewares.use('/api/auth', async (req, res) => {
+        if (req.method === 'OPTIONS') {
+          res.statusCode = 204; res.end(); return;
+        }
         if (req.method !== 'POST') {
-          res.statusCode = 405;
-          res.end('Method Not Allowed');
-          return;
+          res.statusCode = 405; res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ error: 'Method Not Allowed' })); return;
         }
-
-        if (!DEEPSEEK_KEY) {
-          res.statusCode = 200;
+        try {
+          req.body = await parseBody(req);
+          await authHandler(req, wrapRes(res));
+        } catch (e) {
+          res.statusCode = 500;
           res.setHeader('Content-Type', 'application/json');
-          res.end(JSON.stringify({ error: 'no_key', message: '服务端未配置 API Key' }));
-          return;
+          res.end(JSON.stringify({ error: '服务器错误：' + e.message }));
         }
+      });
 
-        let body = '';
-        req.on('data', chunk => body += chunk);
-        req.on('end', async () => {
-          try {
-            const { text, bookTitle, author } = JSON.parse(body);
+      // ---- POST /api/deepseek — 统一 DeepSeek API 网关（委托 api/deepseek.mjs）----
+      server.middlewares.use('/api/deepseek', async (req, res) => {
+        if (req.method !== 'POST') { res.statusCode = 405; res.end(); return; }
+        try {
+          const params = await parseBody(req);
+          res.setHeader('Content-Type', 'application/json');
+          const { result, error } = await callDeepSeek(params.task_type, params);
+          if (error) { res.end(JSON.stringify({ error })); return; }
+          res.end(JSON.stringify({ result, error: null }));
+        } catch (e) {
+          res.end(JSON.stringify({ error: e.message }));
+        }
+      });
 
-            const prompt = `你是一个读书发现卡的编辑助手。将10岁孩子读完书后的碎片感受记录，整理成一张读书发现卡。
+      // ---- POST /api/classify — AI 书籍分类（委托 api/classify.mjs）----
+      server.middlewares.use('/api/classify', async (req, res) => {
+        if (req.method === 'OPTIONS') { res.statusCode = 204; res.end(); return; }
+        if (req.method !== 'POST') { res.statusCode = 405; res.end(); return; }
+        try {
+          req.body = await parseBody(req);
+          await classifyHandler(req, wrapRes(res));
+        } catch (e) {
+          res.statusCode = 500;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ error: e.message }));
+        }
+      });
 
-目标格式（三段式，保留孩子原话细节和语气）：
-🔍 这次发现
-💡 值得继续想的问题
-⭐ 我的感受
+      // ---- GET /api/lookup — ISBN 书籍查询（委托 api/lookup.mjs）----
+      server.middlewares.use('/api/lookup', async (req, res) => {
+        const url = new URL(req.url, 'http://localhost');
+        req.query = Object.fromEntries(url.searchParams);
+        res.setHeader('Content-Type', 'application/json');
+        try {
+          await lookupHandler(req, wrapRes(res));
+        } catch (e) {
+          res.end(JSON.stringify({ error: e.message }));
+        }
+      });
 
-如果孩子说得太少，某一段可以略过，不硬凑。
-
-要求：
-1. 保留孩子自己的语气和用词，不要改得太书面，但要通顺
-2. 发现段落从原话中提炼最精彩的一个发现
-3. 问题要基于孩子的发现来延伸，不要硬编
-4. 感受部分必须是孩子原话中的完整句子，用双引号包裹，不能缩写、截断或省略号结尾
-5. 语气温暖，让孩子看了有成就感
-
-注意：
-- 不要加"孩子说""我觉得"这类开头
-- 发现段落可以有孩子原话中的具体细节和情节
-- 感受部分引用孩子原话中最完整、最打动人的一句话
-- 不要添油加醋，孩子说多少就整理多少`
-            const resp = await fetch('https://api.deepseek.com/v1/chat/completions', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + DEEPSEEK_KEY,
-              },
-              body: JSON.stringify({
-                model: 'deepseek-chat',
-                messages: [
-                  { role: 'system', content: '你是一个儿童读书发现卡编辑，擅长从孩子的口语录音中提炼精彩内容，保留孩子的语气和原话。输出精炼，不啰嗦。' },
-                  { role: 'user', content: prompt + '\n\n书名：《' + bookTitle + '》\n作者：' + (author || '未知') + '\n\n孩子的话：\n' + text },
-                ],
-                max_tokens: 800,
-                temperature: 0.7,
-              }),
-            });
-
-            const data = await resp.json();
-            const content = data.choices?.[0]?.message?.content || '';
-
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ content, error: null }));
-          } catch (e) {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ error: 'request_failed', message: e.message }));
-          }
-        });
+      // ---- POST /api/admin — 管理后台（委托 api/admin.mjs）----
+      server.middlewares.use('/api/admin', async (req, res) => {
+        if (req.method === 'OPTIONS') { res.statusCode = 204; res.end(); return; }
+        if (req.method !== 'POST') { res.statusCode = 405; res.end(); return; }
+        try {
+          req.body = await parseBody(req);
+          await adminHandler(req, wrapRes(res));
+        } catch (e) {
+          res.statusCode = 500;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ error: e.message }));
+        }
       });
     },
   };
@@ -99,7 +150,7 @@ function apiPlugin() {
 export default defineConfig({
   plugins: [react(), apiPlugin()],
   server: {
-    allowedHosts: 'all',
-    host: '0.0.0.0',
+    host: '127.0.0.1',
+    allowedHosts: ['.ngrok-free.dev']
   }
 })

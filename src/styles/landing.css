@@ -1,0 +1,716 @@
+/* ============================================================
+   着陆页样式 — WondeRead · 看见成长
+   v2.0: "好读 · 陪孩子读出复利" → "WondeRead · 看见成长"
+   ============================================================ */
+
+/* ---- Section Base ---- */
+.landing-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background: var(--bg);
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.landing-container {
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Screen 1: Problem Hook ---- */
+.screen1 {
+  background: linear-gradient(160deg, #F0EAE2 0%, #F2ECE4 50%, #F5F1EB 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.screen1::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 60%;
+  background: radial-gradient(ellipse at center, rgba(186,122,90,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.screen1-headline {
+  font-family: var(--font-title);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+.screen1-headline em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.screen1-subtitle {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  max-width: 360px;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* 专业背书 */
+.credential-line {
+  font-size: 9px;
+  color: var(--ink4);
+  line-height: 1.6;
+  text-align: center;
+  max-width: 380px;
+  letter-spacing: 0.3px;
+}
+
+/* 核心金句 */
+.screen1-kicker {
+  font-family: var(--font-title);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.screen1-kicker em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.screen1-bridge {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  max-width: 340px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.screen1-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: var(--font);
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(186,122,90,0.2);
+}
+
+.screen1-cta:hover {
+  background: var(--accent2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(186,122,90,0.25);
+}
+
+/* ---- Clear Preview (Screen 1) — 不打码清晰展示 ---- */
+.clear-preview {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 32px;
+  position: relative;
+}
+
+.preview-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(44,36,22,0.06);
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.preview-card-title {
+  font-family: var(--font-title);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.preview-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+
+.preview-bar-label {
+  width: 72px;
+  text-align: right;
+  color: var(--ink3);
+  flex-shrink: 0;
+}
+
+.preview-bar-track {
+  flex: 1;
+  height: 10px;
+  background: var(--bg);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.preview-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: none;
+}
+
+/* ---- Bouncing Arrow Guide (Screen 1) — 去掉文字，纯动画 ---- */
+.screen1-scroll-arrow {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  animation: arrowBounce 2s infinite;
+  cursor: pointer;
+}
+
+.screen1-scroll-arrow svg {
+  width: 24px;
+  height: 24px;
+  color: var(--ink3);
+  opacity: 0.6;
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+/* ---- Sample Banner (Screens 2-3) — 显著通知栏 ---- */
+.sample-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #C8815C;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.sample-banner-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.sample-banner-text {
+  flex: 1;
+  font-size: 13px;
+  color: white;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.sample-banner-text strong {
+  font-weight: 700;
+}
+
+.sample-banner-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 400;
+  margin-top: 1px;
+}
+
+/* ---- Trust Anchor (Screen 2 bottom) — "基于IB课程…" ---- */
+.trust-anchor {
+  text-align: center;
+  font-size: 9px;
+  color: var(--ink4);
+  letter-spacing: 0.5px;
+  margin-top: 28px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  line-height: 1.6;
+}
+
+/* ---- Diagnosis Section (Screen 2) — 诊断卡片 ---- */
+.diagnosis-header {
+  font-family: var(--font-title);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+
+.diagnosis-sub {
+  font-size: 13px;
+  color: var(--ink2);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.diag-dim-section {
+  margin-bottom: 12px;
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 6px rgba(44,36,22,0.04);
+}
+
+.diag-dim-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.diag-dim-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.diag-dim-title {
+  font-family: var(--font-title);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  flex: 1;
+}
+
+.diag-dim-badge {
+  font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.diag-dim-why {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin: 4px 0 10px 0;
+  padding-left: 36px;
+}
+
+.diag-dim-recs {
+  font-size: 11px;
+  color: var(--ink3);
+  margin-bottom: 8px;
+  padding-left: 36px;
+}
+
+.diag-booklist {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 36px;
+}
+
+.diag-book-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 4px 0;
+}
+
+.diag-book-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.diag-book-title {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.diag-book-author {
+  color: var(--ink3);
+  font-size: 11px;
+}
+
+.diag-book-note {
+  color: var(--ink4);
+  font-size: 10px;
+  font-style: italic;
+  margin-left: auto;
+  flex-shrink: 0;
+  max-width: 120px;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- Screen 3: Growth Profile — 成长画像 ---- */
+.screen3 {
+  text-align: center;
+}
+
+/* 成长指数 */
+.growth-index {
+  text-align: center;
+  margin-bottom: 28px;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(44,36,22,0.06);
+}
+
+.growth-index-score {
+  font-family: var(--font-title);
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.growth-index-label {
+  font-size: 12px;
+  color: var(--ink2);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.growth-index-bar {
+  width: 100%;
+  height: 6px;
+  background: #EBE6DF;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.growth-index-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #C8815C, #A56545);
+  transition: width 0.8s ease;
+}
+
+/* 能力画像条目 */
+.profile-section {
+  margin-bottom: 20px;
+}
+
+.profile-group-label {
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.profile-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(44,36,22,0.04);
+  margin-bottom: 8px;
+}
+
+.profile-item-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  width: 30px;
+  text-align: center;
+}
+
+.profile-item-label {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.profile-item-tag {
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* 成长总结 */
+.profile-summary {
+  background: #F9F7F4;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid var(--border);
+}
+
+.profile-summary-title {
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.profile-summary-text {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ---- Screen 4: CTA v2 — 价值转化 ---- */
+.screen4 {
+  background: linear-gradient(160deg, #F0EAE2 0%, #F5F1EB 50%, #E8E2D8 100%);
+  text-align: center;
+}
+
+.screen4-headline {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.screen4-sub {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.8;
+  margin-bottom: 28px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.screen4-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+  text-align: left;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.screen4-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink);
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.screen4-benefit-icon {
+  width: 24px;
+  text-align: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.screen4-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.screen4-cta {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(186,122,90,0.2);
+  min-width: 260px;
+}
+
+.screen4-cta:hover {
+  background: var(--accent2);
+  transform: translateY(-1px);
+}
+
+.screen4-login-link {
+  background: none;
+  border: 1px solid var(--border2);
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: var(--font);
+  color: var(--ink2);
+  cursor: pointer;
+  transition: all 0.15s;
+  min-width: 200px;
+}
+
+.screen4-login-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---- Screen 4: CTA v2 — 核心价值转化 ---- */
+.screen4 {
+  background: linear-gradient(160deg, #F0EAE2 0%, #F5F1EB 50%, #E8E2D8 100%);
+  text-align: center;
+}
+
+.screen4-headline {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.screen4-sub {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.8;
+  margin-bottom: 28px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.screen4-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+  text-align: left;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.screen4-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink);
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.screen4-benefit-icon {
+  width: 24px;
+  text-align: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.screen4-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.screen4-cta {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(186,122,90,0.2);
+  min-width: 260px;
+}
+
+.screen4-cta:hover {
+  background: var(--accent2);
+  transform: translateY(-1px);
+}
+
+.screen4-login-link {
+  background: none;
+  border: 1px solid var(--border2);
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: var(--font);
+  color: var(--ink2);
+  cursor: pointer;
+  transition: all 0.15s;
+  min-width: 200px;
+}
+
+.screen4-login-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+/* ---- Screen 2: Full Picture ---- */
+.screen2 {
+  text-align: center;
+}
+
+/* ---- Screen 3: Capability Profile ---- */
+.screen3 {
+  text-align: center;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 380px) {
+  .screen1-headline { font-size: 22px; }
+  .screen2-headline, .screen4-headline { font-size: 20px; }
+  .landing-section { padding: 36px 16px; }
+}

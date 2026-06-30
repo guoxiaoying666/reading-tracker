@@ -1,174 +1,208 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+// ============================================================
+// BarcodeScanner — ISBN 扫码/手动输入组件
+// 优先使用 BarcodeDetector API（仅支持 HTTPS+部分浏览器）
+// 降级方案：弹出手动输入 ISBN 框
+// ============================================================
+import { useState, useEffect, useRef, useCallback } from 'react';
 
-/** 条形码扫描组件 — 支持 iOS 自签名证书环境 */
-export default function BarcodeScanner({ onScan, isOpen, onClose }) {
-  const [status, setStatus] = useState('idle'); // idle | scanning | found | error
-  const [errorMsg, setErrorMsg] = useState('');
-  const [useFrontCam, setUseFrontCam] = useState(false);
-  const [localIsbn, setLocalIsbn] = useState('');
-  const [closed, setClosed] = useState(false); // 强制关闭标志
-  const scannerRef = useRef(null);
-  const readerId = 'barcode-reader';
+export default function BarcodeScanner({ isOpen, onClose, onScan }) {
+  const videoRef = useRef(null);
+  const streamRef = useRef(null);
+  const [error, setError] = useState('');
+  const [manualMode, setManualMode] = useState(false);
+  const [manualIsbn, setManualIsbn] = useState('');
+  const scanningRef = useRef(false);
 
-  // 检测摄像头可用性
-  const camera = typeof navigator !== 'undefined' && (
-    navigator?.mediaDevices?.getUserMedia || navigator?.getUserMedia
-  );
-
-  const stopScanner = useCallback(() => {
-    if (scannerRef.current) {
-      try {
-        scannerRef.current.stop().catch(() => {});
-      } catch (_) {}
-      scannerRef.current = null;
+  // 启动后置摄像头
+  const startCamera = useCallback(async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'environment' },
+      });
+      streamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        await videoRef.current.play();
+      }
+      return true;
+    } catch (e) {
+      // 没有摄像头权限或设备不支持 → 降级到手动输入
+      setError('无法访问摄像头，请手动输入 ISBN');
+      setManualMode(true);
+      return false;
     }
   }, []);
 
-  const startScanner = useCallback(async () => {
-    setStatus('scanning');
-    setErrorMsg('');
-
-    // 先检查摄像头是否可用
-    if (!camera) {
-      setStatus('error');
-      setErrorMsg('浏览器不支持摄像头访问');
-      return;
-    }
-
-    // 动态导入 html5-qrcode（确保 DOM 就绪）
-    try {
-      const { Html5Qrcode } = await import('html5-qrcode');
-      const el = document.getElementById(readerId);
-      if (!el || !isOpen || closed) return;
-
-      const scanner = new Html5Qrcode(readerId);
-      scannerRef.current = scanner;
-
-      await scanner.start(
-        { facingMode: useFrontCam ? 'user' : 'environment' },
-        {
-          fps: 8,
-          qrbox: { width: 260, height: 90 },
-          formatsToSupport: [
-            Html5Qrcode.SupportedFormats.EAN_13,
-            Html5Qrcode.SupportedFormats.EAN_8,
-            Html5Qrcode.SupportedFormats.UPC_A,
-            Html5Qrcode.SupportedFormats.UPC_E,
-            Html5Qrcode.SupportedFormats.CODE_128,
-            Html5Qrcode.SupportedFormats.CODE_39,
-            Html5Qrcode.SupportedFormats.ITF,
-            Html5Qrcode.SupportedFormats.CODABAR,
-          ],
-        },
-        (decodedText) => {
-          setStatus('found');
-          stopScanner();
-          setTimeout(() => { if (onScan) onScan(decodedText); }, 500);
-        },
-        () => {}
-      );
-    } catch (err) {
-      console.error('Scanner error:', err);
-      setStatus('error');
-      setErrorMsg(err?.message || String(err));
-    }
-  }, [isOpen, useFrontCam, onScan, stopScanner]);
-
   useEffect(() => {
     if (!isOpen) return;
-    const timer = setTimeout(startScanner, 500);
-    return () => { clearTimeout(timer); stopScanner(); };
-  }, [isOpen, startScanner, stopScanner]);
 
-  // 组件卸载时清理
-  useEffect(() => {
-    return () => { stopScanner(); };
-  }, [stopScanner]);
+    let cancelled = false;
+    let timer = null;
 
-  if (!isOpen || closed) return null;
+    const tryDetect = async () => {
+      // 1. 检测浏览器是否支持 BarcodeDetector API
+      if (!('BarcodeDetector' in window)) {
+        setError('当前设备不支持自动扫码，请手动输入 ISBN');
+        setManualMode(true);
+        return;
+      }
 
-  const handleClose = () => {
-    setClosed(true);  // 立即标记关闭，无视其他状态
-    stopScanner();
-    if (onClose) setTimeout(onClose, 10);  // 异步调用，不影响当前渲染
+      // 2. 启动摄像头
+      const cameraOk = await startCamera();
+      if (!cameraOk || cancelled) return;
+
+      // 3. 创建检测器（优先 ISBN/条码格式）
+      let detector;
+      try {
+        detector = new BarcodeDetector({
+          formats: ['ean_13', 'ean_8', 'upc_a', 'upc_e', 'isbn_13', 'isbn_10', 'code_39', 'code_128', 'qr_code'],
+        });
+      } catch (e) {
+        setError('扫码初始化失败，请手动输入 ISBN');
+        setManualMode(true);
+        return;
+      }
+
+      scanningRef.current = true;
+
+      const scan = async () => {
+        if (!scanningRef.current || cancelled) return;
+        try {
+          if (videoRef.current && videoRef.current.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+            const barcodes = await detector.detect(videoRef.current);
+            for (const bc of barcodes) {
+              const raw = bc.rawValue.replace(/[^0-9X]/gi, '');
+              if (raw.length >= 10) {
+                // 检测到有效条码 → 回调并关闭
+                scanningRef.current = false;
+                onScan(raw);
+                return;
+              }
+            }
+          }
+        } catch (_) {
+          // 单帧检测失败，继续下一帧
+        }
+        timer = setTimeout(scan, 400);
+      };
+
+      scan();
+    };
+
+    tryDetect();
+
+    // 清理函数：停止摄像头 + 取消定时器
+    return () => {
+      cancelled = true;
+      scanningRef.current = false;
+      if (timer) clearTimeout(timer);
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(t => t.stop());
+        streamRef.current = null;
+      }
+    };
+  }, [isOpen, startCamera, onScan]);
+
+  const handleManualSubmit = () => {
+    const clean = manualIsbn.replace(/[^0-9X]/gi, '');
+    if (clean.length < 10) {
+      setError('ISBN 格式不正确（至少 10 位）');
+      return;
+    }
+    onScan(clean);
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div style={{
-      position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.88)', zIndex: 2000,
-      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 16,
-    }}>
-      <div style={{
-        background: 'white', borderRadius: 16, padding: 16, width: '100%', maxWidth: 400,
+    <div className="modal-overlay" onClick={onClose}
+      style={{ zIndex: 1100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        background: 'white', borderRadius: 20, padding: 24, maxWidth: 380, width: '90%',
+        boxShadow: '0 20px 60px rgba(0,0,0,0.2)',
       }}>
-        {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-          <h3 style={{ margin: 0, fontSize: 16 }}>
-            {status === 'scanning' ? '📷 扫描条形码' :
-             status === 'found' ? '✅ 已识别！' :
-             status === 'error' ? '❌ 无法打开摄像头' : '准备扫描'}
-          </h3>
-          <button onClick={handleClose} style={{
-            background: 'none', border: 'none', fontSize: 22, cursor: 'pointer',
-            color: '#9B9082', padding: '4px 8px', borderRadius: 6,
+        {/* 标题栏 */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+          <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--ink)' }}>📷 扫条形码</div>
+          <button onClick={onClose} style={{
+            background: 'none', border: 'none', fontSize: 20, cursor: 'pointer',
+            color: 'var(--ink3)', padding: 4, lineHeight: 1,
           }}>✕</button>
         </div>
 
-        {/* 扫描区域 */}
-        <div id={readerId} style={{ width: '100%', aspectRatio: '4/3', borderRadius: 8, overflow: 'hidden', background: '#000' }} />
-
-        {/* 找到 */}
-        {status === 'found' && (
-          <div style={{ marginTop: 12, fontSize: 13, color: '#6F9177', textAlign: 'center', fontWeight: 600 }}>
-            正在查询书籍信息…
+        {/* ====== 摄像头扫码区域 ====== */}
+        {!manualMode && (
+          <div>
+            <div style={{
+              position: 'relative', width: '100%', aspectRatio: '2/3', maxHeight: 380,
+              background: '#000', borderRadius: 12, overflow: 'hidden', marginBottom: 16,
+            }}>
+              <video ref={videoRef} autoPlay playsInline muted
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              {/* 扫码框蒙层 — 长条形适配条形码 */}
+              <div style={{
+                position: 'absolute', top: '50%', left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '80%', height: '22%',
+                border: '2px solid rgba(255,255,255,0.6)',
+                borderRadius: 8,
+                boxShadow: '0 0 0 9999px rgba(0,0,0,0.3)',
+              }} />
+              {/* 底部引导文字 */}
+              <div style={{
+                position: 'absolute', bottom: 12, left: 0, right: 0, textAlign: 'center',
+              }}>
+                <span style={{
+                  color: 'white', fontSize: 11, background: 'rgba(0,0,0,0.5)',
+                  padding: '4px 12px', borderRadius: 6,
+                }}>
+                  将条码对准框内，自动识别
+                </span>
+              </div>
+            </div>
+            {/* 摄像头模式下的按钮组 */}
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button className="btn-ghost" style={{ flex: 1, padding: '10px', fontSize: 12 }}
+                onClick={() => { setManualMode(true); setError(''); }}>
+                ⌨️ 手动输入 ISBN
+              </button>
+              <button onClick={onClose} style={{
+                flex: 1, padding: '10px', borderRadius: 8, border: 'none',
+                background: '#C8815C', color: 'white', fontSize: 12, fontWeight: 600,
+                cursor: 'pointer', fontFamily: 'var(--font)',
+              }}>
+                取消
+              </button>
+            </div>
           </div>
         )}
 
-        {/* 扫描中提示 */}
-        {status === 'scanning' && (
-          <div style={{ marginTop: 12, fontSize: 11, color: '#9B9082', textAlign: 'center' }}>
-            将书籍背面条形码对准屏幕中央
-          </div>
-        )}
-
-        {/* 错误状态 */}
-        {status === 'error' && (
-          <div style={{ marginTop: 12 }}>
-            <div style={{ fontSize: 13, color: '#C47A6E', textAlign: 'center', marginBottom: 10 }}>
-              iPhone 需要 HTTPS 或 localhost 才能调用摄像头。
-              {errorMsg.includes('NotAllowed') && <><br/>请在「设置 → Safari → 相机」中允许访问。</>}
-            </div>
-
-            {/* 重试 + 切换摄像头 */}
-            <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginBottom: 10 }}>
-              <button className="btn-primary" style={{ padding: '8px 18px', fontSize: 12 }}
-                onClick={startScanner}>
-                🔄 重试
-              </button>
-              <button className="btn-ghost" style={{ padding: '8px 14px', fontSize: 11 }}
-                onClick={() => setUseFrontCam(f => !f)}>
-                {useFrontCam ? '📱 后置' : '📱 前置'}摄像头
-              </button>
-            </div>
-
-            {/* 直接输入 ISBN */}
-            <div style={{ borderTop: '1px solid #E8E2D8', paddingTop: 10 }}>
-              <div style={{ fontSize: 12, color: '#5C5244', fontWeight: 600, marginBottom: 6 }}>
-                或直接输入 ISBN 条形码号：
-              </div>
-              <div style={{ display: 'flex', gap: 6 }}>
-                <input type="text" value={localIsbn}
-                  onChange={e => setLocalIsbn(e.target.value.replace(/[^0-9X]/gi, ''))}
-                  placeholder="9787544291170" style={{ flex: 1, fontSize: 14, padding: '10px 12px', border: '1px solid #D6CFC4', borderRadius: 8, outline: 'none' }}
-                  onKeyDown={e => e.key === 'Enter' && (() => {
-                    if (localIsbn.length >= 8) { handleClose(); if (onScan) onScan(localIsbn); }
-                  })()} />
-                <button className="btn-primary" style={{ padding: '8px 16px', fontSize: 12, whiteSpace: 'nowrap' }}
-                  onClick={() => { if (localIsbn.length >= 8) { handleClose(); if (onScan) onScan(localIsbn); } }}>
-                  确定
-                </button>
-              </div>
-            </div>
+        {/* ====== 手动输入降级区域 ====== */}
+        {manualMode && (
+          <div>
+            <p style={{ fontSize: 12, color: 'var(--ink3)', marginBottom: 8, lineHeight: 1.6 }}>
+              {error || '请在下方输入图书的 ISBN 号（通常印在封底条形码上方）'}
+            </p>
+            <input type="text" value={manualIsbn}
+              onChange={e => setManualIsbn(e.target.value.replace(/[^0-9X]/gi, ''))}
+              placeholder="输入 13 位 ISBN 号"
+              autoFocus
+              onKeyDown={e => { if (e.key === 'Enter') handleManualSubmit(); }}
+              style={{
+                width: '100%', padding: '12px 14px', border: '1px solid #D6CFC4',
+                borderRadius: 8, fontSize: 18, outline: 'none', boxSizing: 'border-box',
+                fontFamily: 'var(--font)',
+              }} />
+            {error && <div style={{ color: '#C47A6E', fontSize: 11, marginTop: 4 }}>{error}</div>}
+            <button className="btn-primary" style={{ width: '100%', padding: 12, fontSize: 14, marginTop: 8 }}
+              onClick={handleManualSubmit}>
+              🔍 查询 ISBN
+            </button>
+            {/* 尝试切换回摄像头 */}
+            <button className="btn-ghost" style={{ width: '100%', padding: 10, fontSize: 12, marginTop: 6 }}
+              onClick={() => { setManualMode(false); setError(''); startCamera(); }}>
+              📷 尝试使用摄像头
+            </button>
           </div>
         )}
       </div>
