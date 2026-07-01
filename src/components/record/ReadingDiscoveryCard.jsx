@@ -155,33 +155,40 @@ function BookCover({ coverUrl, uploading, onClick }) {
 // ====================================================================
 
 function AvatarPerson({ avatarUrl, onClick }) {
-  if (avatarUrl) {
-    return (
-      <div onClick={onClick} style={{
-        width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
-        overflow: 'hidden', cursor: 'pointer',
-        boxShadow: '0 0 0 1.5px rgba(255,255,255,0.12)',
-        transition: 'opacity 0.2s',
-      }}
-        onMouseEnter={e => { e.currentTarget.style.opacity = '0.8'; }}
-        onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
-      >
-        <img src={avatarUrl} alt="头像" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-      </div>
-    );
-  }
   return (
-    <div onClick={onClick} style={{
-      width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
-      background: '#3A3835', cursor: 'pointer',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      boxShadow: '0 0 0 1.5px rgba(255,255,255,0.08)',
-      transition: 'opacity 0.2s',
-    }}
-      onMouseEnter={e => { e.currentTarget.style.opacity = '0.8'; }}
-      onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
-    >
-      <PersonSVG />
+    <div onClick={onClick} style={{ position: 'relative', cursor: 'pointer', flexShrink: 0, width: 36, height: 36 }}>
+      {avatarUrl ? (
+        <div style={{
+          width: 36, height: 36, borderRadius: '50%', overflow: 'hidden',
+          boxShadow: '0 0 0 1.5px rgba(255,255,255,0.12)',
+        }}
+          onMouseEnter={e => { e.currentTarget.style.opacity = '0.8'; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
+        >
+          <img src={avatarUrl} alt="头像" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+      ) : (
+        <div style={{
+          width: 36, height: 36, borderRadius: '50%',
+          background: '#3A3835',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 0 0 1.5px rgba(255,255,255,0.08)',
+        }}
+          onMouseEnter={e => { e.currentTarget.style.opacity = '0.8'; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
+        >
+          <PersonSVG />
+        </div>
+      )}
+      <div style={{
+        position: 'absolute', bottom: -2, right: -2,
+        width: 16, height: 16, borderRadius: '50%',
+        background: '#C8815C',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontSize: 9, lineHeight: 1, color: 'white',
+        boxShadow: '0 1px 4px rgba(0,0,0,0.3)',
+        pointerEvents: 'none',
+      }}>✎</div>
     </div>
   );
 }
@@ -206,6 +213,7 @@ export default function ReadingDiscoveryCard({
   bookId,
   onAvatarUpdate,
   onReRecord,       // () => void  重录/重新生成回调
+  onDownload,       // () => void  下载时触发（自动保存+Toast）
 }) {
   const cardRef = useRef(null);
   const [downloading, setDownloading] = useState(false);
@@ -271,8 +279,9 @@ export default function ReadingDiscoveryCard({
       console.warn('[Card] 截图/下载失败:', e);
     } finally {
       setDownloading(false);
+      if (onDownload) onDownload();
     }
-  }, [downloading, bookTitle]);
+  }, [downloading, bookTitle, onDownload]);
 
   // ── 封面上传 ──
   const handleCoverUpload = useCallback(async (file) => {
