@@ -394,27 +394,12 @@ export default function VoiceRecord() {
             bookId={selectedBookData?.id}
             onAvatarUpdate={(url) => setAvatarUrl(url)}
             onReRecord={() => setVoiceCard(null)}
+            onDownload={() => {
+              if (!saved && !saving) handleSaveCard(feedbackEmoji);
+              setToast('✅ 卡片已自动保存到您的云端作品集');
+              setTimeout(() => setToast(null), 3000);
+            }}
           />
-          {!saved && (
-            <div style={{ marginTop: 18, marginBottom: 8 }}>
-              <div style={{ fontSize: 10, color: '#9B9082', textAlign: 'center', marginBottom: 8 }}>这本书孩子感觉如何？（选填，切换页面自动保存）</div>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: 16 }}>
-                {[
-                  { emoji: '😊', label: '喜欢' },
-                  { emoji: '🙂', label: '还行' },
-                  { emoji: '🤔', label: '思考中' },
-                  { emoji: '😖', label: '不喜欢' },
-                ].map(item => (
-                  <div key={item.emoji} onClick={() => { if (saving || saved) return; setFeedbackEmoji(item.emoji); handleSaveCard(item.emoji); }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, cursor: saving || saved ? 'default' : 'pointer', userSelect: 'none', opacity: feedbackEmoji === item.emoji || saved ? 1 : 0.4, transition: 'opacity 0.15s' }} onMouseEnter={e => { if (!saving && !saved) e.currentTarget.style.opacity = '0.8'; }} onMouseLeave={e => { if (!saving && !saved) e.currentTarget.style.opacity = feedbackEmoji === item.emoji ? 1 : 0.4; }}>
-                    <span style={{ fontSize: 26, lineHeight: 1 }}>{item.emoji}</span>
-                    <span style={{ fontSize: 9, color: '#9B9082', lineHeight: 1 }}>{item.label}</span>
-                  </div>
-                ))}
-              </div>
-              <div style={{ textAlign: 'center', marginTop: 10 }}><button onClick={() => handleSaveCard('')} style={{ background: 'none', border: '1px solid var(--border)', borderRadius: 8, padding: '6px 16px', fontSize: 11, color: 'var(--ink3)', cursor: 'pointer', fontFamily: 'var(--font)', transition: 'all 0.15s' }} onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)'; }} onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--ink3)'; }}>💾 直接保存</button></div>
-            </div>
-          )}
-          {saved && <div style={{ marginTop: 18, marginBottom: 8, textAlign: 'center' }}><div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#EAF1ED', color: '#3D7A4F', padding: '8px 20px', borderRadius: 20, fontSize: 13, fontWeight: 600 }}>✅ 已保存到作品集</div></div>}
         </div>
       )}
 
