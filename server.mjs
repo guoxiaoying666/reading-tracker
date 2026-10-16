@@ -31,6 +31,7 @@ const API_ROUTES = {
   '/api/analyze': './api/analyze.mjs',
   '/api/classify': './api/classify.mjs',
   '/api/lookup': './api/lookup.mjs',
+  '/api/search-isbn': './api/search-isbn.mjs',
   '/api/deepseek': './api/deepseek.mjs',
   '/api/recommend': './api/recommend.mjs',
 };

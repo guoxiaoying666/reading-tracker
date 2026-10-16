@@ -5,7 +5,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import { useReading } from '../../context/ReadingContext';
 import { useAuth } from '../../context/AuthContext';
 import { generateDiscoveryCard } from '../../utils/deepseek';
-import { fetchDiscoveries, supabase } from '../../supabase';
+import { fetchDiscoveries, saveDiscoveryRemote } from '../../supabase';
 import { v4 as uuidv4 } from 'uuid';
 import ReadingDiscoveryCard from './ReadingDiscoveryCard';
 import { getAvatar, getImage } from '../../utils/imageDB';
@@ -247,9 +247,10 @@ export default function VoiceRecord() {
 
       if (userUuid) {
         try {
-          const { error } = await supabase.from('discoveries').insert({
+          // 【已修复】原来是前端直接连 Supabase 数据库写入，权限受限时会静默失败、
+          // 读取时更会被拦截查不到数据。现在改成走服务端安全接口，跟书籍走同一条可靠路径。
+          const ok = await saveDiscoveryRemote(userUuid, {
             id: cardId,
-            user_id: userUuid,
             book_id: selectedBookData?.id || null,
             book_title: voiceCard.bookTitle || '',
             discovery: voiceCard.discovery || '',
@@ -260,7 +261,11 @@ export default function VoiceRecord() {
             user_voice: voiceCard.userVoice || '',
             date: new Date().toISOString().slice(0, 10),
           });
-          if (error) console.warn('[VoiceRecord] Supabase 同步失败:', error.message);
+          if (ok) {
+            setSavedCards(prev => prev.map(c => c._id === cardId ? { ...c, _synced: true } : c));
+          } else {
+            console.warn('[VoiceRecord] Supabase 同步失败');
+          }
         } catch (syncErr) {
           console.warn('[VoiceRecord] Supabase 同步异常（不影响本地）:', syncErr.message);
         }
@@ -309,7 +314,11 @@ export default function VoiceRecord() {
     setBookSearch('');
   };
 
-  if (books.length === 0) {
+  // 【已修复】原来是 books.length === 0 就直接返回"还没有书"，
+  // 导致哪怕本地/云端已经有说说卡，只要书架暂时是空的（比如刚退出登录、云端数据还没拉回来），
+  // 整个"作品集"画廊都会被隐藏，看起来就像卡片"消失了"。
+  // 现在改成：只有书架和作品集都是空的时候，才展示"还没有书"的空状态。
+  if (books.length === 0 && savedCards.length === 0) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '40vh', padding: '40px 20px', textAlign: 'center' }}>
         <div style={{ fontSize: 48, marginBottom: 12 }}>🎤</div>

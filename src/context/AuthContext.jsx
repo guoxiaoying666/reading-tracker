@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { anonymousLogin, signIn, signUp, upgradeAccount, signOut, getLocalUser, supabase, syncBooks } from '../supabase';
+import { anonymousLogin, signIn, signUp, upgradeAccount, signOut, getLocalUser, supabase, syncBooks, syncCards } from '../supabase';
 
 const AuthContext = createContext(null);
 
@@ -29,53 +29,55 @@ export function AuthProvider({ children }) {
     })();
   }, []);
 
-  /** 登录/注册前：将访客本地书目同步到服务端（保留 localStorage 作为 fallback） */
-  const syncAndClearLocalBooks = useCallback(async (user_uuid) => {
+  /** 登录/注册前：将访客本地数据同步到服务端 */
+  const syncAndClearLocalData = useCallback(async (user_uuid) => {
     try {
+      // 同步书目
       const raw = localStorage.getItem('reading-tracker-books');
       if (raw) {
         const localBooks = JSON.parse(raw);
         if (Array.isArray(localBooks) && localBooks.length > 0) {
           await syncBooks(user_uuid, localBooks);
-          // 同步成功 → 清除本地缓存，避免重复同步
           localStorage.removeItem('reading-tracker-books');
           localStorage.removeItem('reading-tracker-books-version');
-          console.log(`[Auth] 已同步 ${localBooks.length} 本到云端并清除本地缓存`);
+          console.log(`[Auth] 已同步 ${localBooks.length} 本书到云端`);
         }
       }
+      // 同步说说卡片
+      await syncCards(user_uuid);
     } catch (e) {
-      console.warn('[Auth] 同步访客书目失败，继续执行:', e.message);
+      console.warn('[Auth] 同步访客数据失败，继续执行:', e.message);
     }
   }, []);
 
   const login = useCallback(async (phone, pin) => {
     const result = await signIn(phone, pin);
     if (result.session) {
-      await syncAndClearLocalBooks(result.session.user_uuid);
+      await syncAndClearLocalData(result.session.user_uuid);
       setSession(result.session);
     }
     return result;
-  }, [syncAndClearLocalBooks]);
+  }, [syncAndClearLocalData]);
 
   const register = useCallback(async (phone, pin, name) => {
     const result = await signUp(phone, pin, name);
     if (result.session) {
-      await syncAndClearLocalBooks(result.session.user_uuid);
+      await syncAndClearLocalData(result.session.user_uuid);
       setSession(result.session);
     }
     return result;
-  }, [syncAndClearLocalBooks]);
+  }, [syncAndClearLocalData]);
 
   const upgrade = useCallback(async (phone, pin) => {
     if (!session?.user_uuid) return { error: '缺少用户标识' };
     const result = await upgradeAccount(session.user_uuid, phone, pin);
     if (result.session) {
       // 同步本地数据到云端后再设置 session
-      await syncAndClearLocalBooks(result.session.user_uuid);
+      await syncAndClearLocalData(result.session.user_uuid);
       setSession(result.session);
     }
     return result;
-  }, [session, syncAndClearLocalBooks]);
+  }, [session, syncAndClearLocalData]);
 
   const logout = useCallback(() => {
     signOut();

@@ -1,5 +1,6 @@
-import { WHAT_DIMENSIONS, RECOMMEND_DIRECTIONS, HOW_DIMENSIONS, WHAT_TO_HOW, getBookDimension, DEFAULT_AGE_BAND } from '../data/framework';
+import { WHAT_DIMENSIONS, HOW_DIMENSIONS, WHAT_TO_HOW, getBookDimension, DEFAULT_AGE_BAND } from '../data/framework';
 import { getWhatActualPct, calculateHOW } from './stats';
+import { CURATED_BOOKLISTS } from '../data/curatedBooklists';
 
 // ============================================================
 // WHAT 五维覆盖度诊断（积极语言）
@@ -85,72 +86,103 @@ export function getHowProfile(books) {
 // ============================================================
 
 /**
- * 根据缺口维度生成推荐
- * @param {Array} books
- * @param {string} [ageBand]
- * @param {string} [depthLevel] - 可选，用于匹配深度层级推荐
- * @returns {Array}
+ * 构建推荐书单（基于 CURATED_BOOKLISTS + 用户阅读画像）
+ * 过滤已读书目，按五维缺口排序，动态生成推荐理由
  */
 export function generateRecommendations(books, ageBand, depthLevel) {
   const { gaps } = diagnoseCoverage(books, ageBand);
   const recommendations = [];
 
+  // 用户已读标识集
+  const ownedSet = new Set();
+  books.forEach(b => {
+    if (b.isbn) ownedSet.add('isbn:' + b.isbn.replace(/[^0-9X]/gi, ''));
+    ownedSet.add('book:' + (b.title || '') + (b.author || ''));
+  });
+
+  // 按缺口严重程度遍历维度
   gaps.forEach(d => {
-    const dirs = RECOMMEND_DIRECTIONS[d.key];
-    if (dirs) {
-      dirs.forEach(dir => {
-        const alreadyCovered = books.some(b =>
-          getBookDimension(b) === d.key && b.level2 === dir.level2 && b.level3 === dir.level3
-        );
-        if (!alreadyCovered) {
+    const dimBooks = CURATED_BOOKLISTS[d.key];
+    if (!dimBooks) return;
+
+    Object.entries(dimBooks).forEach(([l2Label, l3Map]) => {
+      Object.entries(l3Map).forEach(([l3Label, bookList]) => {
+        bookList.forEach(book => {
+          const bookKey = 'book:' + (book.title || '') + (book.author || '');
+          if (ownedSet.has(bookKey)) return;
+
+          // 【已修复】原来这里先拼一句"继续丰富你的XX阅读版图"这种模板句，
+          // 再追加书本自己的 note——但同一个分类/缺口状态下的所有书，
+          // 这句模板前缀是完全一样的，而且分类名和"略有空间"这类状态
+          // 在卡片外层（分组标题、状态标签）已经出现过一次，卡片内再讲
+          // 一遍纯属信息重复，真正有区分度的只有 note。
+          // 现在改成：有 note 就直接用 note，没有才用模板句兜底。
+          let reason = book.note || '';
+          if (!reason) {
+            if (d.status === 'untouched') {
+              reason = `你还没有读过${d.label}类的书，从这本开始探索吧`;
+            } else if (d.status === 'low') {
+              reason = `你的${d.label}阅读量较少，这本书很适合拓展这个方向`;
+            } else {
+              reason = `继续丰富你的${d.label}阅读版图`;
+            }
+          }
+
           recommendations.push({
             dimKey: d.key,
             dimLabel: d.label,
             dimIcon: d.icon,
             dimColor: d.color,
-            level2: dir.level2,
-            level3: dir.level3,
-            hint: dir.hint,
+            level2: l2Label,
+            level3: l3Label,
+            book: { title: book.title, author: book.author, note: book.note },
+            reason,
             gapStatus: d.status,
           });
-        }
+        });
       });
-    }
+    });
   });
 
-  // 如有深度层级，可附加推荐说明（后续扩展）
-  return recommendations.slice(0, 8);
+  // 按缺口严重度排序
+  const order = { untouched: 0, low: 1, slight: 2 };
+  recommendations.sort((a, b) => (order[a.gapStatus] || 3) - (order[b.gapStatus] || 3));
+
+  return recommendations.slice(0, 20);
 }
 
 // ============================================================
-// v2.0 新增：基于 25% 基准差值阈值触发书单推荐（预留接口）
+// v2.0 新增：基于缺口维度推荐具体书单
 // ============================================================
 
 /**
  * 判断维度低于基准值 25% 时触发推荐
- * @param {Array} books
- * @param {string} ageBand
- * @returns {Array} [{ dimKey, dimLabel, dimIcon, dimColor, actualPct, benchmark, directions }]
  */
 export function getGapRecommendations(books, ageBand) {
   if (books.length === 0) return [];
   const { gaps } = diagnoseCoverage(books, ageBand);
-  // 低于基准值 25%+ 的维度：status 为 'untouched' 或 'low'
   const triggerDims = gaps.filter(d => d.status === 'untouched' || d.status === 'low');
   const recs = [];
   triggerDims.forEach(d => {
-    const dirs = RECOMMEND_DIRECTIONS[d.key];
-    if (dirs) {
-      recs.push({
-        dimKey: d.key,
-        dimLabel: d.label,
-        dimIcon: d.icon,
-        dimColor: d.color,
-        actualPct: d.actualPct,
-        benchmark: d.benchmark,
-        directions: dirs.slice(0, 3),
+    const dimBooks = CURATED_BOOKLISTS[d.key];
+    if (!dimBooks) return;
+    const booksForDim = [];
+    Object.entries(dimBooks).forEach(([l2Label, l3Map]) => {
+      Object.entries(l3Map).forEach(([_l3, bookList]) => {
+        bookList.forEach(book => {
+          booksForDim.push({ title: book.title, author: book.author, note: book.note, level2: l2Label });
+        });
       });
-    }
+    });
+    recs.push({
+      dimKey: d.key,
+      dimLabel: d.label,
+      dimIcon: d.icon,
+      dimColor: d.color,
+      actualPct: d.actualPct,
+      benchmark: d.benchmark,
+      books: booksForDim.slice(0, 3),
+    });
   });
   return recs;
 }

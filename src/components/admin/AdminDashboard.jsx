@@ -23,6 +23,11 @@ export default function AdminDashboard() {
   const { setActiveTab } = useReading();
   const [stats, setStats] = useState(null);
   const [users, setUsers] = useState([]);
+  const [dau, setDau] = useState(null);
+  const [dauTrend, setDauTrend] = useState([]);
+  const [topBooks, setTopBooks] = useState([]);
+  const [signupTrend, setSignupTrend] = useState([]);
+  const [uniqueBookCount, setUniqueBookCount] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
@@ -60,7 +65,7 @@ export default function AdminDashboard() {
 
       setIsAdmin(true);
 
-      const [statsResp, usersResp] = await Promise.all([
+      const [statsResp, usersResp, dauResp, trendResp, topBooksResp, signupTrendResp, uniqueBookResp] = await Promise.all([
         fetch('/api/admin', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -71,6 +76,31 @@ export default function AdminDashboard() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: 'users', user_uuid: session.user_uuid }),
         }),
+        fetch('/api/admin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'dau', user_uuid: session.user_uuid }),
+        }),
+        fetch('/api/admin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'dau-trend', user_uuid: session.user_uuid }),
+        }),
+        fetch('/api/admin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'top-books', user_uuid: session.user_uuid, limit: 20 }),
+        }),
+        fetch('/api/admin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'signup-trend', user_uuid: session.user_uuid, days: 14 }),
+        }),
+        fetch('/api/admin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'unique-book-count', user_uuid: session.user_uuid }),
+        }),
       ]);
 
       const statsData = statsResp.ok ? await statsResp.json() : null;
@@ -79,8 +109,20 @@ export default function AdminDashboard() {
       const usersData = usersResp.ok ? await usersResp.json() : null;
       if (!usersResp.ok || !usersData) throw new Error(usersData?.error || '加载用户列表失败');
 
+      // 以下都属于新增功能，加载失败不影响主面板其他部分展示
+      const dauData = dauResp.ok ? await dauResp.json().catch(() => null) : null;
+      const trendData = trendResp.ok ? await trendResp.json().catch(() => null) : null;
+      const topBooksData = topBooksResp.ok ? await topBooksResp.json().catch(() => null) : null;
+      const signupTrendData = signupTrendResp.ok ? await signupTrendResp.json().catch(() => null) : null;
+      const uniqueBookData = uniqueBookResp.ok ? await uniqueBookResp.json().catch(() => null) : null;
+
       setStats(statsData);
       setUsers(Array.isArray(usersData) ? usersData : []);
+      setDau(dauData?.dau ?? null);
+      setDauTrend(Array.isArray(trendData?.trend) ? trendData.trend : []);
+      setTopBooks(Array.isArray(topBooksData?.books) ? topBooksData.books : []);
+      setSignupTrend(Array.isArray(signupTrendData?.trend) ? signupTrendData.trend : []);
+      setUniqueBookCount(uniqueBookData?.count ?? null);
     } catch (e) {
       setError('加载失败：' + e.message);
     } finally {
@@ -227,9 +269,6 @@ export default function AdminDashboard() {
   // ================================================================
   // 主面板：概览 + 用户列表
   // ================================================================
-  const dimData = Array.isArray(stats?.dimension_breakdown) ? stats.dimension_breakdown : [];
-  const totalDimBooks = dimData.reduce((sum, d) => sum + (d.count || 0), 0);
-
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
@@ -239,7 +278,7 @@ export default function AdminDashboard() {
         </button>
       </div>
 
-      {/* 统计概览 */}
+      {/* 统计概览 —— 看板区 */}
       <div className="stats-row">
         <div className="stat-item">
           <span className="stat-icon">👥</span>
@@ -247,49 +286,146 @@ export default function AdminDashboard() {
           <div className="stat-label">总用户</div>
         </div>
         <div className="stat-item">
+          <span className="stat-icon">📱</span>
+          <div className="stat-value">{stats?.registered_users ?? '-'}</div>
+          <div className="stat-label">注册用户</div>
+        </div>
+        <div className="stat-item">
+          <span className="stat-icon">🔥</span>
+          <div className="stat-value">{dau ?? '-'}</div>
+          <div className="stat-label">今日活跃</div>
+        </div>
+      </div>
+
+      {/* 【新增】注册转化率 —— 单独一行强调，这是早期产品最该盯的复合指标 */}
+      {stats?.total_users > 0 && (
+        <div className="card" style={{ padding: '14px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--ink3)' }}>注册转化率</div>
+            <div style={{ fontSize: 10, color: 'var(--ink3)', marginTop: 2 }}>注册用户 ÷ 总用户</div>
+          </div>
+          <div style={{ fontSize: 26, fontWeight: 700, color: '#C8815C' }}>
+            {((stats.registered_users / stats.total_users) * 100).toFixed(1)}%
+          </div>
+        </div>
+      )}
+
+      <div className="stats-row" style={{ gridTemplateColumns: '1fr 1fr' }}>
+        <div className="stat-item">
           <span className="stat-icon">📚</span>
           <div className="stat-value">{stats?.total_books ?? '-'}</div>
           <div className="stat-label">总藏书</div>
         </div>
         <div className="stat-item">
-          <span className="stat-icon">📱</span>
-          <div className="stat-value">{stats?.registered_users ?? '-'}</div>
-          <div className="stat-label">注册用户</div>
+          <span className="stat-icon">📖</span>
+          <div className="stat-value">{uniqueBookCount ?? '-'}</div>
+          <div className="stat-label">去重书目</div>
         </div>
       </div>
 
-      <div className="stats-row" style={{ gridTemplateColumns: '1fr 1fr' }}>
+      {/* 【新增】平均每用户藏书数 —— 直接从已加载的用户列表算，不用再多请求一次 */}
+      {users.length > 0 && (
+        <div className="card" style={{ padding: '14px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--ink3)' }}>平均每用户藏书数</div>
+            <div style={{ fontSize: 10, color: 'var(--ink3)', marginTop: 2 }}>含匿名用户，总藏书 ÷ 总用户</div>
+          </div>
+          <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--ink)' }}>
+            {(users.reduce((sum, u) => sum + (u.book_count || 0), 0) / users.length).toFixed(1)}
+          </div>
+        </div>
+      )}
+
+      {/* 【新增】新增用户趋势 —— 总新增 vs 真正注册，两条柱子对比 */}
+      {signupTrend.length > 0 && (
+        <div className="card">
+          <h3>📊 近14天新增用户</h3>
+          <div style={{ display: 'flex', gap: 8, fontSize: 10, color: 'var(--ink3)', marginBottom: 6 }}>
+            <span><span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: 2, background: '#D6CFC4', marginRight: 4 }} />总新增</span>
+            <span><span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: 2, background: '#C8815C', marginRight: 4 }} />真正注册</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 4, height: 100, padding: '8px 2px 0', overflowX: 'auto' }}>
+            {(() => {
+              const max = Math.max(1, ...signupTrend.map(d => Math.max(d.new_users || 0, d.new_registered || 0)));
+              return signupTrend.map((d) => (
+                <div key={d.day} style={{ flex: '0 0 auto', minWidth: 26, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-end', gap: 2, height: 60 }}>
+                    <div title={`总新增 ${d.new_users}`} style={{
+                      width: 8, borderRadius: 2, background: '#D6CFC4',
+                      height: Math.max(2, ((d.new_users || 0) / max) * 60),
+                    }} />
+                    <div title={`真正注册 ${d.new_registered}`} style={{
+                      width: 8, borderRadius: 2, background: '#C8815C',
+                      height: Math.max(2, ((d.new_registered || 0) / max) * 60),
+                    }} />
+                  </div>
+                  <div style={{ fontSize: 8, color: 'var(--ink3)' }}>
+                    {new Date(d.day).toLocaleDateString('zh-CN', { month: 'numeric', day: 'numeric' })}
+                  </div>
+                </div>
+              ));
+            })()}
+          </div>
+        </div>
+      )}
+
+      <div className="stats-row" style={{ gridTemplateColumns: '1fr' }}>
         <div className="stat-item">
           <span className="stat-icon">🎭</span>
           <div className="stat-value">{stats?.anonymous_users ?? '-'}</div>
           <div className="stat-label">匿名用户</div>
         </div>
-        <div className="stat-item">
-          <span className="stat-icon">📅</span>
-          <div className="stat-value">{stats?.recent_registrations ?? '-'}</div>
-          <div className="stat-label">本周新增</div>
-        </div>
       </div>
 
-      {/* 五维分布 */}
-      {dimData.length > 0 && (
+      {/* 7天日活趋势 */}
+      {dauTrend.length > 0 && (
         <div className="card">
-          <h3>📊 五维分布</h3>
-          <div className="dim-bars">
-            {dimData.map((d) => {
-              const pct = totalDimBooks > 0 ? ((d.count / totalDimBooks) * 100).toFixed(0) : 0;
-              return (
-                <div className="dim-bar-row" key={d.dimension}>
-                  <span className="dim-bar-label">{DIMENSION_LABELS[d.dimension] || d.dimension}</span>
-                  <div className="dim-bar-track">
-                    <div className="dim-bar-fill" style={{ width: pct + '%', background: DIM_COLORS[d.dimension] || 'var(--accent)' }}>
-                      {pct > 15 ? pct + '%' : ''}
-                    </div>
+          <h3>📈 近7天日活</h3>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8, height: 90, padding: '8px 4px 0' }}>
+            {(() => {
+              const max = Math.max(1, ...dauTrend.map(d => d.count || 0));
+              return dauTrend.map((d) => (
+                <div key={d.day} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                  <div style={{ fontSize: 10, color: 'var(--ink3)' }}>{d.count || 0}</div>
+                  <div style={{
+                    width: '100%', maxWidth: 28,
+                    height: Math.max(3, ((d.count || 0) / max) * 56),
+                    borderRadius: 4, background: 'var(--accent, #C8815C)',
+                  }} />
+                  <div style={{ fontSize: 9, color: 'var(--ink3)' }}>
+                    {new Date(d.day).toLocaleDateString('zh-CN', { month: 'numeric', day: 'numeric' })}
                   </div>
-                  <span className="dim-bar-count">{d.count}</span>
                 </div>
-              );
-            })}
+              ));
+            })()}
+          </div>
+        </div>
+      )}
+
+      {/* 全站藏书去重榜 —— 按书名统计有多少个不同账号录入过 */}
+      {topBooks.length > 0 && (
+        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+          <div style={{ padding: '16px 16px 8px' }}>
+            <h3 style={{ marginBottom: 0 }}>🏆 全站藏书 Top {topBooks.length}</h3>
+            <div style={{ fontSize: 11, color: 'var(--ink3)', marginTop: 2 }}>按"有多少个不同账号录入过这本书"排序，同一账号重复录入不重复计数</div>
+          </div>
+          <div>
+            {topBooks.map((b, i) => (
+              <div key={b.title + i} style={{
+                padding: '9px 16px', borderTop: '1px solid var(--border)',
+                display: 'flex', alignItems: 'center', gap: 10, fontSize: 12,
+              }}>
+                <span style={{
+                  width: 20, textAlign: 'center', fontWeight: 700, flexShrink: 0,
+                  color: i < 3 ? '#C8815C' : 'var(--ink3)', fontSize: 12,
+                }}>{i + 1}</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontWeight: 600, color: 'var(--ink)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{b.title}</div>
+                  {b.author && <div style={{ fontSize: 10, color: 'var(--ink3)' }}>{b.author}</div>}
+                </div>
+                <span style={{ fontSize: 11, color: 'var(--ink2)', flexShrink: 0 }}>{b.user_count} 人录入</span>
+              </div>
+            ))}
           </div>
         </div>
       )}

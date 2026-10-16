@@ -141,9 +141,12 @@ function AppContent() {
       />
       <TabNav />
       {/* Record 页没有独立 Tab，通过首页/书架按钮跳入 */}
-      {activeTab === 'home' && <HomePage />}
-      {activeTab === 'bookshelf' && <Bookshelf />}
-      {activeTab === 'record' && <Record />}
+      {/* 【已修复】原来只有 VoiceRecord/DiagnosisPage 包了 ErrorBoundary，
+          Bookshelf/HomePage/Record 没有防护——任何一次没预料到的渲染报错
+          都会直接让整个 App 白屏，而不是显示"出错了"的提示。现在统一都包上。 */}
+      {activeTab === 'home' && <ErrorBoundary><HomePage /></ErrorBoundary>}
+      {activeTab === 'bookshelf' && <ErrorBoundary><Bookshelf /></ErrorBoundary>}
+      {activeTab === 'record' && <ErrorBoundary><Record /></ErrorBoundary>}
       {activeTab === 'voice_record' && <ErrorBoundary><VoiceRecord /></ErrorBoundary>}
       {activeTab === 'diagnosis' && <ErrorBoundary><DiagnosisPage /></ErrorBoundary>}
       {activeTab === 'admin' && <AdminDashboard />}

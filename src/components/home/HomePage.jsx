@@ -3,23 +3,26 @@
 // 基于录入书本数动态展示：
 //   0本 → 添加按钮
 //   1-4本 → 进度条
-//   5本+ → 雷达图 + 引导气泡
+//   5本+ → 雷达图 + 3个卡片模块
 // 不修改任何录书接口/雷达计算/存储逻辑
 // ============================================================
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useReading } from '../../context/ReadingContext';
 import { WHAT_DIMENSIONS } from '../../data/framework';
 import { getWhatActualPct } from '../../utils/stats';
+import { generateRecommendations } from '../../utils/diagnosis';
+import RecommendedBookCard from '../common/RecommendedBookCard';
+import BookDetailDrawer from '../common/BookDetailDrawer';
 
 export default function HomePage() {
-  const { books, setActiveTab, mapUnlocked } = useReading();
+  const { books, setActiveTab } = useReading();
   const count = books.length;
 
-  // ---- 雷达图数据（仅在解锁后计算） ----
+  // ---- 雷达图数据（满5本后计算） ----
   const radarData = useMemo(() => {
-    if (!mapUnlocked || count < 5) return null;
+    if (count < 5) return null;
     return getWhatActualPct(books);
-  }, [books, mapUnlocked, count]);
+  }, [books, count]);
 
   // ============ 状态0：0本书 ============
   if (count === 0) {
@@ -45,7 +48,7 @@ export default function HomePage() {
   }
 
   // ============ 状态1-4：进度条 ============
-  if (count > 0 && count < 5 && !mapUnlocked) {
+  if (count > 0 && count < 5) {
     return (
       <div style={{ padding: '20px 0' }}>
         {/* 进度条 */}
@@ -90,12 +93,27 @@ export default function HomePage() {
   // ============ 状态5+：地图已解锁，显示雷达图 ============
   const sortedDims = radarData ? [...radarData].sort((a, b) => b.count - a.count) : [];
 
+  // 【已修复】原来这里调用 flattenCuratedBooks() 展示的是固定不变的静态书单，
+  // 跟"阅读洞察"页的"拓展阅读"完全是两套独立逻辑：一个人人一样，
+  // 一个按孩子五维缺口个性化推荐——两处内容对不上，用户会疑惑是不是同一个功能。
+  // 现在改成调用同一套 generateRecommendations 引擎，首页只展示精简的前3个结果，
+  // 阅读洞察页展示完整版，两处数据来源统一。
+  const personalizedRecs = useMemo(() => {
+    if (count < 5) return [];
+    return generateRecommendations(books).slice(0, 3).map(r => r.book).filter(Boolean);
+  }, [books, count]);
+
+  const [detailBook, setDetailBook] = useState(null);
+
   return (
     <div style={{ padding: '12px 0' }}>
-      {/* 五维雷达图（卡片化，标题在左上角） */}
+      {/* 模块一：阅读地图 + 一句话洞察 */}
       <div className="card" style={{ padding: '16px 14px' }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)', fontFamily: 'var(--font-title)', marginBottom: 12 }}>
           🗺️ 阅读地图
+        </div>
+        <div style={{ fontSize: 13, color: 'var(--ink2)', lineHeight: 1.8, marginBottom: 14, padding: '10px 12px', background: 'var(--card2)', borderRadius: 10 }}>
+          阅读侧重文学叙事，可拓展自然科学、自我成长，人际共情、逻辑探究、创造表达方向有潜力。
         </div>
         <div className="dim-bars">
           {sortedDims.map(d => {
@@ -127,42 +145,49 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* 个性化书单占位 */}
-      <div className="card" style={{ padding: '16px', marginTop: 10 }}>
-        <h3 style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)', marginBottom: 8, fontFamily: 'var(--font-title)' }}>
-          📚 个性化书单
-        </h3>
-        <div style={{ fontSize: 11, color: 'var(--ink3)', lineHeight: 1.6, textAlign: 'center', padding: '12px 0' }}>
-          已录入 {count} 本，专属书单即将上线，敬请期待！
+      {/* 模块二：为你拓展（个性化推荐，与阅读洞察页共用同一套引擎，仅展示精简版） */}
+      <div onClick={() => {
+        localStorage.setItem('wonderead-scroll-to', 'recommendations');
+        setActiveTab('diagnosis');
+      }} className="card" style={{ padding: '16px', marginTop: 10, cursor: 'pointer' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h3 style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)', fontFamily: 'var(--font-title)', margin: 0 }}>
+              🧭 为你拓展
+            </h3>
+            <div style={{ fontSize: 10, color: 'var(--ink3)', marginTop: 2 }}>根据阅读地图为你推荐</div>
+          </div>
+          <span style={{ fontSize: 16, color: '#C8815C' }}>→</span>
         </div>
+        {personalizedRecs.length > 0 ? (
+          <RecommendedBookCard books={personalizedRecs} onClickBook={(b) => setDetailBook(b)} />
+        ) : (
+          <div style={{ fontSize: 11, color: "var(--ink3)", lineHeight: 1.6, marginTop: 8 }}>
+            孩子目前各维度阅读比较均衡，继续保持即可 🎉
+          </div>
+        )}
+        <div style={{ fontSize: 10, color: '#C8815C', marginTop: 10, fontWeight: 500 }}>查看完整拓展书单 →</div>
       </div>
 
-      {/* 引导气泡 */}
-      <div onClick={() => setActiveTab('voice_record')} style={{
-        marginTop: 12, padding: '12px 16px', borderRadius: 14,
-        background: 'linear-gradient(135deg, #FDF0E0, #FFF8F0)',
-        border: '1px solid rgba(200,129,92,0.2)',
-        display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer',
-      }}>
-        <div style={{ fontSize: 28 }}>🎤</div>
-        <div style={{ fontSize: 12, color: '#5C5244', lineHeight: 1.6, flex: 1 }}>
-          <strong>听听孩子怎么说 →</strong>
+      <div onClick={() => {
+        localStorage.setItem('wonderead-focus-isbn', 'true');
+        setActiveTab('record');
+      }} className="card" style={{ padding: '16px', marginTop: 10, cursor: 'pointer' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h3 style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)', fontFamily: 'var(--font-title)', margin: 0 }}>
+              📚 继续录入新书
+            </h3>
+            <div style={{ fontSize: 11, color: 'var(--ink3)', marginTop: 4 }}>
+              记录更多书籍，阅读地图将更精准。
+            </div>
+          </div>
+          <span style={{ fontSize: 16, color: '#C8815C' }}>→</span>
         </div>
-        <div style={{ fontSize: 16, color: '#C8815C' }}>→</div>
       </div>
-
-      {/* 探索详细报告入口 */}
-      <div onClick={() => setActiveTab('diagnosis')} style={{
-        marginTop: 10, padding: '12px 16px', borderRadius: 14,
-        background: 'var(--card)', border: '1px solid var(--border)',
-        display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer',
-      }}>
-        <div style={{ fontSize: 28 }}>📊</div>
-        <div style={{ fontSize: 12, color: 'var(--ink)', lineHeight: 1.6, flex: 1 }}>
-          查看详细的<strong>能力画像报告</strong> —— 认知能力、内容广度、推荐书单
-        </div>
-        <div style={{ fontSize: 16, color: '#C8815C' }}>→</div>
-      </div>
+      {detailBook && (
+        <BookDetailDrawer book={detailBook} onClose={() => setDetailBook(null)} />
+      )}
     </div>
   );
 }

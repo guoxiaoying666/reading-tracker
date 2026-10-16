@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback, useRef} fr
 import { v4 as uuidv4 } from 'uuid';
 import sampleBooks from '../data/sampleBooks';
 import { deleteImage } from '../utils/imageDB';
-import { syncBooks, fetchCloudBooks } from '../supabase';
+import { syncBooks, fetchCloudBooks, deleteBookRemote } from '../supabase';
 
 const ReadingContext = createContext(null);
 
@@ -192,16 +192,17 @@ export function ReadingProvider({ children, useSamples, userUuid }) {
     });
   }, [userUuid]);
 
+  // 【已修复】删除书籍：本地立即移除 + 调用真正的服务端删除接口
+  // 不再依赖"重新同步剩余列表"的方式模拟删除，避免退出重登后被云端数据"复活"
   const deleteBook = useCallback((id) => {
     setBooks(prev => {
       const book = prev.find(b => b.id === id);
       if (book?.imageId) deleteImage(book.imageId).catch(() => {});
-      const updated = prev.filter(b => b.id !== id);
-      if (userUuid) {
-        syncBooks(userUuid, updated).catch(e => console.warn('[sync] 删除同步失败:', e.message));
-      }
-      return updated;
+      return prev.filter(b => b.id !== id);
     });
+    if (userUuid) {
+      deleteBookRemote(userUuid, id).catch(e => console.warn('[sync] 删除同步失败:', e.message));
+    }
   }, [userUuid]);
 
   const resetData = useCallback(() => { setBooks(sampleBooks); }, []);

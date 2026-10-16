@@ -90,6 +90,38 @@ export default async function handler(req, res) {
       return res.status(200).json(books);
     }
 
+    // ---- 【新增】今日日活人数 ----
+    if (action === 'dau') {
+      const dau = await callRPC('get_admin_dau');
+      return res.status(200).json({ dau });
+    }
+
+    // ---- 【新增】近7天日活趋势 ----
+    if (action === 'dau-trend') {
+      const trend = await callRPC('get_admin_dau_trend');
+      return res.status(200).json({ trend: Array.isArray(trend) ? trend : [] });
+    }
+
+    // ---- 【新增】全站藏书去重榜（按书名统计有多少个不同账号录入过）----
+    if (action === 'top-books') {
+      const { limit } = req.body || {};
+      const books = await callRPC('get_admin_top_books', { p_limit: limit || 20 });
+      return res.status(200).json({ books: Array.isArray(books) ? books : [] });
+    }
+
+    // ---- 【新增】新增用户趋势（总新增 vs 真正注册，两条线）----
+    if (action === 'signup-trend') {
+      const { days } = req.body || {};
+      const trend = await callRPC('get_admin_signup_trend', { p_days: days || 30 });
+      return res.status(200).json({ trend: Array.isArray(trend) ? trend : [] });
+    }
+
+    // ---- 【新增】去重书目数 ----
+    if (action === 'unique-book-count') {
+      const count = await callRPC('get_admin_unique_book_count');
+      return res.status(200).json({ count });
+    }
+
     return res.status(400).json({ error: '未知操作' });
   } catch (e) {
     console.error('[admin] 错误:', e);
