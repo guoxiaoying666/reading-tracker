@@ -1,9 +1,9 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { useReading } from '../../context/ReadingContext';
 import { WHAT_DIMENSIONS, getBenchmark } from '../../data/framework';
 import { getTotalBooks, getWhatActualPct, getCoveredWhatDims, getMonthlyTrend } from '../../utils/stats';
 import { diagnoseCoverage, generateRecommendations, getHowProfile } from '../../utils/diagnosis';
-import { CURATED_BOOKLISTS } from '../../data/curatedBooklists';
+import BookDetailDrawer from '../common/BookDetailDrawer';
 import '../../styles/diagnosis.css';
 
 /** 正向标签映射（用户友好版） */
@@ -51,6 +51,17 @@ export default function DiagnosisPage() {
   const { books, setActiveTab } = useReading();
   const [ageBand] = useState('7-9');
   const [theoryOpen, setTheoryOpen] = useState(false);
+  const [detailBook, setDetailBook] = useState(null);
+  const recRef = useRef(null);
+
+  // 从首页「为你推荐」跳转来时，自动滚动到拓展阅读
+  useEffect(() => {
+    const target = localStorage.getItem('wonderead-scroll-to');
+    if (target === 'recommendations') {
+      localStorage.removeItem('wonderead-scroll-to');
+      setTimeout(() => recRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+    }
+  }, []);
 
   // === WHAT 数据 ===
   const totalBooks = useMemo(() => getTotalBooks(books), [books]);
@@ -65,22 +76,6 @@ export default function DiagnosisPage() {
   // === 探索方向 + 推荐 ===
   const { gaps } = useMemo(() => diagnoseCoverage(books, ageBand), [books, ageBand]);
   const recommendations = useMemo(() => generateRecommendations(books, ageBand), [books, ageBand]);
-
-  // 找精选书单
-  const getBooklist = useCallback((rec) => {
-    const dimKey = rec.dimKey;
-    const l2Label = rec.level2;
-    const l3Label = rec.level3;
-    const dimLists = CURATED_BOOKLISTS[dimKey];
-    if (!dimLists) return null;
-    const l2Entry = Object.entries(dimLists).find(([key]) => key === l2Label);
-    if (!l2Entry) return null;
-    const [, l3Map] = l2Entry;
-    const l3Entry = Object.entries(l3Map).find(([key]) => key === l3Label);
-    if (l3Entry) return l3Entry[1];
-    const firstL3 = Object.values(l3Map)[0];
-    return firstL3 || null;
-  }, []);
 
   if (books.length === 0) {
     return (
@@ -201,13 +196,6 @@ export default function DiagnosisPage() {
 
   return (
     <div className="diag-page">
-
-      {/* ======== 核心洞察 ======== */}
-      <div className="diag-card" style={{ padding: '14px 16px', marginBottom: 16, background: 'var(--card2)' }}>
-        <div style={{ fontSize: 13, color: 'var(--ink2)', lineHeight: 1.8 }}>
-          {generateSummary(howProfile, sortedDims, gaps)}
-        </div>
-      </div>
 
       {/* ======== 认知雷达 ======== */}
       <div className="diag-section-header" style={{ marginTop: 20 }}>
@@ -379,7 +367,7 @@ export default function DiagnosisPage() {
       {/* ======== 拓展阅读（水平滑动 Carousel） ======== */}
       {gaps.length > 0 && (
         <>
-          <h2 className="diag-section-title" style={{ marginTop: 24 }}>📖 拓展阅读</h2>
+          <h2 ref={recRef} className="diag-section-title" style={{ marginTop: 24 }}>🧭 为你拓展</h2>
           <div style={{ marginBottom: 8 }}>
             {gaps.map(d => {
               const dimDef = WHAT_DIMENSIONS.find(dd => dd.key === d.key);
@@ -410,7 +398,6 @@ export default function DiagnosisPage() {
                     margin: '-2px -4px -8px',
                   }}>
                     {dimRecs.slice(0, 5).map((rec, i) => {
-                      const booklist = getBooklist(rec);
                       return (
                         <div key={i} style={{
                           flex: '0 0 44%', minWidth: 148,
@@ -419,35 +406,41 @@ export default function DiagnosisPage() {
                           border: '1px solid var(--border)',
                           padding: '12px 10px',
                         }}>
-                          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--ink)', marginBottom: 6 }}>
+                          {/* 【已调整】原来这里的分类名（比如"进化生态"）用最醒目的样式展示，
+                              导致同一分类下的多本书卡片标题看起来一模一样，像是重复。
+                              现在把分类名降级为小标签，把书名提升为卡片真正的主标题。 */}
+                          <div style={{
+                            display: 'inline-block', fontSize: 8, color: 'var(--ink3)',
+                            background: 'var(--card)', padding: '2px 6px', borderRadius: 5,
+                            marginBottom: 8,
+                          }}>
                             {rec.level3 || rec.level2}
                           </div>
-                          <div style={{ fontSize: 9, color: 'var(--ink3)', marginBottom: 8 }}>
-                            {rec.level2}
-                          </div>
 
-                          {/* 书列表（最多2本） */}
-                          {booklist && booklist.slice(0, 2).map((book, j) => (
-                            <div key={j} style={{
-                              display: 'flex', alignItems: 'center', gap: 6,
-                              padding: '5px 0', borderTop: j > 0 ? '1px dashed var(--border)' : 'none',
-                            }}>
-                              <span style={{ fontSize: 16, flexShrink: 0 }}>📘</span>
-                              <div style={{ minWidth: 0 }}>
-                                <div style={{ fontSize: 10, fontWeight: 500, color: 'var(--ink)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                                  {book.title}
-                                </div>
-                                <div style={{ fontSize: 8, color: 'var(--ink3)' }}>
-                                  {book.author}
+                          {rec.book ? (
+                            <div onClick={() => setDetailBook(rec.book)} style={{ cursor: 'pointer' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                                <span style={{ fontSize: 16, flexShrink: 0 }}>📘</span>
+                                <div style={{ minWidth: 0 }}>
+                                  <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--ink)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                    {rec.book.title}
+                                  </div>
+                                  {rec.book.author && (
+                                    <div style={{ fontSize: 8, color: 'var(--ink3)' }}>
+                                      {rec.book.author}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
+                              {rec.reason && (
+                                <div style={{ fontSize: 9, color: 'var(--accent2)', lineHeight: 1.5, fontStyle: 'italic' }}>
+                                  {rec.reason}
+                                </div>
+                              )}
                             </div>
-                          ))}
-
-                          {/* 无书时展示方向提示 */}
-                          {!booklist && (
+                          ) : (
                             <div style={{ fontSize: 9, color: 'var(--ink3)', fontStyle: 'italic' }}>
-                              {rec.hint}
+                              {rec.hint || '推荐书目生成中...'}
                             </div>
                           )}
                         </div>
@@ -470,6 +463,7 @@ export default function DiagnosisPage() {
           </p>
         </div>
       )}
+      {detailBook && <BookDetailDrawer book={detailBook} onClose={() => setDetailBook(null)} />}
 
     </div>
   );

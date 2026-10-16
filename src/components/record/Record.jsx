@@ -4,6 +4,7 @@ import { WHAT_DIMENSIONS, LANGUAGES, FICTION_OPTIONS, getAllLevel2Options, getLe
 import { lookupBook } from '../../utils/bookLookup';
 import { saveImage } from '../../utils/imageDB';
 import { classifyBook } from '../../utils/classify';
+import { isMonthValue } from '../../utils/bookStatus';
 import ImageUpload from '../common/ImageUpload';
 import StarPicker from '../common/StarPicker';
 const BarcodeScanner = lazy(() => import('../common/BarcodeScanner'));
@@ -17,21 +18,7 @@ const EMPTY = {
 
 const isPoetry = (l2) => l2 === 'poetry';
 
-const DIM_LABEL_MAP = {};
-WHAT_DIMENSIONS.forEach(d => { DIM_LABEL_MAP[d.key] = d.icon + ' ' + d.label; });
-
-function HowPrimaryLabel({ howKey }) {
-  if (!howKey) return null;
-  const M = { empathy: '人际共情', logic: '逻辑探究', expression: '创造表达', self_awareness: '自我认知' };
-  const C = { empathy: '#E88D67', logic: '#5A9E6F', expression: '#B565A7', self_awareness: '#4A90B8' };
-  return (
-    <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginTop: 3 }}>
-      <span key={howKey} style={{ fontSize: 9.5, padding: '1px 6px', borderRadius: 3, background: `${C[howKey]}18`, color: C[howKey], fontWeight: 600 }}>
-        🎯 {M[howKey] || howKey}
-      </span>
-    </div>
-  );
-}
+const HOW_LABEL_MAP = { empathy: '人际共情', logic: '逻辑探究', expression: '创造表达', self_awareness: '自我认知' };
 
 async function fetchCoverToDB(coverUrl) {
   try {
@@ -44,9 +31,10 @@ async function fetchCoverToDB(coverUrl) {
 
 export default function Record() {
   const { addBook, setActiveTab, books } = useReading();
-  const [form, setForm] = useState({
-    ...EMPTY, month: new Date().toISOString().slice(0, 7),
-  });
+  // 【已修复】原来这里默认预填"今天所在的月份"，导致"状态/读完月份"这个必填项
+  // 哪怕用户完全没碰过"阅读中/待读/选择月份"选择器，也能悄悄提交成功——
+  // 必填校验形同虚设。现在改成真正的空值，逼着用户必须显式选一个状态。
+  const [form, setForm] = useState({ ...EMPTY });
   const [errors, setErrors] = useState({});
   const [scanOpen, setScanOpen] = useState(false);
   const [isbnInput, setIsbnInput] = useState('');
@@ -57,12 +45,21 @@ export default function Record() {
   const [monthStatus, setMonthStatus] = useState('');
   const [classifying, setClassifying] = useState(false);
   const [aiSuggestion, setAiSuggestion] = useState(null);
-  const [showMore, setShowMore] = useState(false);
+  const [showClassify, setShowClassify] = useState(false);
+  const [showFeelings, setShowFeelings] = useState(false);
   const classifyTimer = useRef(null);
   const isbnRef = useRef('');
   const lookingUpRef = useRef(false);
   const formRef = useRef(form);
   useEffect(() => { formRef.current = form; }, [form]);
+
+  // 从首页「继续录入新书」跳转来，自动聚焦 ISBN 输入框
+  useEffect(() => {
+    if (localStorage.getItem('wonderead-focus-isbn') === 'true') {
+      localStorage.removeItem('wonderead-focus-isbn');
+      setTimeout(() => document.getElementById('isbn-input')?.focus(), 100);
+    }
+  }, []);
 
   // ---- AI 自动分类（书名输入后延迟触发）----
   const triggerClassify = useCallback(async (title, author) => {
@@ -121,7 +118,7 @@ export default function Record() {
   };
 
   const resetForm = () => {
-    setForm({ ...EMPTY, month: new Date().toISOString().slice(0, 7) });
+    setForm({ ...EMPTY });
     setMonthStatus('');
     setSuggestion(null);
     setConfirmBook(null);
@@ -133,7 +130,7 @@ export default function Record() {
     e.preventDefault();
     const errs = {};
     if (!form.title.trim()) errs.title = '请输入书名';
-    if (!form.month) errs.month = '请选择月份';
+    if (!form.month) errs.month = '请选择阅读状态';
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
@@ -202,14 +199,15 @@ export default function Record() {
     if (book.coverUrl) {
       try { imageId = await fetchCoverToDB(book.coverUrl); } catch (_) {}
     }
-    const newMonth = new Date().toISOString().slice(0, 7);
+    // 【已修复】原来这里会在 month 为空时偷偷填入"今天所在月份"，
+    // 跟"阅读中/待读"状态选择器完全没有关联，一样会导致必填校验形同虚设。
+    // 现在 ISBN 自动填充只处理书名/作者/封面，不碰 month。
     setForm(prev => ({
       ...prev,
       title: book.title || '',
       isbn: book.isbn || '',
       author: book.author || '',
       source: prev.source || '广图',
-      month: prev.month || newMonth,
       imageId: imageId || prev.imageId,
     }));
     setSuggestion({ dimension: null, level2: null, level2Label: null, confidence: 'high' });
@@ -292,79 +290,103 @@ export default function Record() {
 
       <form onSubmit={handleSubmit} className="card" style={{ padding: 18 }}>
 
-        {/* ISBN 查询入口 */}
+        {/* ISBN 查询入口 —— 【已优化】原来是"扫码按钮/输入框/查询按钮"三个满宽大块堆叠，
+            第一屏几乎全被操作步骤占满。现在收成一行，跟常见的搜索框布局一致。 */}
         <div style={{
-          marginBottom: 16, padding: '14px', borderRadius: 10,
+          marginBottom: 16, padding: '8px', borderRadius: 10,
           background: '#F5F3F0', border: '1px solid #E8E2D8',
+          display: 'flex', gap: 6, alignItems: 'center',
         }}>
-          <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
-            <button type="button" className="btn-primary" style={{ flex: 1, padding: '12px', fontSize: 14 }}
-              onClick={() => setScanOpen(true)}>
-              📷 扫条形码获取 ISBN
-            </button>
-          </div>
-          <div>
-            <input id="isbn-input" inputMode="numeric" type="text" value={isbnInput}
-              onChange={e => { const v = e.target.value.replace(/[^0-9X]/gi, ''); setIsbnInput(v); isbnRef.current = v; }}
-              placeholder="输入 13 位 ISBN 号" style={{ width: '100%', fontSize: 16, padding: '10px 12px', border: '1px solid #D6CFC4', borderRadius: 8, outline: 'none', marginBottom: 6, boxSizing: 'border-box' }}
-              onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), handleManualIsbn())} />
-            <button type="button" className="btn-primary" style={{ width: '100%', padding: '10px', fontSize: 14 }}
-              onClick={handleManualIsbn}>
-              🔍 查询
-            </button>
-          </div>
+          <button type="button" onClick={() => setScanOpen(true)} title="扫条形码获取 ISBN"
+            style={{
+              flexShrink: 0, width: 40, height: 40, borderRadius: 8, border: 'none',
+              background: '#C8815C', color: 'white', fontSize: 17, cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+            📷
+          </button>
+          <input id="isbn-input" inputMode="numeric" type="text" value={isbnInput}
+            onChange={e => { const v = e.target.value.replace(/[^0-9X]/gi, ''); setIsbnInput(v); isbnRef.current = v; }}
+            placeholder="输入或扫描 ISBN 号"
+            style={{ flex: 1, minWidth: 0, fontSize: 15, padding: '10px 10px', border: '1px solid #D6CFC4', borderRadius: 8, outline: 'none', boxSizing: 'border-box' }}
+            onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), handleManualIsbn())} />
+          <button type="button" onClick={handleManualIsbn} title="查询"
+            style={{
+              flexShrink: 0, width: 40, height: 40, borderRadius: 8, border: 'none',
+              background: '#C8815C', color: 'white', fontSize: 17, cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+            🔍
+          </button>
         </div>
 
-        {/* 识别结果摘要 */}
+        {/* 识别结果摘要 —— 【已简化】原来这里整张卡片重复展示了书名/作者，
+            跟紧接着下方的"书名""作者"输入框内容完全一样。现在改成一行确认条，
+            只提示"已自动填充"，具体内容看下方表单即可，不再重复一遍。 */}
         {isAutoFilled && (
-          <div style={{ padding: '10px 14px', borderRadius: 10, marginBottom: 14, background: '#F5FAF5', border: '1px solid #D4E4D6' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ fontSize: 20 }}>{DIM_LABEL_MAP[suggestion.dimension]?.split(' ')[0] || '📖'}</span>
-              <div>
-                <div style={{ fontWeight: 700, fontSize: 14 }}>{form.title}</div>
-                <div style={{ fontSize: 11, color: 'var(--ink3)' }}>
-                  {form.author && `${form.author} · `}
-                  {suggestion.dimension && DIM_LABEL_MAP[suggestion.dimension]}
-                  {suggestion.level2Label && ` · ${suggestion.level2Label}`}
-                </div>
-                <span className="suggestion-badge" style={{ marginTop: 2, display: 'inline-flex',
-                  background: suggestion.confidence === 'high' ? '#E8F5E9' : suggestion.confidence === 'medium' ? '#FFF8E1' : '#FFEBEE',
-                  color: suggestion.confidence === 'high' ? '#2E7D32' : suggestion.confidence === 'medium' ? '#F57F17' : '#C62828',
-                  borderColor: suggestion.confidence === 'high' ? '#A5D6A7' : suggestion.confidence === 'medium' ? '#FFE082' : '#EF9A9A',
-                }}>
-                  🤖 {suggestion.confidence === 'high' ? '高置信度' : suggestion.confidence === 'medium' ? '中置信度' : '低置信度'}
-                </span>
-              </div>
-            </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 12px', borderRadius: 8, marginBottom: 12, background: '#F5FAF5', border: '1px solid #D4E4D6', fontSize: 11, color: '#2E7D32' }}>
+            <span>✅ 已根据 ISBN 自动填充书籍信息</span>
+            <span className="suggestion-badge" style={{ marginLeft: 'auto',
+              background: suggestion.confidence === 'high' ? '#E8F5E9' : suggestion.confidence === 'medium' ? '#FFF8E1' : '#FFEBEE',
+              color: suggestion.confidence === 'high' ? '#2E7D32' : suggestion.confidence === 'medium' ? '#F57F17' : '#C62828',
+              borderColor: suggestion.confidence === 'high' ? '#A5D6A7' : suggestion.confidence === 'medium' ? '#FFE082' : '#EF9A9A',
+            }}>
+              🤖 {suggestion.confidence === 'high' ? '高置信度' : suggestion.confidence === 'medium' ? '中置信度' : '低置信度'}
+            </span>
           </div>
         )}
 
-        {/* 书名 */}
+        {/* 书名（必填，加粗+星号+加深边框，与选填项形成对比） */}
         <div className="form-group">
-          <label>书名 *</label>
+          <label style={{ fontWeight: 700 }}>书名 <span style={{ color: '#C0392B' }}>*</span></label>
           <input type="text" value={form.title} onChange={e => setFormField('title', e.target.value)}
-            placeholder="书名" />
+            placeholder="书名" style={{ borderWidth: 1.5, borderColor: errors.title ? '#C0392B' : '#C8815C' }} />
           {errors.title && <span className="error-msg">{errors.title}</span>}
         </div>
 
-        {/* 作者 */}
+        {/* 作者（选填，标签调淡） */}
         <div className="form-group">
-          <label>作者</label>
+          <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>作者 <span style={{ fontSize: 10 }}>（选填）</span></label>
           <input type="text" value={form.author} onChange={e => setFormField('author', e.target.value)} placeholder="作者" />
         </div>
 
         {/* 月份 + 来源 */}
         <div className="form-row">
           <div className="form-group">
-            <label>状态 / 读完月份 *</label>
-            <select value={monthStatus} onChange={e => setMonthStatus(e.target.value)} style={{ marginBottom: 6 }}>
-              <option value="">— 选择状态 —</option>
-              <option value="reading">📖 阅读中</option>
-              <option value="pending">📌 待读</option>
-              <option value="month">📅 选择月份</option>
-            </select>
+            <label style={{ fontWeight: 700 }}>状态 / 读完月份 <span style={{ color: '#C0392B' }}>*</span></label>
+            {/* 【已修复】原来是"下拉框 + 紧挨着的月份原生输入框"的组合，
+                在选完具体月份后，下拉框会卡住无法切回其他状态（原生 select 和
+                month picker 挨在一起时的常见交互冲突）。改成三个独立按钮，
+                每个按钮的点击互不影响，不会再有"选完月份切不回去"的问题。 */}
+            <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
+              {[
+                { key: 'reading', label: '📖 阅读中' },
+                { key: 'pending', label: '📌 待读' },
+                { key: 'month', label: '📅 已读完' },
+              ].map(opt => (
+                <button key={opt.key} type="button"
+                  onClick={() => {
+                    setMonthStatus(opt.key);
+                    // 【已修复】原来点击这里只切换了 monthStatus 这个纯展示状态，
+                    // 从没真正写进 form.month（提交时用的数据），导致"阅读中/待读"
+                    // 点了跟没点一样，最终存的还是别处遗留的日期值。
+                    if (opt.key === 'reading' || opt.key === 'pending') setFormField('month', opt.key);
+                    else if (!isMonthValue(form.month)) setFormField('month', '');
+                  }}
+                  style={{
+                    flex: 1, padding: '10px 2px', borderRadius: 8, fontSize: 11.5, cursor: 'pointer',
+                    border: monthStatus === opt.key ? '1.5px solid #C8815C' : '1px solid var(--border)',
+                    background: monthStatus === opt.key ? '#FBF3EC' : 'white',
+                    color: monthStatus === opt.key ? '#C8815C' : 'var(--ink2)',
+                    fontWeight: monthStatus === opt.key ? 600 : 400,
+                    fontFamily: 'var(--font)',
+                  }}>
+                  {opt.label}
+                </button>
+              ))}
+            </div>
             {monthStatus === 'month' && (
-              <input type="month" value={form.month || ''}
+              <input type="month" value={isMonthValue(form.month) ? form.month : ''}
                 onChange={e => { if (e.target.value) setFormField('month', e.target.value); }}
                 style={{ width: '100%' }} />
             )}
@@ -374,7 +396,8 @@ export default function Record() {
             {errors.month && <span className="error-msg">{errors.month}</span>}
           </div>
           <div className="form-group">
-            <label>来源</label>
+            <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>来源 <span style={{ fontSize: 10 }}>（选填）</span></label>
+
             <select value={form.source} onChange={e => setFormField('source', e.target.value)}>
               <option value="赠送">🎁 赠送</option>
               <option value="自购">🛒 自购</option>
@@ -384,116 +407,130 @@ export default function Record() {
           </div>
         </div>
 
-        {/* ========== 更多信息（折叠，首次隐藏以缩短表单） ========== */}
+        {/* ========== 分类信息（默认折叠） ========== */}
         <div style={{ margin: '12px 0', borderTop: '1px solid var(--border)', paddingTop: 10 }}>
-          <div onClick={() => setShowMore(!showMore)}
+          <div onClick={() => setShowClassify(!showClassify)}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', userSelect: 'none' }}>
             <span style={{ fontSize: 12, color: 'var(--ink3)', fontWeight: 500 }}>
-              📋 更多信息（分类、书封、评分……）
+              📖 分类信息（语言、形态、五维分类……）
             </span>
-            <span style={{ fontSize: 11, color: 'var(--ink3)', transition: 'transform 0.2s', transform: showMore ? 'rotate(180deg)' : 'none' }}>
+            <span style={{ fontSize: 11, color: 'var(--ink3)', transition: 'transform 0.2s', transform: showClassify ? 'rotate(180deg)' : 'none' }}>
               {classifying ? '🤖' : '▾'}
             </span>
           </div>
 
-          {showMore && (
+          {showClassify && (
             <div style={{ animation: 'fadeIn 0.2s ease', marginTop: 10 }}>
               {/* 译者 */}
               <div className="form-group">
-                <label>译者 <span style={{fontSize:10,color:'var(--ink3)'}}>（选填）</span></label>
+                <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>译者 <span style={{ fontSize: 10 }}>（选填）</span></label>
                 <input type="text" value={form.translator} onChange={e => setFormField('translator', e.target.value)} placeholder="译者姓名" />
               </div>
 
-              {/* ISBN（展示） */}
+              {/* ISBN —— 已通过上方查询自动填充时改为只读展示，避免"同一个号码填两遍"的观感 */}
               <div className="form-group">
-                <label>ISBN</label>
+                <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>ISBN <span style={{ fontSize: 10 }}>（选填）</span></label>
                 <input type="text" value={form.isbn} onChange={e => setFormField('isbn', e.target.value.replace(/[^0-9X]/gi, ''))}
-                  placeholder="扫码或查询后自动填充" style={{fontSize:16,color:'var(--ink3)'}} />
+                  placeholder="上方查询后自动填充，也可手动输入"
+                  disabled={!!form.isbn}
+                  style={{ fontSize: 14, color: form.isbn ? 'var(--ink3)' : 'var(--ink)', background: form.isbn ? 'var(--card2)' : 'white' }} />
               </div>
 
               {/* 属性 */}
               <div className="form-row">
                 <div className="form-group">
-                  <label>语言</label>
+                  <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>语言</label>
                   <select value={form.language} onChange={e => setFormField('language', e.target.value)}>
                     {LANGUAGES.map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
                 <div className="form-group">
-                  <label>形态</label>
+                  <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>形态</label>
                   <select value={form.fiction} onChange={e => setFormField('fiction', e.target.value)}>
                     {FICTION_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
               </div>
 
-              {/* 分类 */}
+              {/* 一级维度 —— 【已优化】原来这里同时飘着绿色"🤖 AI建议"徽章 + 独立的粉色
+                  "🎯 创造表达"标签，三层信息叠在一起看不出彼此关系。现在合并成一行说明文字，
+                  一次性讲清楚"AI 是怎么判断的"和"这个分类对应什么能力"。 */}
               <div className="form-group">
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-                  <label style={{ marginBottom: 0 }}>一级维度</label>
-                  {classifying && <span style={{ fontSize: 10, color: 'var(--ink3)' }}>🤖 分类中…</span>}
-                  {aiSuggestion && !classifying && (
-                    <span className="suggestion-badge" style={{
-                      background: '#E8F5E9', color: '#2E7D32', borderColor: '#A5D6A7',
-                    }}>
-                      🤖 {DIM_LABEL_MAP[aiSuggestion.dimension]}
-                      {aiSuggestion.labels?.length > 0 && ` · ${aiSuggestion.labels.slice(0, 2).join('/')}`}
-                    </span>
-                  )}
-                  {isAutoFilled && !aiSuggestion && <span className="suggestion-badge" style={{
-                    background: suggestion.confidence === 'high' ? '#E8F5E9' : suggestion.confidence === 'medium' ? '#FFF8E1' : '#FFEBEE',
-                    color: suggestion.confidence === 'high' ? '#2E7D32' : suggestion.confidence === 'medium' ? '#F57F17' : '#C62828',
-                    borderColor: suggestion.confidence === 'high' ? '#A5D6A7' : suggestion.confidence === 'medium' ? '#FFE082' : '#EF9A9A',
-                  }}>🤖 {DIM_LABEL_MAP[suggestion.dimension]}</span>}
-                </div>
+                <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>一级维度</label>
                 <select value={form.dimension} onChange={e => { setAiSuggestion(null); setFormField('dimension', e.target.value); }}>
                   {WHAT_DIMENSIONS.map(d => (<option key={d.key} value={d.key}>{d.icon} {d.label}</option>))}
                 </select>
-                {dim && dim.howPrimary && <HowPrimaryLabel howKey={dim.howPrimary} />}
+                {(classifying || aiSuggestion || (isAutoFilled && !aiSuggestion) || (dim && dim.howPrimary)) && (
+                  <div style={{ fontSize: 10, color: 'var(--ink3)', marginTop: 4, lineHeight: 1.6 }}>
+                    {classifying && '🤖 AI 正在识别分类…'}
+                    {!classifying && aiSuggestion && `🤖 AI 已根据书名识别${aiSuggestion.labels?.length > 0 ? ' · ' + aiSuggestion.labels.slice(0, 2).join('/') : ''}`}
+                    {!classifying && !aiSuggestion && isAutoFilled && '🤖 已根据 ISBN 信息判断'}
+                    {dim && dim.howPrimary && (
+                      <span>{(aiSuggestion || (isAutoFilled && !aiSuggestion)) ? ' · ' : ''}对应能力：🎯 {HOW_LABEL_MAP[dim.howPrimary] || dim.howPrimary}</span>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="form-row">
                 <div className="form-group">
-                  <label>二级分类</label>
+                  <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>二级分类</label>
                   <select value={form.level2} onChange={e => { setAiSuggestion(null); setFormField('level2', e.target.value); }}>
                     {level2Options.map(o => <option key={o.key} value={o.key}>{o.label}</option>)}
                   </select>
                 </div>
                 <div className="form-group">
-                  <label>三级节点</label>
+                  <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>三级节点</label>
                   <select value={form.level3} onChange={e => setFormField('level3', e.target.value)}>
                     <option value="">（选填）</option>
                     {level3Options.map((l3, i) => <option key={i} value={l3}>{l3}</option>)}
                   </select>
                 </div>
               </div>
+            </div>
+          )}
+        </div>
 
-              {/* 书封 + 评分 */}
+        {/* ========== 读完感受（默认折叠） ========== */}
+        <div style={{ margin: '12px 0', borderTop: '1px solid var(--border)', paddingTop: 10 }}>
+          <div onClick={() => setShowFeelings(!showFeelings)}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', userSelect: 'none' }}>
+            <span style={{ fontSize: 12, color: 'var(--ink3)', fontWeight: 500 }}>
+              💭 读完感受（书封、喜爱度、一句话感受……）
+            </span>
+            <span style={{ fontSize: 11, color: 'var(--ink3)', transition: 'transform 0.2s', transform: showFeelings ? 'rotate(180deg)' : 'none' }}>▾</span>
+          </div>
+
+          {showFeelings && (
+            <div style={{ animation: 'fadeIn 0.2s ease', marginTop: 10 }}>
+              {/* 【已调整】原来"书封上传"和"孩子觉得/喜爱度"挤在同一个三列行里，
+                  上传控件本身比另外两个高，导致底部对不齐、很难看。
+                  现在书封单独占一整行，剩下两个高度接近的控件放在一起。 */}
+              <div className="form-group">
+                <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>📷 书封</label>
+                <ImageUpload imageId={form.imageId} onChange={(newId) => setFormField('imageId', newId)} size="small" />
+              </div>
               <div className="form-row">
                 <div className="form-group">
-                  <label>📷 书封</label>
-                  <ImageUpload imageId={form.imageId} onChange={(newId) => setFormField('imageId', newId)} size="large" />
-                </div>
-                <div className="form-group">
-                  <label>😊 孩子读这本书觉得？ <span style={{fontSize:10,color:'var(--ink3)'}}>（选填）</span></label>
-                  <div style={{display:'flex',gap:12,fontSize:28,justifyContent:'center',padding:'8px 0'}}>
-                    {['😄','😊','🤔','😖'].map(e => (
+                  <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>😊 孩子读这本书觉得？ <span style={{ fontSize: 10 }}>（选填）</span></label>
+                  <div style={{ display: 'flex', gap: 12, fontSize: 28, justifyContent: 'center', padding: '8px 0' }}>
+                    {['😄', '😊', '🤔', '😖'].map(e => (
                       <span key={e} onClick={() => setFormField('feedbackEmoji', form.feedbackEmoji === e ? '' : e)}
                         style={{
-                          fontSize:32,cursor:'pointer',opacity: form.feedbackEmoji === e ? 1 : 0.3,
-                          transition:'all 0.15s',transform: form.feedbackEmoji === e ? 'scale(1.2)' : 'scale(1)',
+                          fontSize: 32, cursor: 'pointer', opacity: form.feedbackEmoji === e ? 1 : 0.3,
+                          transition: 'all 0.15s', transform: form.feedbackEmoji === e ? 'scale(1.2)' : 'scale(1)',
                           filter: form.feedbackEmoji === e ? 'none' : 'grayscale(0.5)',
                         }}>{e}</span>
                     ))}
                   </div>
                 </div>
                 <div className="form-group">
-                  <label>🧒 孩子喜爱度</label>
+                  <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>🧒 孩子喜爱度</label>
                   <StarPicker value={form.childStar} onChange={v => setFormField('childStar', v)} size="large" />
                 </div>
               </div>
 
               <div className="form-group">
-                <label>一句话感受</label>
+                <label style={{ color: 'var(--ink3)', fontWeight: 400 }}>一句话感受</label>
                 <textarea value={form.note} onChange={e => setFormField('note', e.target.value)} placeholder="读完后的感想、孩子的反应..." />
               </div>
             </div>

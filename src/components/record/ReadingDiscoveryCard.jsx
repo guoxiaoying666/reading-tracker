@@ -8,6 +8,7 @@ import html2canvas from 'html2canvas';
 import { useReading } from '../../context/ReadingContext';
 import { useAuth } from '../../context/AuthContext';
 import { saveImage, saveAvatar } from '../../utils/imageDB';
+import { formatMonthLabel } from '../../utils/bookStatus';
 import { supabase } from '../../supabase';
 
 // ====================================================================
@@ -165,7 +166,7 @@ function AvatarPerson({ avatarUrl, onClick }) {
           onMouseEnter={e => { e.currentTarget.style.opacity = '0.8'; }}
           onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
         >
-          <img src={avatarUrl} alt="头像" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src={avatarUrl + '?t=' + Date.now()} alt="头像" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
       ) : (
         <div style={{
@@ -178,17 +179,17 @@ function AvatarPerson({ avatarUrl, onClick }) {
           onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
         >
           <PersonSVG />
+          <div style={{
+            position: 'absolute', bottom: -2, right: -2,
+            width: 16, height: 16, borderRadius: '50%',
+            background: '#C8815C',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 9, lineHeight: 1, color: 'white',
+            boxShadow: '0 1px 4px rgba(0,0,0,0.3)',
+            pointerEvents: 'none',
+          }}>✎</div>
         </div>
       )}
-      <div style={{
-        position: 'absolute', bottom: -2, right: -2,
-        width: 16, height: 16, borderRadius: '50%',
-        background: '#C8815C',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: 9, lineHeight: 1, color: 'white',
-        boxShadow: '0 1px 4px rgba(0,0,0,0.3)',
-        pointerEvents: 'none',
-      }}>✎</div>
     </div>
   );
 }
@@ -234,7 +235,7 @@ export default function ReadingDiscoveryCard({
       const el = cardRef.current;
       // 高分辨率渲染：按设备像素比缩放，确保文字清晰锐利
       const canvas = await html2canvas(el, {
-        backgroundColor: '#2C2A28',
+        backgroundColor: null,
         scale: dpr,
         useCORS: true,
         logging: false,
@@ -308,11 +309,12 @@ export default function ReadingDiscoveryCard({
       if (userUuid) {
         await updateProfile({ avatar_url: dataUrl });
       }
-      if (onAvatarUpdate) onAvatarUpdate(dataUrl);
+      // 用 Date.now() 强制上游刷新 avatarUrl 状态
+      if (onAvatarUpdate) onAvatarUpdate(dataUrl + '?t=' + Date.now());
     } catch (e) { console.warn('[Card] 头像上传失败:', e); }
   }, [userUuid, updateProfile, onAvatarUpdate]);
 
-  const authorYear = [author, month].filter(Boolean).join(' · ');
+  const authorYear = [author, formatMonthLabel(month)].filter(Boolean).join(' · ');
   const displayCover = localCoverUrl || coverUrl;
 
   return (
@@ -320,6 +322,7 @@ export default function ReadingDiscoveryCard({
       width: '100%', maxWidth: 320, margin: '0 auto',
       padding: '24px 22px 0',
       borderRadius: 20, position: 'relative',
+      overflow: 'hidden',
       background: '#2C2A28',
       backgroundImage: 'linear-gradient(145deg, rgba(170, 140, 110, 0.08) 0%, rgba(44, 42, 40, 0.95) 60%)',
       boxShadow: '0 12px 40px rgba(44, 36, 22, 0.2), 0 3px 12px rgba(44, 36, 22, 0.1)',
@@ -406,11 +409,12 @@ export default function ReadingDiscoveryCard({
         </div>
       </div>
 
+      {/* ========== 模块分隔：纯内边距留白 ========== */}
+      <div style={{ paddingTop: 20, paddingBottom: 4 }} />
+
       {/* ========== 底部：对话式金句 + 可点击头像 ========== */}
       <div style={{
-        margin: '24px -22px 0',
         padding: '16px 22px',
-        borderTop: '1px solid rgba(200, 190, 175, 0.08)',
       }}>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
           <AvatarPerson
@@ -430,9 +434,6 @@ export default function ReadingDiscoveryCard({
           </div>
         </div>
       </div>
-
-      {/* ========== 分隔线 ========== */}
-      <div style={{ height: 0, borderTop: '1px solid rgba(200, 190, 175, 0.06)', margin: '0 -22px' }} />
 
       {/* ========== 底部操作栏（极简细线图标 + 文字） ========== */}
       <div id="card-toolbar" style={{

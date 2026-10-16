@@ -6,6 +6,7 @@ import fs from 'fs'
 import authHandler from './api/auth.mjs'
 import { callDeepSeek } from './api/deepseek.mjs'
 import lookupHandler from './api/lookup.mjs'
+import searchIsbnHandler from './api/search-isbn.mjs'
 import classifyHandler from './api/classify.mjs'
 import adminHandler from './api/admin.mjs'
 
@@ -129,6 +130,18 @@ function apiPlugin() {
         }
       });
 
+      // ---- GET /api/search-isbn — 按书名搜索 ISBN（委托 api/search-isbn.mjs）----
+      server.middlewares.use('/api/search-isbn', async (req, res) => {
+        const url = new URL(req.url, 'http://localhost');
+        req.query = Object.fromEntries(url.searchParams);
+        res.setHeader('Content-Type', 'application/json');
+        try {
+          await searchIsbnHandler(req, wrapRes(res));
+        } catch (e) {
+          res.end(JSON.stringify({ error: e.message }));
+        }
+      });
+
       // ---- POST /api/admin — 管理后台（委托 api/admin.mjs）----
       server.middlewares.use('/api/admin', async (req, res) => {
         if (req.method === 'OPTIONS') { res.statusCode = 204; res.end(); return; }
@@ -150,7 +163,7 @@ function apiPlugin() {
 export default defineConfig({
   plugins: [react(), apiPlugin()],
   server: {
-    host: '127.0.0.1',
+    host: '0.0.0.0',
     allowedHosts: ['.ngrok-free.dev']
   }
 })

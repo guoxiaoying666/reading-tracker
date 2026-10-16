@@ -24,7 +24,16 @@ async function callRPC(name, params) {
     method: 'POST', headers,
     body: JSON.stringify(params || {}),
   });
-  return resp.json();
+  // 【已修复】有些函数（比如 delete_user_book）声明为 returns void，
+  // 成功执行后 Supabase 会返回空内容，直接 resp.json() 解析空字符串会报错
+  // "Unexpected end of JSON input"。这里先读文本，空的话直接当作成功处理。
+  const text = await resp.text();
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    return { error: text };
+  }
 }
 
 /** 调用 Supabase REST API 查询 */
@@ -229,7 +238,7 @@ export default async function handler(req, res) {
         const { url: su2, headers: sh2 } = getSupabaseConfig();
         const newBcryptHash = bcrypt.hashSync(new_pin, 10);
         const resp = await fetch(su2 + '/rest/v1/profiles?id=eq.' + encodeURIComponent(user_uuid), {
-          method: 'PATCH', headers: sh,
+          method: 'PATCH', headers: sh2,
           body: JSON.stringify({ pin_hash: newBcryptHash }),
         });
         if (!resp.ok) {
@@ -270,6 +279,67 @@ export default async function handler(req, res) {
       // 通过 RPC 查询，避免浏览器直连 Supabase REST 的权限问题
       const result = await callRPC('get_user_books', { p_user_id: uid });
       return res.status(200).json({ books: Array.isArray(result) ? result : [] });
+    }
+
+    // =========================================
+    // 8. 【新增】删除单本书 —— 真正从数据库删除该记录
+    //    之前删除只靠 sync_books 重新同步"剩余列表"，
+    //    如果 batch_sync_books 内部只做 upsert、不做反向删除，
+    //    被删的书会一直留在数据库里，下次登录又被拉回来。
+    //    这里加一个明确、独立的删除动作，直接执行 DELETE。
+    // =========================================
+    if (action === 'delete_book') {
+      const { user_uuid: uid, book_id } = req.body || {};
+      if (!uid) return res.status(400).json({ error: '缺少用户标识' });
+      if (!book_id) return res.status(400).json({ error: '缺少书籍ID' });
+
+      try {
+        await callRPC('delete_user_book', { p_book_id: book_id, p_user_id: uid });
+        return res.status(200).json({ success: true });
+      } catch (e) {
+        return res.status(500).json({ error: '删除失败：' + e.message });
+      }
+    }
+
+    // =========================================
+    // 9. 【新增】保存/更新一张说说卡到云端（绕过 RLS，替代前端直连 Supabase）
+    // =========================================
+    if (action === 'save_discovery') {
+      const { user_uuid: uid, id, book_id, book_title, discovery, question, quote, original, feedback_emoji, user_voice, date } = req.body || {};
+      if (!uid) return res.status(400).json({ error: '缺少用户标识' });
+      if (!id) return res.status(400).json({ error: '缺少卡片ID' });
+      try {
+        await callRPC('save_discovery', {
+          p_id: id,
+          p_user_id: uid,
+          p_book_id: book_id || null,
+          p_book_title: book_title || '',
+          p_discovery: discovery || '',
+          p_question: question || '',
+          p_quote: quote || '',
+          p_original: original || '',
+          p_feedback_emoji: feedback_emoji || '',
+          p_user_voice: user_voice || '',
+          p_date: date || new Date().toISOString().slice(0, 10),
+        });
+        return res.status(200).json({ success: true });
+      } catch (e) {
+        return res.status(500).json({ error: '保存说说卡失败：' + e.message });
+      }
+    }
+
+    // =========================================
+    // 10. 【新增】获取用户全部说说卡（绕过 RLS，替代前端直连 Supabase）
+    // =========================================
+    if (action === 'fetch_discoveries') {
+      const { user_uuid: uid } = req.body || {};
+      if (!uid) return res.status(400).json({ error: '缺少用户标识' });
+      try {
+        const result = await callRPC('get_user_discoveries', { p_user_id: uid });
+        return res.status(200).json({ discoveries: Array.isArray(result) ? result : [] });
+      } catch (e) {
+        return res.status(500).json({ error: '获取说说卡失败：' + e.message });
+      }
     }
 
     return res.status(400).json({ error: '未知操作' });

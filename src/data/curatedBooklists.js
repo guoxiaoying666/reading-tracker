@@ -205,3 +205,23 @@ export const CURATED_BOOKLISTS = {
     },
   },
 };
+
+/** 将 CURATED_BOOKLISTS 拍平成单层书籍数组（去重），供首页推荐使用 */
+export function flattenCuratedBooks() {
+  const seen = new Set();
+  const result = [];
+  Object.values(CURATED_BOOKLISTS).forEach(dim => {
+    Object.values(dim).forEach(l2 => {
+      Object.values(l2).forEach(books => {
+        books.forEach(b => {
+          const key = b.title + b.author;
+          if (!seen.has(key)) {
+            seen.add(key);
+            result.push(b);
+          }
+        });
+      });
+    });
+  });
+  return result;
+}
