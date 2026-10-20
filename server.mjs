@@ -34,6 +34,7 @@ const API_ROUTES = {
   '/api/search-isbn': './api/search-isbn.mjs',
   '/api/deepseek': './api/deepseek.mjs',
   '/api/recommend': './api/recommend.mjs',
+  '/api/feishu': './api/feishu.mjs',
 };
 
 // ---- MIME 类型 ----
