@@ -8,3 +8,5 @@ dist-ssr
 .env.*.local
 !.env.example
 ssl/
+.claude/settings.local.json
+ngrok-*.zip

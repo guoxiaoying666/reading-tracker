@@ -51,8 +51,21 @@ const MIME = {
 };
 
 function serveStatic(url, res) {
-  let filePath = url === '/' ? '/index.html' : url.split('?')[0];
-  const fullPath = path.join(DIST, filePath);
+  let filePath;
+  try {
+    filePath = url === '/' ? '/index.html' : decodeURIComponent(url.split('?')[0]);
+  } catch {
+    res.statusCode = 400;
+    res.end('Bad Request');
+    return;
+  }
+  // 防路径穿越：解析后必须仍在 dist 目录内
+  const fullPath = path.resolve(DIST, '.' + filePath);
+  if (!fullPath.startsWith(DIST + path.sep)) {
+    res.statusCode = 403;
+    res.end('Forbidden');
+    return;
+  }
 
   fs.readFile(fullPath, (err, data) => {
     if (err) {
@@ -72,12 +85,22 @@ function serveStatic(url, res) {
   });
 }
 
-// 解析请求体
+// 解析请求体（限制大小，避免超大请求拖垮进程）
+const MAX_BODY_BYTES = 1024 * 1024;
 async function parseBody(req) {
   if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') return {};
-  let body = '';
-  for await (const chunk of req) body += chunk;
-  try { return JSON.parse(body); } catch { return {}; }
+  const chunks = [];
+  let size = 0;
+  for await (const chunk of req) {
+    size += chunk.length;
+    if (size > MAX_BODY_BYTES) {
+      const err = new Error('Payload Too Large');
+      err.statusCode = 413;
+      throw err;
+    }
+    chunks.push(chunk);
+  }
+  try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); } catch { return {}; }
 }
 
 // ---- 服务器 ----
@@ -96,7 +119,8 @@ const server = http.createServer(async (req, res) => {
   }
 
   // ---- API 路由 ----
-  const routeMatch = Object.keys(API_ROUTES).find(r => url.startsWith(r));
+  // 精确匹配 /api/xxx 与 /api/xxx?query，避免 /api/feishu-anything 误命中
+  const routeMatch = Object.keys(API_ROUTES).find(r => url === r || url.startsWith(r + '?'));
   if (routeMatch) {
     try {
       const mod = await import(API_ROUTES[routeMatch]);
@@ -105,18 +129,32 @@ const server = http.createServer(async (req, res) => {
       req.query = Object.fromEntries(parsedUrl.searchParams);
       req.body = await parseBody(req);
       // Vercel 风格的 handler → 包装成普通 http handler
-      await mod.default(req, {
-        ...res,
-        status(code) { this.statusCode = code; return this; },
+      const apiRes = {
+        status(code) { res.statusCode = code; return apiRes; },
         json(data) {
           res.setHeader('Content-Type', 'application/json; charset=utf-8');
           res.end(JSON.stringify(data));
+          return apiRes;
         },
-      });
+        setHeader(name, value) { res.setHeader(name, value); return apiRes; },
+        getHeader(name) { return res.getHeader(name); },
+        writeHead(code, headers) { res.writeHead(code, headers); return apiRes; },
+        write(chunk) { return res.write(chunk); },
+        end(chunk) { res.end(chunk); return apiRes; },
+        get statusCode() { return res.statusCode; },
+        set statusCode(v) { res.statusCode = v; },
+      };
+      await mod.default(req, apiRes);
     } catch (e) {
-      res.statusCode = 500;
-      res.setHeader('Content-Type', 'application/json; charset=utf-8');
-      res.end(JSON.stringify({ error: e.message }));
+      const status = Number(e.statusCode) || 500;
+      if (status >= 500) console.error(`[api] ${req.method} ${url}`, e);
+      if (!res.headersSent) {
+        res.statusCode = status;
+        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+        res.end(JSON.stringify({ error: status >= 500 ? 'Internal Server Error' : e.message }));
+      } else {
+        res.end();
+      }
     }
     return;
   }

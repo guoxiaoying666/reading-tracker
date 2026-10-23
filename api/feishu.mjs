@@ -10,6 +10,7 @@ const FEISHU = () => env('FEISHU_BASE', 'https://open.feishu.cn');
 const DEEPSEEK = () => env('DEEPSEEK_BASE', 'https://api.deepseek.com');
 
 const MAX_TURNS = 30;            // 单次对话最多保留的消息条数
+const MAX_TEXT = 20000;          // 单条消息最多处理的字符数（家长导入的转写可能较长）
 const STALE_MS = 12 * 3600e3;    // 超过 12 小时没动静的对话，下次开口时先收尾
 
 // ---------- 去重：飞书 3 秒内没收到 200 会重推 ----------
@@ -25,10 +26,19 @@ function isDuplicate(id) {
 
 // ---------- 解密 ----------
 export function decrypt(encrypt, key) {
+  if (!key) throw new Error('missing_encrypt_key');
   const buf = Buffer.from(encrypt, 'base64');
+  if (buf.length <= 16) throw new Error('invalid_encrypted_payload');
   const aesKey = crypto.createHash('sha256').update(key).digest();
   const decipher = crypto.createDecipheriv('aes-256-cbc', aesKey, buf.subarray(0, 16));
   return JSON.parse(Buffer.concat([decipher.update(buf.subarray(16)), decipher.final()]).toString('utf8'));
+}
+
+function tokenMatches(given, expected) {
+  if (typeof given !== 'string' || !expected) return false;
+  const a = Buffer.from(given);
+  const b = Buffer.from(expected);
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
 // ---------- 飞书接口 ----------
@@ -204,7 +214,7 @@ export async function handleMessage(event) {
     return;
   }
 
-  const text = (JSON.parse(msg.content || '{}').text || '').trim();
+  const text = (JSON.parse(msg.content || '{}').text || '').trim().slice(0, MAX_TEXT);
   if (!text) return;
 
   // 家长导入：第一行“导入：《书名》”，后面贴聊天转写，直接生成卡片
@@ -268,22 +278,46 @@ export async function handleMessage(event) {
 }
 
 // ---------- HTTP 入口 ----------
+const REQUIRED_ENV = [
+  'FEISHU_APP_ID', 'FEISHU_APP_SECRET',
+  'FEISHU_BITABLE_APP_TOKEN', 'FEISHU_BITABLE_TABLE_ID',
+  'VITE_SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY',
+];
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
 
-  let body = req.body || {};
-  try {
-    if (body.encrypt) body = decrypt(body.encrypt, env('FEISHU_ENCRYPT_KEY'));
-  } catch (e) {
-    return res.status(400).json({ error: 'decrypt_failed' });
+  // 没配验证 token 时一律拒绝：否则任何人都能伪造事件调用机器人
+  const expectedToken = env('FEISHU_VERIFICATION_TOKEN');
+  if (!expectedToken) {
+    console.error('[feishu] 未配置 FEISHU_VERIFICATION_TOKEN，拒绝所有回调');
+    return res.status(503).json({ error: 'not_configured' });
   }
 
-  const token = body.header?.token ?? body.token;
-  if (env('FEISHU_VERIFICATION_TOKEN') && token !== env('FEISHU_VERIFICATION_TOKEN')) {
-    return res.status(403).json({ error: 'bad_token' });
+  const encryptKey = env('FEISHU_ENCRYPT_KEY');
+  let body = req.body || {};
+  if (body.encrypt) {
+    if (!encryptKey) return res.status(400).json({ error: 'encrypt_key_not_configured' });
+    try {
+      body = decrypt(body.encrypt, encryptKey);
+    } catch (e) {
+      return res.status(400).json({ error: 'decrypt_failed' });
+    }
+  } else if (encryptKey) {
+    // 飞书后台配了 Encrypt Key 后，明文请求一定是伪造的
+    return res.status(400).json({ error: 'encrypted_payload_required' });
   }
+
+  const token = body.header?.token ?? body.token ?? '';
+  if (!tokenMatches(token, expectedToken)) return res.status(403).json({ error: 'bad_token' });
 
   if (body.type === 'url_verification') return res.status(200).json({ challenge: body.challenge });
+
+  const missing = REQUIRED_ENV.filter((k) => !env(k));
+  if (missing.length) {
+    console.error('[feishu] 缺少环境变量: ' + missing.join(', '));
+    return res.status(503).json({ error: 'not_configured' });
+  }
 
   // 先回 200，再慢慢处理，避免飞书超时重推
   res.status(200).json({ ok: true });
